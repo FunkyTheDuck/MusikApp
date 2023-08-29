@@ -8,10 +8,10 @@ namespace ApiDTOModels
 {
     public class DtoArtistPayment
     {
-        public int id { get; set; }
-        public int artistId { get; set; }
-        public List<DtoArtist> artist { get; set; }
-        public DateTime startDate { get; set; }
-        public DateTime endDate { get; set; }
+        public int Id { get; set; }
+        public int ArtistId { get; set; }
+        public List<DtoArtist> Artist { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
     }
 }

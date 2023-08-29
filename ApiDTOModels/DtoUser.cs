@@ -9,22 +9,22 @@ namespace ApiDTOModels
 {
     public class DtoUser
     {
-        public int id { get; set; }
-        public string? profilPicture { get; set; }
+        public int Id { get; set; }
+        public string? ProfilPicture { get; set; }
         [Required, MaxLength(100)]
-        public string name { get; set; }
+        public string Name { get; set; }
         [Required, MaxLength(100)]
-        public string lastName { get; set; }
+        public string LastName { get; set; }
         [Required, MaxLength(255)]
-        public string userName { get; set; }
+        public string UserName { get; set; }
         [Required, MaxLength(50)]
-        public string mail { get; set; }
-        public bool isPremium { get; set; }
-        public bool isArtist { get; set; }
-        public DtoWhiteList whiteList { get; set; }
-        public DtoBlackList blackList { get; set; }
-        public DtoSettings settings { get; set; }
-        public DtoPremium premium { get; set; }
-        public DtoArtist artist { get; set; }
+        public string Mail { get; set; }
+        public bool IsPremium { get; set; }
+        public bool IsArtist { get; set; }
+        public DtoWhiteList WhiteList { get; set; }
+        public DtoBlackList BlackList { get; set; }
+        public DtoSettings Settings { get; set; }
+        public DtoPremium Premium { get; set; }
+        public DtoArtist Artist { get; set; }
     }
 }

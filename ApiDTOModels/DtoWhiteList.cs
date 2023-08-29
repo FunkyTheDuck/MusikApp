@@ -8,10 +8,10 @@ namespace ApiDTOModels
 {
     public class DtoWhiteList
     {
-        public int id { get; set; }
-        public int userID { get; set; }
-        public DtoUser user { get; set; }
-        public int songID { get; set; }
-        public List<DtoSong> song { get; set; }
+        public int Id { get; set; }
+        public int UserID { get; set; }
+        public DtoUser User { get; set; }
+        public int SongID { get; set; }
+        public List<DtoSong> Song { get; set; }
     }
 }

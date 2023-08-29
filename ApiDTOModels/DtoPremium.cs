@@ -8,10 +8,10 @@ namespace ApiDTOModels
 {
     public class DtoPremium
     {
-        public int id { get; set; }
-        public int userId { get; set; }
-        public DtoUser user { get; set; }
-        public DateTime transactionDay { get; set; }
-        public DateTime nextTransactionDay { get; set; }
+        public int Id { get; set; }
+        public int UserId { get; set; }
+        public DtoUser User { get; set; }
+        public DateTime TransactionDay { get; set; }
+        public DateTime NextTransactionDay { get; set; }
     }
 }

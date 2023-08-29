@@ -8,11 +8,11 @@ namespace ApiModels
 {
     public class Artist
     {
-        public int id { get; set; }
-        public int userId { get; set; }
-        public User user { get; set; }
-        public List<string>? highlightSong { get; set; }
-        public List<Song> songs { get; set; }
-        public ArtistPayment artistPayment { get; set; }
+        public int Id { get; set; }
+        public int UserId { get; set; }
+        public User User { get; set; }
+        public List<string>? HighlightSong { get; set; }
+        public List<Song> Songs { get; set; }
+        public ArtistPayment ArtistPayment { get; set; }
     }
 }

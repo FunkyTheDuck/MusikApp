@@ -9,17 +9,17 @@ namespace ApiModels
 {
     public class Song
     {
-        public int id { get; set; }
-        public int artistId { get; set; }
-        public Artist artist { get; set; }
+        public int Id { get; set; }
+        public int ArtistId { get; set; }
+        public Artist Artist { get; set; }
         [MaxLength(100)]
-        public string name { get; set; }
+        public string Name { get; set; }
         [MaxLength(255)]
-        public string albumImage { get; set; }
-        public byte[] audioExample { get; set; }
+        public string AlbumImage { get; set; }
+        public byte[] AudioExample { get; set; }
         [MaxLength(100)]
-        public List<string> genre { get; set; }
-        public WhiteList whiteList { get; set; }
-        public BlackList blackList { get; set; }
+        public List<string> Genre { get; set; }
+        public WhiteList WhiteList { get; set; }
+        public BlackList BlackList { get; set; }
     }
 }
