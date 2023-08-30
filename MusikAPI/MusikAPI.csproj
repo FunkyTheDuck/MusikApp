@@ -20,4 +20,8 @@
     <ProjectReference Include="..\ApiRepository\ApiRepository.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+  </ItemGroup>
+
 </Project>
