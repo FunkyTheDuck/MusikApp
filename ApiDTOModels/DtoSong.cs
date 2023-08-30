@@ -19,7 +19,7 @@ namespace ApiDTOModels
         [Required]
         public byte[] AudioExample { get; set; }
         [MaxLength(100)]
-        public List<string> Genre { get; set; }
+        public string Genre { get; set; }
         public DtoWhiteList WhiteList { get; set; }
         public DtoBlackList BlackList { get; set; }
     }
