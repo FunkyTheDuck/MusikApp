@@ -9,12 +9,12 @@ namespace ApiModels
 {
     public class Settings
     {
-        public int id { get; set; }
-        public int userId { get; set; }
-        public User user { get; set; }
+        public int Id { get; set; }
+        public int UserId { get; set; }
+        public User User { get; set; }
         [MaxLength(255)]
-        public string changeGenre { get; set; }
-        public int howNewTheMusicIs { get; set; }
-        public int howManyNotifications { get; set; }
+        public string ChangeGenre { get; set; }
+        public int HowNewTheMusicIs { get; set; }
+        public int HowManyNotifications { get; set; }
     }
 }

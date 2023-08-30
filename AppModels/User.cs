@@ -5,26 +5,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ApiDTOModels
+namespace AppModels
 {
-    public class DtoUser
+    public class User
     {
         public int Id { get; set; }
         public string? ProfilPicture { get; set; }
-        [Required, MaxLength(100)]
+        [MaxLength(100)]
         public string Name { get; set; }
-        [Required, MaxLength(100)]
+        [MaxLength(100)]
         public string LastName { get; set; }
-        [Required, MaxLength(255)]
+        [MaxLength(255)]
         public string UserName { get; set; }
-        [Required, MaxLength(50)]
+        [MaxLength(50)]
         public string Mail { get; set; }
         public bool IsPremium { get; set; }
         public bool IsArtist { get; set; }
-        public DtoWhiteList WhiteList { get; set; }
-        public DtoBlackList BlackList { get; set; }
-        public DtoSettings Settings { get; set; }
-        public DtoPremium Premium { get; set; }
-        public DtoArtist Artist { get; set; }
+        public WhiteList WhiteList { get; set; }
+        public BlackList BlackList { get; set; }
+        public Settings Settings { get; set; }
+        public Premium Premium { get; set; }
+        public Artist Artist { get; set; }
     }
 }

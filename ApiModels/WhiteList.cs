@@ -8,10 +8,10 @@ namespace ApiModels
 {
     public class WhiteList
     {
-        public int id { get; set; }
-        public int userID { get; set; }
-        public User user { get; set; }
-        public int songID { get; set; }
-        public List<Song> song { get; set; }
+        public int Id { get; set; }
+        public int UserID { get; set; }
+        public User User { get; set; }
+        public int SongID { get; set; }
+        public List<Song> Song { get; set; }
     }
 }
