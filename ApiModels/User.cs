@@ -26,5 +26,6 @@ namespace ApiModels
         public Settings Settings { get; set; }
         public Premium Premium { get; set; }
         public Artist Artist { get; set; }
+        public List<Friend> Friends { get; set; } 
     }
 }

@@ -1,3 +1,4 @@
+using ApiRepository;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MusikAPI.Controllers
@@ -6,6 +7,7 @@ namespace MusikAPI.Controllers
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
     {
+
         private static readonly string[] Summaries = new[]
         {
         "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
@@ -15,6 +17,7 @@ namespace MusikAPI.Controllers
 
         public WeatherForecastController(ILogger<WeatherForecastController> logger)
         {
+            Repository repo = new Repository();
             _logger = logger;
         }
 

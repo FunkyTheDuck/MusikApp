@@ -26,5 +26,6 @@ namespace AppDTOModels
         public DtoSettings Settings { get; set; }
         public DtoPremium Premium { get; set; }
         public DtoArtist Artist { get; set; }
+        public List<DtoFriend> Friends { get; set; }
     }
 }

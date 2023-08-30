@@ -3,25 +3,25 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34018.315
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusikApp", "MusikApp\MusikApp.csproj", "{A5AFBF85-25AB-47C0-AF7D-35473668F080}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MusikApp", "MusikApp\MusikApp.csproj", "{A5AFBF85-25AB-47C0-AF7D-35473668F080}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppRepository", "AppRepository\AppRepository.csproj", "{75E54674-D5C0-45B2-9427-C3CB2FB6F511}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppRepository", "AppRepository\AppRepository.csproj", "{75E54674-D5C0-45B2-9427-C3CB2FB6F511}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppDBAccess", "AppDBAccess\AppDBAccess.csproj", "{76AE1F86-C55C-4D67-8CA9-ED518DC7078A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppDBAccess", "AppDBAccess\AppDBAccess.csproj", "{76AE1F86-C55C-4D67-8CA9-ED518DC7078A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusikAPI", "MusikAPI\MusikAPI.csproj", "{C483AF9B-5788-4484-AA95-45C92B96F221}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MusikAPI", "MusikAPI\MusikAPI.csproj", "{C483AF9B-5788-4484-AA95-45C92B96F221}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiRepository", "ApiRepository\ApiRepository.csproj", "{FA6C2FA9-0D1B-4EE0-93F6-0FE60BBC49D9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiRepository", "ApiRepository\ApiRepository.csproj", "{FA6C2FA9-0D1B-4EE0-93F6-0FE60BBC49D9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiDBAccess", "ApiDBAccess\ApiDBAccess.csproj", "{07968CDA-C388-497F-99AC-DFC3FAC9EDAB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiDBAccess", "ApiDBAccess\ApiDBAccess.csproj", "{07968CDA-C388-497F-99AC-DFC3FAC9EDAB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppModels", "AppModels\AppModels.csproj", "{4BA38029-31C9-4504-924D-26D72F281791}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppModels", "AppModels\AppModels.csproj", "{4BA38029-31C9-4504-924D-26D72F281791}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppDTOModels", "AppDTOModels\AppDTOModels.csproj", "{05657179-5E67-4E91-B03D-0C0BAF9B6C9E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppDTOModels", "AppDTOModels\AppDTOModels.csproj", "{05657179-5E67-4E91-B03D-0C0BAF9B6C9E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiModels", "ApiModels\ApiModels.csproj", "{EB599A41-A3B5-4F46-A578-BEC6A50CFE4A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiModels", "ApiModels\ApiModels.csproj", "{EB599A41-A3B5-4F46-A578-BEC6A50CFE4A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiDTOModels", "ApiDTOModels\ApiDTOModels.csproj", "{AA196603-E040-44FE-B36C-5C63E40788D8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiDTOModels", "ApiDTOModels\ApiDTOModels.csproj", "{AA196603-E040-44FE-B36C-5C63E40788D8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
