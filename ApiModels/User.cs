@@ -9,22 +9,22 @@ namespace ApiModels
 {
     public class User
     {
-        public int id { get; set; }
-        public string? profilPicture { get; set; }
+        public int Id { get; set; }
+        public string? ProfilPicture { get; set; }
         [MaxLength(100)]
-        public string name { get; set; }
+        public string Name { get; set; }
         [MaxLength(100)]
-        public string lastName { get; set; }
+        public string LastName { get; set; }
         [MaxLength(255)]
-        public string userName { get; set; }
+        public string UserName { get; set; }
         [MaxLength(50)]
-        public string mail { get; set; }
-        public bool isPremium { get; set; }
-        public bool isArtist { get; set; }
-        public WhiteList whiteList { get; set; }
-        public BlackList blackList { get; set; }
-        public Settings settings { get; set; }
-        public Premium premium { get; set; }
-        public Artist artist { get; set; }
+        public string Mail { get; set; }
+        public bool IsPremium { get; set; }
+        public bool IsArtist { get; set; }
+        public WhiteList WhiteList { get; set; }
+        public BlackList BlackList { get; set; }
+        public Settings Settings { get; set; }
+        public Premium Premium { get; set; }
+        public Artist Artist { get; set; }
     }
 }

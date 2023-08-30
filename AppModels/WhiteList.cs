@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ApiModels
+namespace AppModels
 {
-    public class BlackList
+    public class WhiteList
     {
         public int Id { get; set; }
         public int UserID { get; set; }

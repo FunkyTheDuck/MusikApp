@@ -5,13 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ApiDTOModels
+namespace AppModels
 {
-    public class DtoSettings
+    public class Settings
     {
         public int Id { get; set; }
         public int UserId { get; set; }
-        public DtoUser User { get; set; }
+        public User User { get; set; }
         [MaxLength(255)]
         public string ChangeGenre { get; set; }
         public int HowNewTheMusicIs { get; set; }

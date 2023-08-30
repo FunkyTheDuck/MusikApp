@@ -8,11 +8,11 @@ namespace ApiDTOModels
 {
     public class DtoArtist
     {
-        public int id { get; set; }
-        public int userId { get; set; }
-        public DtoUser user { get; set; }
-        public List<string>? highlightSong { get; set; }
-        public List<DtoSong> songs { get; set; }
-        public DtoArtistPayment artistPayment { get; set; }
+        public int Id { get; set; }
+        public int UserId { get; set; }
+        public DtoUser User { get; set; }
+        public List<string>? HighlightSong { get; set; }
+        public List<DtoSong> Songs { get; set; }
+        public DtoArtistPayment ArtistPayment { get; set; }
     }
 }

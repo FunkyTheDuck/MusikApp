@@ -9,18 +9,18 @@ namespace ApiDTOModels
 {
     public class DtoSong
     {
-        public int id { get; set; }
-        public int artistId { get; set; }
-        public DtoArtist artist { get; set; }
+        public int Id { get; set; }
+        public int ArtistId { get; set; }
+        public DtoArtist Artist { get; set; }
         [Required, MaxLength(100)]
-        public string name { get; set; }
+        public string Name { get; set; }
         [MaxLength(255)]
-        public string albumImage { get; set; }
+        public string AlbumImage { get; set; }
         [Required]
-        public byte[] audioExample { get; set; }
+        public byte[] AudioExample { get; set; }
         [MaxLength(100)]
-        public List<string> genre { get; set; }
-        public DtoWhiteList whiteList { get; set; }
-        public DtoBlackList blackList { get; set; }
+        public List<string> Genre { get; set; }
+        public DtoWhiteList WhiteList { get; set; }
+        public DtoBlackList BlackList { get; set; }
     }
 }

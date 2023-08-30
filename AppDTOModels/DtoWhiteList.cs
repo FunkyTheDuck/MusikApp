@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ApiModels
+namespace AppDTOModels
 {
-    public class BlackList
+    public class DtoWhiteList
     {
         public int Id { get; set; }
         public int UserID { get; set; }
-        public User User { get; set; }
+        public DtoUser User { get; set; }
         public int SongID { get; set; }
-        public List<Song> Song { get; set; }
+        public List<DtoSong> Song { get; set; }
     }
 }

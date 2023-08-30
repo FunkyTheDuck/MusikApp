@@ -5,21 +5,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ApiModels
+namespace AppDTOModels
 {
-    public class Song
+    public class DtoSong
     {
         public int Id { get; set; }
         public int ArtistId { get; set; }
-        public Artist Artist { get; set; }
-        [MaxLength(100)]
+        public DtoArtist Artist { get; set; }
+        [Required, MaxLength(100)]
         public string Name { get; set; }
         [MaxLength(255)]
         public string AlbumImage { get; set; }
+        [Required]
         public byte[] AudioExample { get; set; }
         [MaxLength(100)]
         public List<string> Genre { get; set; }
-        public WhiteList WhiteList { get; set; }
-        public BlackList BlackList { get; set; }
+        public DtoWhiteList WhiteList { get; set; }
+        public DtoBlackList BlackList { get; set; }
     }
 }

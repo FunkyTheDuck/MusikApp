@@ -4,15 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ApiModels
+namespace AppDTOModels
 {
-    public class Artist
+    public class DtoArtist
     {
         public int Id { get; set; }
         public int UserId { get; set; }
-        public User User { get; set; }
+        public DtoUser User { get; set; }
         public List<string>? HighlightSong { get; set; }
-        public List<Song> Songs { get; set; }
-        public ArtistPayment ArtistPayment { get; set; }
+        public List<DtoSong> Songs { get; set; }
+        public DtoArtistPayment ArtistPayment { get; set; }
     }
 }
