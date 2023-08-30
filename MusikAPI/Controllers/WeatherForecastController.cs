@@ -1,4 +1,3 @@
-using ApiRepository;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MusikAPI.Controllers
@@ -17,7 +16,6 @@ namespace MusikAPI.Controllers
 
         public WeatherForecastController(ILogger<WeatherForecastController> logger)
         {
-            Repository repo = new Repository();
             _logger = logger;
         }
 
