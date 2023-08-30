@@ -17,7 +17,7 @@ namespace MusikApp.ViewModels
         }
         public async void PlaySongAsync(object obj)
         {
-            var audioPlayer = AudioManager.Current.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("ukulele_test.mp3"));
+            AudioPlayer audioPlayer = (AudioPlayer)AudioManager.Current.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("ukulele_test.mp3"));
             audioPlayer.Play();
         }
     }

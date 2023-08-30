@@ -5,6 +5,5 @@ public partial class StartPage : ContentPage
 	public StartPage()
 	{
 		InitializeComponent();
-		BindingContext = this;
 	}
 }
