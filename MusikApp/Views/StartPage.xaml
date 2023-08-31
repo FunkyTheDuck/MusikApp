@@ -26,9 +26,9 @@
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="75"/>
+            <ColumnDefinition Width="50"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="75"/>
+            <ColumnDefinition Width="50"/>
         </Grid.ColumnDefinitions>
 
         <Border Grid.ColumnSpan="3" Style="{StaticResource HeaderBorder}">
@@ -47,22 +47,24 @@
         <Border Grid.Column="1" Grid.Row="2" Style="{StaticResource SongBorder}">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="15"/>
                     <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="30"/>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="15"/>
                 </Grid.ColumnDefinitions>
-                <Image Style="{StaticResource SongImage}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Source="{Binding SongImage}"></Image>
-                <Label Style="{StaticResource SongText}" Grid.Row="1" Grid.ColumnSpan="3" Text="{Binding SongName}"></Label>
-                <Label Style="{StaticResource SongText}" Grid.Row="2" Text="{Binding AlbumName}"></Label>
-                <Border Grid.Row="1" Grid.Column="2" Style="{StaticResource ArtistImageBorder}">
+                <Image Style="{StaticResource SongImage}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" Source="{Binding SongImage}"></Image>
+                <Label Style="{StaticResource SongName}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Text="{Binding SongName}"></Label>
+                <Label Style="{StaticResource AlbumName}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding AlbumName}"></Label>
+                <Border Grid.Row="1" Grid.RowSpan="2" Grid.Column="3" Style="{StaticResource ArtistImageBorder}">
                     <Image Source="{Binding SongArtistImage}"></Image>
                 </Border>
-                <Label Style="{StaticResource SongText}" Grid.Row="2" Grid.Column="2" Text="{Binding ArtistName}"></Label>
+                <Label Style="{StaticResource ArtistName}" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Text="{Binding ArtistName}"></Label>
             </Grid>
         </Border>
         
@@ -74,9 +76,14 @@
                 <ColumnDefinition Width="50"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <ImageButton Style="{StaticResource SkipLikeBtn}" Grid.Column="0" Source="skip_icon.png"/>
-            <ImageButton Style="{StaticResource PausePlayBtn}" Grid.Column="2"  Source="{Binding PausePlayBtnSource}"/>
-            <ImageButton Style="{StaticResource SkipLikeBtn}" Grid.Column="4"  Source="like_icon.png"/>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="35"/>
+            </Grid.RowDefinitions>
+            <ImageButton Grid.Row="1" Style="{StaticResource SkipLikeBtn}" Grid.Column="0" Source="skip_icon.png"/>
+            <ImageButton Grid.Row="1" Style="{StaticResource PausePlayBtn}" Grid.Column="2"  Source="{Binding PausePlayBtnSource}"/>
+            <ImageButton Grid.Row="1" Style="{StaticResource SkipLikeBtn}" Grid.Column="4"  Source="like_icon.png"/>
         </Grid>
 
         <Border Grid.ColumnSpan="3" Grid.Row="4" Style="{StaticResource FooterBorder}">
