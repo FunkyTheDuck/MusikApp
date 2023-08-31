@@ -1,4 +1,5 @@
 ﻿using ApiDTOModels;
+using ApiModels;
 using ApiRepository;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -25,7 +26,7 @@ namespace MusikAPI.Controllers
             return Ok(await repo.GetArtistPayments(id));
         }
         [HttpPost]
-        public async Task<IActionResult> PostArtistPayment(DtoArtistPayment artistPayment)
+        public async Task<IActionResult> PostArtistPayment(ArtistPayment artistPayment)
         {
             bool checkIfSucces = false;
             try
@@ -43,7 +44,7 @@ namespace MusikAPI.Controllers
             return BadRequest();
         }
         [HttpPut]
-        public async Task<IActionResult> PutArtistPayment(DtoArtistPayment artistPayment)
+        public async Task<IActionResult> PutArtistPayment(ArtistPayment artistPayment)
         {
             if (artistPayment != null)
             {

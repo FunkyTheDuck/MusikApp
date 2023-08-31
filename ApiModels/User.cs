@@ -19,6 +19,8 @@ namespace ApiModels
         public string UserName { get; set; }
         [MaxLength(50)]
         public string Mail { get; set; }
+        [MaxLength(255)]
+        public string Password { get; set; }
         public bool IsPremium { get; set; }
         public bool IsArtist { get; set; }
         public WhiteList WhiteList { get; set; }

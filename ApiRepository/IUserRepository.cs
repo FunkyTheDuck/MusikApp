@@ -1,14 +1,13 @@
-﻿using ApiDTOModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ApiModels;
 
 namespace ApiRepository
 {
     public interface IUserRepository
     {
-
+        Task<bool> Create(User user);
+        Task<bool> Delete(int id);
+        Task<List<User>> GetUsers();
+        Task<User> GetUsers(int id);
+        Task<bool> Update(User user);
     }
 }
