@@ -57,7 +57,6 @@
     </Style>
     <Style TargetType="Image" x:Key="SongImage">
         <Setter Property="VerticalOptions" Value="Start"/>
-        <Setter Property="MaximumHeightRequest" Value="200"/>
     </Style>
     <Style TargetType="Label" x:Key="SongName">
         <Setter Property="TextColor" Value="White"/>
