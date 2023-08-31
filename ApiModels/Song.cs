@@ -18,7 +18,7 @@ namespace ApiModels
         public string AlbumImage { get; set; }
         public byte[] AudioExample { get; set; }
         [MaxLength(100)]
-        public List<string> Genre { get; set; }
+        public string Genre { get; set; }
         public WhiteList WhiteList { get; set; }
         public BlackList BlackList { get; set; }
     }

@@ -1,14 +1,13 @@
-﻿using ApiDTOModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ApiModels;
 
 namespace ApiRepository
 {
     public interface ISongsRepository
     {
-
+        Task<bool> Create(Song Song);
+        Task<bool> Delete(int id);
+        Task<List<Song>> GetSongs();
+        Task<Song> GetSongs(int id);
+        Task<bool> Update(Song song);
     }
 }
