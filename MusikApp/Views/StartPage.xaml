@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ViewModels="clr-namespace:MusikApp.ViewModels"
+             xmlns:rd="clr-namespace:MusikApp.Resources.Styles"
+             x:Class="MusikApp.Views.StartPage"
+             Title="StartPage"
+             Style="{StaticResource StartPage}">
+    <ContentPage.BindingContext>
+        <ViewModels:StartPageViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <rd:StartPageStyle/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="75"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="75"/>
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.ColumnSpan="3" Style="{StaticResource HeaderBorder}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="150"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" Style="{StaticResource BuyPremiumText}"></Label>
+                <Label Grid.Column="2" Style="{StaticResource AppNameText}"></Label>
+            </Grid>
+        </Border>
+
+        <Button Grid.Column="1" Grid.Row="1" Text="Play ukulele riff" Command="{Binding PlaySound}" Style="{StaticResource MainBtn}"></Button>
+
+        <Border Grid.ColumnSpan="3" Grid.Row="2" Style="{StaticResource FooterBorder}">
+
+        </Border>
+    </Grid>
+</ContentPage>

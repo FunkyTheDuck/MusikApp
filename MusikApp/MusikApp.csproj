@@ -49,7 +49,16 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Images\ukulele_test.mp3" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiImage Include="Resources\Raw\ukulele_test.mp3" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
+		<PackageReference Include="Plugin.Maui.Audio" Version="1.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -58,8 +67,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="ViewModels\" />
-	  <Folder Include="Views\" />
+
 	</ItemGroup>
 
 </Project>

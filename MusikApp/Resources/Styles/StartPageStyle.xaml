@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MusikApp.Resources.Styles.StartPageStyle">
+    
+    <Style TargetType="Button" x:Key="MainBtn">
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="BackgroundColor" Value="Red"/>
+        <Setter Property="HeightRequest" Value="75"/>
+    </Style>
+    <Style TargetType="ContentPage" x:Key="StartPage">
+        <Setter Property="Background" Value="Black" />
+    </Style>
+    <Style TargetType="Border" x:Key="HeaderBorder">
+        <Setter Property="StrokeShape" Value="RoundRectangle 0,0,40,40"/>
+        <Setter Property="BackgroundColor" Value="#303030"/>
+    </Style>
+    <Style TargetType="Border" x:Key="FooterBorder">
+        <Setter Property="StrokeShape" Value="RoundRectangle 40,40,0,0"/>
+        <Setter Property="BackgroundColor" Value="#303030"/>
+    </Style>
+    <Style TargetType="Label" x:Key="BuyPremiumText">
+        <Setter Property="TextColor" Value="White"/>
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="Text" Value="Buy Premium"/>
+        <Setter Property="VerticalTextAlignment" Value="Center"/>
+        <Setter Property="Margin" Value="15,0,0,0"/>
+    </Style>
+    <Style TargetType="Label" x:Key="AppNameText">
+        <Setter Property="TextColor" Value="White"/>
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="Text" Value="App Name"/>
+        <Setter Property="HorizontalTextAlignment" Value="End"/>
+        <Setter Property="VerticalTextAlignment" Value="Center"/>
+        <Setter Property="Margin" Value="0,0,15,0"/>
+    </Style>
+</ResourceDictionary>
