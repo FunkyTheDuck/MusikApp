@@ -9,10 +9,6 @@ namespace ApiRepository
 {
     public interface IArtistPaymentRepository
     {
-        Task<List<DtoArtistPayment>> GetArtistPayments();
-        Task<DtoArtistPayment> GetArtistPayments(int id);
-        Task<bool> Create(DtoArtistPayment artistPayments);
-        Task<bool> Update(DtoArtistPayment artistPayments);
-        Task<bool> Delete(int id);
+
     }
 }

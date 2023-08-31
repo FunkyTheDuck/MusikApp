@@ -9,10 +9,6 @@ namespace ApiRepository
 {
     public interface ISongsRepository
     {
-        Task<List<DtoSong>> GetSongs();
-        Task<DtoSong> GetSongs(int id);
-        Task<bool> Create(DtoSong songs);
-        Task<bool> Update(DtoSong songs); 
-        Task<bool> Delete(int id);
+
     }
 }

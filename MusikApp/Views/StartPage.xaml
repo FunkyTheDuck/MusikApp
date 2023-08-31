@@ -4,7 +4,8 @@
              xmlns:ViewModels="clr-namespace:MusikApp.ViewModels"
              xmlns:rd="clr-namespace:MusikApp.Resources.Styles"
              x:Class="MusikApp.Views.StartPage"
-             Title="StartPage">
+             Title="StartPage"
+             Style="{StaticResource StartPage}">
     <ContentPage.BindingContext>
         <ViewModels:StartPageViewModel/>
     </ContentPage.BindingContext>
@@ -15,5 +16,12 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </ContentPage.Resources>
-    <Button Text="Play ukulele riff" Command="{Binding PlaySound}" Style="{StaticResource MainBtn}"></Button>
+
+    <StackLayout>
+        <Rectangle Style="{StaticResource HeaderBG}">
+            
+        </Rectangle>
+        <Button Text="Play ukulele riff" Command="{Binding PlaySound}" Style="{StaticResource MainBtn}"></Button>
+    </StackLayout>
+
 </ContentPage>
