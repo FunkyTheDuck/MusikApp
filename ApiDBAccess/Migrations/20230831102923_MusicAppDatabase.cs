@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ApiDBAccess.Migrations
 {
     /// <inheritdoc />
-    public partial class musicdatabase : Migration
+    public partial class MusicAppDatabase : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -37,6 +37,7 @@ namespace ApiDBAccess.Migrations
                     LastName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     Mail = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     IsPremium = table.Column<bool>(type: "bit", nullable: false),
                     IsArtist = table.Column<bool>(type: "bit", nullable: false)
                 },

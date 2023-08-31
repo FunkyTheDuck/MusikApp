@@ -1,4 +1,4 @@
-﻿using ApiDTOModels;
+﻿using ApiModels;
 using ApiRepository;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -25,7 +25,7 @@ namespace MusikAPI.Controllers
             return Ok(await repo.GetSongs(id));
         }
         [HttpPost]
-        public async Task<IActionResult> PostSongs(DtoSong songs)
+        public async Task<IActionResult> PostSongs(Song songs)
         {
             bool checkIfSucces = false;
             try
@@ -43,7 +43,7 @@ namespace MusikAPI.Controllers
             return BadRequest();
         }
         [HttpPut]
-        public async Task<IActionResult> PutSongs(DtoSong songs)
+        public async Task<IActionResult> PutSongs(Song songs)
         {
             if (songs != null)
             {

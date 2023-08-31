@@ -17,11 +17,34 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <StackLayout>
-        <Rectangle Style="{StaticResource HeaderBG}">
-            
-        </Rectangle>
-        <Button Text="Play ukulele riff" Command="{Binding PlaySound}" Style="{StaticResource MainBtn}"></Button>
-    </StackLayout>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="75"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="75"/>
+        </Grid.ColumnDefinitions>
 
+        <Border Grid.ColumnSpan="3" Style="{StaticResource HeaderBorder}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="150"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" Style="{StaticResource BuyPremiumText}"></Label>
+                <Label Grid.Column="2" Style="{StaticResource AppNameText}"></Label>
+            </Grid>
+        </Border>
+
+        <Button Grid.Column="1" Grid.Row="1" Text="Play ukulele riff" Command="{Binding PlaySound}" Style="{StaticResource MainBtn}"></Button>
+
+        <Border Grid.ColumnSpan="3" Grid.Row="2" Style="{StaticResource FooterBorder}">
+
+        </Border>
+    </Grid>
 </ContentPage>

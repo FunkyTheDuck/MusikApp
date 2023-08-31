@@ -11,8 +11,27 @@
     <Style TargetType="ContentPage" x:Key="StartPage">
         <Setter Property="Background" Value="Black" />
     </Style>
-    <Style TargetType="Rectangle" x:Key="HeaderBG">
-        <Setter Property="Fill" Value="#303030"/>
-        <Setter Property="HeightRequest" Value="500"/>
+    <Style TargetType="Border" x:Key="HeaderBorder">
+        <Setter Property="StrokeShape" Value="RoundRectangle 0,0,40,40"/>
+        <Setter Property="BackgroundColor" Value="#303030"/>
+    </Style>
+    <Style TargetType="Border" x:Key="FooterBorder">
+        <Setter Property="StrokeShape" Value="RoundRectangle 40,40,0,0"/>
+        <Setter Property="BackgroundColor" Value="#303030"/>
+    </Style>
+    <Style TargetType="Label" x:Key="BuyPremiumText">
+        <Setter Property="TextColor" Value="White"/>
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="Text" Value="Buy Premium"/>
+        <Setter Property="VerticalTextAlignment" Value="Center"/>
+        <Setter Property="Margin" Value="15,0,0,0"/>
+    </Style>
+    <Style TargetType="Label" x:Key="AppNameText">
+        <Setter Property="TextColor" Value="White"/>
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="Text" Value="App Name"/>
+        <Setter Property="HorizontalTextAlignment" Value="End"/>
+        <Setter Property="VerticalTextAlignment" Value="Center"/>
+        <Setter Property="Margin" Value="0,0,15,0"/>
     </Style>
 </ResourceDictionary>
