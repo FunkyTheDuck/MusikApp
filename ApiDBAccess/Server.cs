@@ -30,7 +30,7 @@ namespace ApiDBAccess
 
         public async Task<DtoArtist> GetArtist(int id)
         {
-            return Artists.FirstOrDefault(x => x.id == id);
+            return Artists.FirstOrDefault(x => x.Id == id);
         }
 
         public async Task<bool> Create(DtoArtist artist)
@@ -48,7 +48,7 @@ namespace ApiDBAccess
             DtoArtist a = new DtoArtist();
             try
             {
-                a = Artists[Artists.IndexOf(Artists.FirstOrDefault(x => x.id == artist.id))];
+                a = Artists[Artists.IndexOf(Artists.FirstOrDefault(x => x.Id == artist.Id))];
             }
             catch
             {
@@ -69,7 +69,7 @@ namespace ApiDBAccess
 
         public async Task<DtoArtistPayment> GetArtistPayments(int id)
         {
-            return ArtistPayments.FirstOrDefault(x => x.id == id);
+            return ArtistPayments.FirstOrDefault(x => x.Id == id);
         }
 
         public async Task<bool> Create(DtoArtistPayment artistPayments)
@@ -87,7 +87,7 @@ namespace ApiDBAccess
             DtoArtistPayment a = new DtoArtistPayment();
             try
             {
-                a = ArtistPayments[ArtistPayments.IndexOf(ArtistPayments.FirstOrDefault(x => x.id == artistPayments.id))];
+                a = ArtistPayments[ArtistPayments.IndexOf(ArtistPayments.FirstOrDefault(x => x.Id == artistPayments.Id))];
             }
             catch
             {
@@ -108,7 +108,7 @@ namespace ApiDBAccess
 
         public async Task<DtoBlackList> GetBlacklists(int id)
         {
-            return Blacklists.FirstOrDefault(x => x.id == id);
+            return Blacklists.FirstOrDefault(x => x.Id == id);
         }
 
         public async Task<bool> Create(DtoBlackList blacklist)
@@ -126,7 +126,7 @@ namespace ApiDBAccess
             DtoBlackList b = new DtoBlackList();
             try
             {
-                b = Blacklists[Blacklists.IndexOf(Blacklists.FirstOrDefault(x => x.id == blacklist.id))];
+                b = Blacklists[Blacklists.IndexOf(Blacklists.FirstOrDefault(x => x.Id == blacklist.Id))];
             }
             catch
             {
@@ -147,7 +147,7 @@ namespace ApiDBAccess
 
         public async Task<DtoPremium> GetPremiums(int id)
         {
-            return Premiums.FirstOrDefault(x => x.id == id);
+            return Premiums.FirstOrDefault(x => x.Id == id);
         }
 
         public async Task<bool> Create(DtoPremium premium)
@@ -165,7 +165,7 @@ namespace ApiDBAccess
             DtoPremium p = new DtoPremium();
             try
             {
-                p = Premiums[Premiums.IndexOf(Premiums.FirstOrDefault(x => x.id == premium.id))];
+                p = Premiums[Premiums.IndexOf(Premiums.FirstOrDefault(x => x.Id == premium.Id))];
             }
             catch
             {
@@ -186,7 +186,7 @@ namespace ApiDBAccess
 
         public async Task<DtoSettings> GetSettings(int id)
         {
-            return Settings.FirstOrDefault(x => x.id == id);
+            return Settings.FirstOrDefault(x => x.Id == id);
         }
 
         public async Task<bool> Create(DtoSettings settings)
@@ -204,7 +204,7 @@ namespace ApiDBAccess
             DtoSettings s = new DtoSettings();
             try
             {
-                s = Settings[Settings.IndexOf(Settings.FirstOrDefault(x => x.id == settings.id))];
+                s = Settings[Settings.IndexOf(Settings.FirstOrDefault(x => x.Id == settings.Id))];
             }
             catch
             {
@@ -225,7 +225,7 @@ namespace ApiDBAccess
 
         public async Task<DtoSong> GetSongs(int id)
         {
-            return Songs.FirstOrDefault(x => x.id == id);
+            return Songs.FirstOrDefault(x => x.Id == id);
         }
 
         public async Task<bool> Create(DtoSong songs)
@@ -243,7 +243,7 @@ namespace ApiDBAccess
             DtoSong s = new DtoSong();
             try
             {
-                s = Songs[Songs.IndexOf(Songs.FirstOrDefault(x => x.id == songs.id))];
+                s = Songs[Songs.IndexOf(Songs.FirstOrDefault(x => x.Id == songs.Id))];
             }
             catch
             {
@@ -264,7 +264,7 @@ namespace ApiDBAccess
 
         public async Task<DtoUser> GetUsers(int id)
         {
-            return Users.FirstOrDefault(x => x.id == id);
+            return Users.FirstOrDefault(x => x.Id == id);
         }
 
         public async Task<bool> Create(DtoUser user)
@@ -282,7 +282,7 @@ namespace ApiDBAccess
             DtoUser u = new DtoUser();
             try
             {
-                u = Users[Users.IndexOf(Users.FirstOrDefault(x => x.id == user.id))];
+                u = Users[Users.IndexOf(Users.FirstOrDefault(x => x.Id == user.Id))];
             }
             catch
             {
@@ -303,7 +303,7 @@ namespace ApiDBAccess
 
         public async Task<DtoWhiteList> GetWhitelists(int id)
         {
-            return Whitelists.FirstOrDefault(x => x.id == id);
+            return Whitelists.FirstOrDefault(x => x.Id == id);
         }
 
         public async Task<bool> Create(DtoWhiteList whitelist)
@@ -321,7 +321,7 @@ namespace ApiDBAccess
             DtoWhiteList w = new DtoWhiteList();
             try
             {
-                w = Whitelists[Whitelists.IndexOf(Whitelists.FirstOrDefault(x => x.id == whitelist.id))];
+                w = Whitelists[Whitelists.IndexOf(Whitelists.FirstOrDefault(x => x.Id == whitelist.Id))];
             }
             catch
             {
