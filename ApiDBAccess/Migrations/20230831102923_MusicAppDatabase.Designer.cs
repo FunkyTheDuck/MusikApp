@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ApiDBAccess.Migrations
 {
     [DbContext(typeof(Database))]
-    [Migration("20230830125312_musicdatabase")]
-    partial class musicdatabase
+    [Migration("20230831102923_MusicAppDatabase")]
+    partial class MusicAppDatabase
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -247,6 +247,11 @@ namespace ApiDBAccess.Migrations
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<string>("ProfilPicture")
                         .HasColumnType("nvarchar(max)");
