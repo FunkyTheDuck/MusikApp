@@ -42,25 +42,47 @@
         <Setter Property="WidthRequest" Value="55"/>
         <Setter Property="HeightRequest" Value="55"/>
         <Setter Property="CornerRadius" Value="30"/>
+        <Setter Property="VerticalOptions" Value="End"/>
     </Style>
     <Style TargetType="ImageButton" x:Key="PausePlayBtn">
         <Setter Property="WidthRequest" Value="75"/>
         <Setter Property="HeightRequest" Value="75"/>
         <Setter Property="CornerRadius" Value="40"/>
+        <Setter Property="VerticalOptions" Value="End"/>
     </Style>
     <Style TargetType="Border" x:Key="SongBorder">
-        <Setter Property="StrokeShape" Value="RoundRectangle 40,40,40,40"/>
+        <Setter Property="StrokeShape" Value="RoundRectangle 15,15,15,15"/>
         <Setter Property="BackgroundColor" Value="#303030"/>
+        <Setter Property="HeightRequest" Value="300"/>
     </Style>
     <Style TargetType="Image" x:Key="SongImage">
         <Setter Property="VerticalOptions" Value="Start"/>
+        <Setter Property="MaximumHeightRequest" Value="200"/>
     </Style>
-    <Style TargetType="Label" x:Key="SongText">
+    <Style TargetType="Label" x:Key="SongName">
         <Setter Property="TextColor" Value="White"/>
+        <Setter Property="VerticalOptions" Value="Start"/>
+        <Setter Property="HorizontalOptions" Value="Start"/>
+        <Setter Property="FontSize" Value="16"/>
+    </Style>
+    <Style TargetType="Label" x:Key="AlbumName">
+        <Setter Property="TextColor" Value="White"/>
+        <Setter Property="VerticalOptions" Value="End"/>
+        <Setter Property="HorizontalOptions" Value="Start"/>
+        <Setter Property="FontSize" Value="12"/>
+    </Style>
+    <Style TargetType="Label" x:Key="ArtistName">
+        <Setter Property="TextColor" Value="White"/>
+        <Setter Property="VerticalOptions" Value="Center"/>
+        <Setter Property="HorizontalOptions" Value="End"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="Margin" Value="15,15,0,15"/>
     </Style>
     <Style TargetType="Border" x:Key="ArtistImageBorder">
-        <Setter Property="StrokeShape" Value="RoundRectangle 40,40,40,40"/>
-        <Setter Property="WidthRequest" Value="75"/>
-        <Setter Property="HeightRequest" Value="75"/>
+        <Setter Property="StrokeShape" Value="RoundRectangle 15,15,15,15"/>
+        <Setter Property="WidthRequest" Value="40"/>
+        <Setter Property="HeightRequest" Value="40"/>
+        <Setter Property="HorizontalOptions" Value="End"/>
+        <Setter Property="VerticalOptions" Value="Center"/>
     </Style>
 </ResourceDictionary>
