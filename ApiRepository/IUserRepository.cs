@@ -9,10 +9,6 @@ namespace ApiRepository
 {
     public interface IUserRepository
     {
-        Task<List<DtoUser>> GetUsers();
-        Task<DtoUser> GetUsers(int id);
-        Task<bool> Create(DtoUser user);
-        Task<bool> Update(DtoUser user);
-        Task<bool> Delete(int id);
+
     }
 }

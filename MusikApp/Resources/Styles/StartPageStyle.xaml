@@ -2,10 +2,17 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MusikApp.Resources.Styles.StartPageStyle">
-    <Style TargetType="Button">
-        <Setter Property="BackgroundColor" Value="Red"/>
-    </Style>
+    
     <Style TargetType="Button" x:Key="MainBtn">
-        <Setter Property="FontSize" Value="50"/>
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="BackgroundColor" Value="Red"/>
+        <Setter Property="HeightRequest" Value="75"/>
+    </Style>
+    <Style TargetType="ContentPage" x:Key="StartPage">
+        <Setter Property="Background" Value="Black" />
+    </Style>
+    <Style TargetType="Rectangle" x:Key="HeaderBG">
+        <Setter Property="Fill" Value="#303030"/>
+        <Setter Property="HeightRequest" Value="500"/>
     </Style>
 </ResourceDictionary>
