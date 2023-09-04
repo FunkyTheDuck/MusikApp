@@ -67,7 +67,7 @@
                 <Label Style="{StaticResource ArtistName}" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Text="{Binding ArtistName}"></Label>
             </Grid>
         </Border>
-        
+
         <Grid Grid.Row="3" Grid.Column="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -81,11 +81,10 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="35"/>
             </Grid.RowDefinitions>
-            <ImageButton Grid.Row="1" Style="{StaticResource SkipLikeBtn}" Grid.Column="0" Source="skip_icon.png"/>
-            <ImageButton Grid.Row="1" Style="{StaticResource PausePlayBtn}" Grid.Column="2"  Source="{Binding PausePlayBtnSource}"/>
-            <ImageButton Grid.Row="1" Style="{StaticResource SkipLikeBtn}" Grid.Column="4"  Source="like_icon.png"/>
+            <ImageButton Command="{Binding SkipSong}" Grid.Row="1" Style="{StaticResource SkipLikeBtn}" Grid.Column="0" Source="skip_icon.png"/>
+            <ImageButton Command="{Binding PlayPauseSound}" Grid.Row="1" Style="{StaticResource PausePlayBtn}" Grid.Column="2"  Source="{Binding PlayPauseBtnSource}"/>
+            <ImageButton Command="{Binding LikeSong}" Grid.Row="1" Style="{StaticResource SkipLikeBtn}" Grid.Column="4"  Source="like_icon.png"/>
         </Grid>
-
         <Border Grid.ColumnSpan="3" Grid.Row="4" Style="{StaticResource FooterBorder}">
             <Grid>
                 <Grid.ColumnDefinitions>
