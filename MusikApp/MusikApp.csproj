@@ -49,6 +49,16 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Images\friends_icon.png" />
+	  <None Remove="Resources\Images\like_icon.png" />
+	  <None Remove="Resources\Images\main_page_icon.png" />
+	  <None Remove="Resources\Images\pause_icon.png" />
+	  <None Remove="Resources\Images\play_icon.png" />
+	  <None Remove="Resources\Images\profil_icon.png" />
+	  <None Remove="Resources\Images\search_icon.png" />
+	  <None Remove="Resources\Images\settings_icon.png" />
+	  <None Remove="Resources\Images\skip_icon.png" />
+	  <None Remove="Resources\Images\test_song_image.jpg" />
 	  <None Remove="Resources\Images\ukulele_test.mp3" />
 	</ItemGroup>
 
