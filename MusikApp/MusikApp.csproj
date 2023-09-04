@@ -66,8 +66,4 @@
 	  <ProjectReference Include="..\AppRepository\AppRepository.csproj" />
 	</ItemGroup>
 
-	<ItemGroup>
-
-	</ItemGroup>
-
 </Project>
