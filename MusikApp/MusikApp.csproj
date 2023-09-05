@@ -78,6 +78,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Views\LoginPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <Compile Update="Resources\Styles\ProfilStyle.xaml.cs">
 	    <DependentUpon>ProfilStyle.xaml</DependentUpon>
 	  </Compile>

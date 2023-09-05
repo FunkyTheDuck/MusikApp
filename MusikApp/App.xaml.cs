@@ -7,7 +7,7 @@ namespace MusikApp
         public App()
         {
             InitializeComponent();
-            MainPage = new Profil();
+            MainPage = new LoginPage();
         }
     }
 }
