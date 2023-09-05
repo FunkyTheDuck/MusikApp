@@ -1,4 +1,5 @@
 ﻿using AppDBAccess;
+using SpotifyAPI.Web;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,18 +17,22 @@ namespace AppRepository
             db = new DBContext();
             spotifyDB = new SpotifyDBContext();
         }
-        public async Task<string> GetSong(string songId)
+        public async Task<FullTrack> GetSong(string songId)
         {
-            return await spotifyDB.GetNewSong(songId);
+            return await spotifyDB.GetNewSongAsync(songId);
         }
         public async Task<bool> LikeSongAsync(int userId, int songId)
         {
-            await spotifyDB.GetNewSong("6uu74oWxGhnyNs3QvoeOcP");
+            await spotifyDB.GetNewSongAsync("6uu74oWxGhnyNs3QvoeOcP");
             return true;
         }
         public async Task<bool> SkipSongAsync(int userId, int songId)
         {
             return true;
+        }
+        public async Task<string> GetArtistImageAsync(string id)
+        {
+            return await spotifyDB.GetArtistImageAsync(id);
         }
     }
 }

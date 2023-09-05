@@ -43,17 +43,18 @@ namespace AppDBAccess
                 return token.access_token;
             }
         }
-        public async Task<string> GetNewSong(string id)
+        public async Task<FullTrack> GetNewSongAsync(string id)
         {
             SpotifyClient spotify = new SpotifyClient(await GetToken());
-            PlayerCurrentlyPlayingRequest temp2 = new PlayerCurrentlyPlayingRequest();
-            temp2.BuildBodyParams();
             FullTrack temp = await spotify.Tracks.Get(id);
-
-
-            return temp.PreviewUrl;
+            return temp;
         }
-
+        public async Task<string> GetArtistImageAsync(string id)
+        {
+            SpotifyClient spotify = new SpotifyClient(await GetToken());
+            FullArtist temp = await spotify.Artists.Get(id);
+            return temp.Images[0].Url;
+        }
 
 
 
