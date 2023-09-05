@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AppRepository
 {
-    public class StartPageRepository
+    public class StartPageRepository : IStartPageRepository
     {
         DBContext db;
         SpotifyDBContext spotifyDB;
@@ -18,7 +18,7 @@ namespace AppRepository
         }
         public async Task<bool> LikeSongAsync(int userId, int songId)
         {
-            await spotifyDB.GetNewSong("DK", 3);
+            await spotifyDB.GetNewSong("11dFghVXANMlKmJXsNCbNl");
             return true;
         }
         public async Task<bool> SkipSongAsync(int userId, int songId)

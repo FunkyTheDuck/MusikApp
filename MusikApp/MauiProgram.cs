@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using AppRepository;
+using Microsoft.Extensions.Logging;
 
 namespace MusikApp
 {
@@ -7,6 +8,7 @@ namespace MusikApp
         public static MauiApp CreateMauiApp()
         {
             var builder = MauiApp.CreateBuilder();
+            builder.Services.AddSingleton<IStartPageRepository, StartPageRepository>();
             builder
                 .UseMauiApp<App>()
                 .ConfigureFonts(fonts =>
