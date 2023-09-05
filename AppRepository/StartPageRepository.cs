@@ -16,9 +16,13 @@ namespace AppRepository
             db = new DBContext();
             spotifyDB = new SpotifyDBContext();
         }
+        public async Task<string> GetSong(string songId)
+        {
+            return await spotifyDB.GetNewSong(songId);
+        }
         public async Task<bool> LikeSongAsync(int userId, int songId)
         {
-            await spotifyDB.GetNewSong("11dFghVXANMlKmJXsNCbNl");
+            await spotifyDB.GetNewSong("6uu74oWxGhnyNs3QvoeOcP");
             return true;
         }
         public async Task<bool> SkipSongAsync(int userId, int songId)

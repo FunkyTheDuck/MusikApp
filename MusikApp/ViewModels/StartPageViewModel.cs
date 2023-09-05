@@ -3,6 +3,7 @@ using Plugin.Maui.Audio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -26,7 +27,7 @@ namespace MusikApp.ViewModels
         public StartPageViewModel()
         {
             repo = new StartPageRepository();
-            GetAnotherSong();
+            //GetAnotherSong();
             PlayPauseBtnSource = "play_icon.png";
             SongImage = "test_song_image.jpg";
             SongArtistImage = "test_song_image.jpg";
@@ -45,30 +46,45 @@ namespace MusikApp.ViewModels
         }
         public async void GetAnotherSong()
         {
-            currentSong = (AudioPlayer)AudioManager.Current.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("ukulele_test.mp3"));
 
+        }
+
+        private string previewUrl;
+        public string PreviewUrl 
+        {
+            get => previewUrl;
+            set 
+            {  
+                previewUrl = value;
+                OnPropChanged(nameof(PreviewUrl));
+            } 
         }
         public async void PlayPauseSongAsync(object obj)
         {
-            //tjek om sangen bliver afspillet
-            if(PlayPauseBtnSource == "play_icon.png")
-            {
-                PlayPauseBtnSource = "pause_icon.png";
-                currentSong.Play();
-            }
-            else
-            {
-                PlayPauseBtnSource = "play_icon.png";
-                currentSong.Pause();
-            }
-            OnPropChanged(nameof(PlayPauseBtnSource));
+            PreviewUrl = await repo.GetSong("6uu74oWxGhnyNs3QvoeOcP");
+            OnPropChanged(nameof(PreviewUrl));
+
+
+            //if(PlayPauseBtnSource == "play_icon.png")
+            //{
+            //    PlayPauseBtnSource = "pause_icon.png";
+            //    currentSong.Play();
+            //}
+            //else
+            //{
+            //    PlayPauseBtnSource = "play_icon.png";
+            //    currentSong.Pause();
+            //}
+            //OnPropChanged(nameof(PlayPauseBtnSource));
         }
         public async void LikeCurrentSongAsync(object obj)
         {
             bool checkIfSucces = false;
+            string currentSongUrl = string.Empty;
             try
             {
-                checkIfSucces = await repo.LikeSongAsync(0,5326245);
+                currentSongUrl = await repo.GetSong("6uu74oWxGhnyNs3QvoeOcP");
+                checkIfSucces = true;
             }
             catch
             {
@@ -76,6 +92,7 @@ namespace MusikApp.ViewModels
             }
             if (checkIfSucces) 
             {
+                currentSong = (AudioPlayer)AudioManager.Current.CreatePlayer(currentSongUrl);
                 //fortæl brugeren det gik godt 
             }
             else
