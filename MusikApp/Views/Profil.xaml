@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ViewModels="clr-namespace:MusikApp.ViewModels"
+             xmlns:rd="clr-namespace:MusikApp.Resources.Styles"
+             x:Class="MusikApp.Views.Profil"
+             Title="Profil"
+             Style="{StaticResource Profil}">
+    <ContentPage.BindingContext>
+        <ViewModels:ProfilViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <rd:ProfilStyle/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <ScrollView>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="120"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="25"/>
+                <ColumnDefinition Width="25"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="25"/>
+                <ColumnDefinition Width="25"/>
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.ColumnSpan="5" Style="{StaticResource HeaderBorder}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="150"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Style="{StaticResource BuyPremiumText}"></Label>
+                    <Label Grid.Column="2" Style="{StaticResource AppNameText}"></Label>
+                </Grid>
+            </Border>
+
+            <Border Grid.Column="2" Grid.Row="2" Style="{StaticResource ProfilePicture}">
+                <Image Style="{StaticResource ProfilePictureImage}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" Source="{Binding profilpicture}"></Image>
+            </Border>
+            <Label Grid.Column="2" Grid.Row="3" Style="{StaticResource Name}" Text="{Binding Name}"></Label>
+
+            <Border Grid.Column="2" Grid.Row="3" Style="{StaticResource LikeSkip}" IsVisible="{Binding isArtist}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="100"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Grid.Row="0" Style="{StaticResource LikeSkipText}" Text="{Binding likes}" HorizontalTextAlignment="Start" VerticalTextAlignment="End"></Label>
+                    <Label Grid.Column="1" Grid.Row="0" Style="{StaticResource LikeSkipText}" Text="{Binding skips}" HorizontalTextAlignment="End" VerticalTextAlignment="End"></Label>
+                    <Label Grid.Column="0" Grid.Row="1" Style="{StaticResource LikeSkipText}" Text="Likes" HorizontalTextAlignment="Start" VerticalTextAlignment="Start"></Label>
+                    <Label Grid.Column="1" Grid.Row="1" Style="{StaticResource LikeSkipText}" Text="Skips" HorizontalTextAlignment="End" VerticalTextAlignment="Start"></Label>
+                </Grid>
+            </Border>
+            <Label Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" Style="{StaticResource LikeActivity}">Like Activity</Label>
+            <CollectionView Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3" ItemsSource="{Binding Songs}" Style="{StaticResource CollectionView1}">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical" Span="2" VerticalItemSpacing="10"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border Style="{StaticResource LikedSongs}">
+                            <ContentView>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="30"/>
+                                        <RowDefinition Height="25"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="8"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="40"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="5"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Style="{StaticResource SongImage}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" Source="{Binding AlbumImage}"></Image>
+                                    <Label Style="{StaticResource SongName}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Name}" LineBreakMode="NoWrap"></Label>
+                                    <Label Style="{StaticResource AlbumName}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Name}" LineBreakMode="NoWrap"></Label>
+                                    <Border Grid.Row="1" Grid.RowSpan="2" Grid.Column="3" Style="{StaticResource ArtistImageBorder}">
+                                        <Image Source="{Binding Artist.User.ProfilPicture}"></Image>
+                                    </Border>
+                                    <Label Style="{StaticResource ArtistName}" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Text="{Binding Artist.User.Name}" HorizontalTextAlignment="End" LineBreakMode="NoWrap"></Label>
+                                </Grid>
+                            </ContentView>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Border Grid.ColumnSpan="5" Grid.Row="6" Style="{StaticResource FooterBorder}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <ImageButton Style="{StaticResource FooterBtn}" Source="search_icon.png" Grid.Column="0" />
+                    <ImageButton Style="{StaticResource FooterBtn}" Source="main_page_icon.png" Grid.Column="1" />
+                    <ImageButton Style="{StaticResource FooterBtn}" Source="profil_icon.png" Grid.Column="2" />
+                    <ImageButton Style="{StaticResource FooterBtn}" Source="friends_icon.png" Grid.Column="3" />
+                    <ImageButton Style="{StaticResource FooterBtn}" Source="settings_icon.png" Grid.Column="4" />
+                </Grid>
+            </Border>
+        </Grid>
+
+    </ScrollView>
+    
+</ContentPage>
