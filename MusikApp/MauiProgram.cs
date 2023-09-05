@@ -1,4 +1,5 @@
 ﻿using AppRepository;
+using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
 
 namespace MusikApp
@@ -11,6 +12,7 @@ namespace MusikApp
             builder.Services.AddSingleton<IStartPageRepository, StartPageRepository>();
             builder
                 .UseMauiApp<App>()
+                .UseMauiCommunityToolkitMediaElement()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");

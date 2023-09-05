@@ -9,6 +9,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using SpotifyAPI.Web;
+using SpotifyAPI.Web.Auth;
 
 namespace AppDBAccess
 {
@@ -42,14 +43,15 @@ namespace AppDBAccess
                 return token.access_token;
             }
         }
-        public async Task<RootObject> GetNewSong(string id)
+        public async Task<string> GetNewSong(string id)
         {
             SpotifyClient spotify = new SpotifyClient(await GetToken());
+            PlayerCurrentlyPlayingRequest temp2 = new PlayerCurrentlyPlayingRequest();
+            temp2.BuildBodyParams();
+            FullTrack temp = await spotify.Tracks.Get(id);
 
-            var temp = await spotify.Tracks.Get(id);
 
-
-            return null;
+            return temp.PreviewUrl;
         }
 
 

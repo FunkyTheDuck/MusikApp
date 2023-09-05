@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:ViewModels="clr-namespace:MusikApp.ViewModels"
              xmlns:rd="clr-namespace:MusikApp.Resources.Styles"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="MusikApp.Views.StartPage"
              Title="StartPage"
              Style="{StaticResource StartPage}">
@@ -83,6 +84,11 @@
             </Grid.RowDefinitions>
             <ImageButton Command="{Binding SkipSong}" Grid.Row="1" Style="{StaticResource SkipLikeBtn}" Grid.Column="0" Source="skip_icon.png"/>
             <ImageButton Command="{Binding PlayPauseSound}" Grid.Row="1" Style="{StaticResource PausePlayBtn}" Grid.Column="2"  Source="{Binding PlayPauseBtnSource}"/>
+            <toolkit:MediaElement HeightRequest="300" WidthRequest="300" Source="{Binding PreviewUrl}" 
+                                  ShouldAutoPlay="False"
+                                  Volume="0.02"
+                                  ShouldShowPlaybackControls="True"/>
+            
             <ImageButton Command="{Binding LikeSong}" Grid.Row="1" Style="{StaticResource SkipLikeBtn}" Grid.Column="4"  Source="like_icon.png"/>
         </Grid>
         <Border Grid.ColumnSpan="3" Grid.Row="4" Style="{StaticResource FooterBorder}">
