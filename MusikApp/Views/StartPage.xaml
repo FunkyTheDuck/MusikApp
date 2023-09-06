@@ -45,12 +45,12 @@
         </Border>
 
 
-        <Border Grid.Column="1" Grid.Row="2" Style="{StaticResource SongBorder}">
+        <Border Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Style="{StaticResource SongBorder}">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="50"/>
-                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="47"/>
+                    <RowDefinition Height="47"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="15"/>
@@ -79,15 +79,14 @@
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="35"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/> 
                 <RowDefinition Height="35"/>
             </Grid.RowDefinitions>
             <ImageButton Command="{Binding SkipSong}" Grid.Row="1" Style="{StaticResource SkipLikeBtn}" Grid.Column="0" Source="skip_icon.png"/>
             <ImageButton Command="{Binding PlayPauseSound}" Grid.Row="1" Style="{StaticResource PausePlayBtn}" Grid.Column="2"  Source="{Binding PlayPauseBtnSource}"/>
-            <toolkit:MediaElement HeightRequest="300" WidthRequest="300" Source="{Binding PreviewUrl}" 
-                                  ShouldAutoPlay="False"
-                                  Volume="0.02"
-                                  ShouldShowPlaybackControls="True"/>
+            <ContentView Style="{StaticResource AudioDisplay}" 
+                         Content="{Binding AudioDisplay}"/>
+            
             
             <ImageButton Command="{Binding LikeSong}" Grid.Row="1" Style="{StaticResource SkipLikeBtn}" Grid.Column="4"  Source="like_icon.png"/>
         </Grid>
