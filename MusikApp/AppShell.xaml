@@ -3,12 +3,31 @@
     x:Class="MusikApp.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:MusikApp"
-    Shell.FlyoutBehavior="Disabled">
+    xmlns:view="clr-namespace:MusikApp.Views"
+    Shell.BackgroundColor="#303030"
+    Shell.ForegroundColor="White"
+    Shell.UnselectedColor="LightGray"
+    Shell.TabBarBackgroundColor="#303030"
+    Shell.TabBarUnselectedColor="LightGrey"
+    Shell.TabBarTitleColor="White"
+    Shell.PresentationMode="Modal">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
-
+    <TabBar>
+        <ShellContent Icon="search_icon.png">
+            <view:Profil/>
+        </ShellContent>
+        <ShellContent Icon="main_page_icon.png">
+            <view:StartPage/>
+        </ShellContent>
+        <ShellContent Icon="profil_icon.png">
+            <view:Profil/>
+        </ShellContent>
+        <ShellContent Icon="friends_icon.png">
+            <view:StartPage/>
+        </ShellContent>
+        <ShellContent Icon="settings_icon.png">
+            <view:Profil/>
+        </ShellContent>
+    </TabBar>
+    
 </Shell>

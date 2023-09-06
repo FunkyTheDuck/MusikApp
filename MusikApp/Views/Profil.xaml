@@ -4,8 +4,9 @@
              xmlns:ViewModels="clr-namespace:MusikApp.ViewModels"
              xmlns:rd="clr-namespace:MusikApp.Resources.Styles"
              x:Class="MusikApp.Views.Profil"
-             Title="Profil"
-             Style="{StaticResource Profil}">
+             Title=""
+             Style="{StaticResource Profil}"
+             Shell.ForegroundColor="Red">
     <ContentPage.BindingContext>
         <ViewModels:ProfilViewModel/>
     </ContentPage.BindingContext>
@@ -16,7 +17,6 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </ContentPage.Resources>
-    
     <ScrollView>
         <Grid>
             <Grid.RowDefinitions>
@@ -26,7 +26,6 @@
                 <RowDefinition Height="120"/>
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="50"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="25"/>
@@ -104,23 +103,6 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-
-            <Border Grid.ColumnSpan="5" Grid.Row="6" Style="{StaticResource FooterBorder}">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <ImageButton Style="{StaticResource FooterBtn}" Source="search_icon.png" Grid.Column="0" />
-                    <ImageButton Style="{StaticResource FooterBtn}" Source="main_page_icon.png" Grid.Column="1" />
-                    <ImageButton Style="{StaticResource FooterBtn}" Source="profil_icon.png" Grid.Column="2" />
-                    <ImageButton Style="{StaticResource FooterBtn}" Source="friends_icon.png" Grid.Column="3" />
-                    <ImageButton Style="{StaticResource FooterBtn}" Source="settings_icon.png" Grid.Column="4" />
-                </Grid>
-            </Border>
         </Grid>
 
     </ScrollView>
