@@ -145,5 +145,13 @@ namespace AppDBAccess
             var response = await client.DeleteAsync(uri);
             return response.IsSuccessStatusCode;
         }
+        public async Task<bool> LikeSongAsync(int userId, string songId)
+        {
+            return false;
+        }
+        public async Task<bool> SkipSongAsync(int userId, string songId)
+        {
+            return false;
+        }
     }
 }

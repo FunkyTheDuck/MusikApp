@@ -11,7 +11,7 @@ namespace ApiModels
         public int Id { get; set; }
         public int UserID { get; set; }
         public User User { get; set; }
-        public int SongID { get; set; }
+        public string SongID { get; set; }
         public List<Song> Songs { get; set; }
     }
 }

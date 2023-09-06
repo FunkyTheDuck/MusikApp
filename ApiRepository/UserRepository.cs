@@ -8,7 +8,11 @@ namespace ApiRepository
 {
     public class UserRepository : IUserRepository
     {
-        Database db = new();
+        Database db;
+        public UserRepository()
+        {
+            db = new Database();
+        }
         public async Task<List<User>> GetUsers()
         {
             List<User> users = new();

@@ -25,7 +25,7 @@ namespace MusikApp.ViewModels
         public string AlbumName { get; set; }
         public string ArtistName { get; set; }
 
-        FullTrack currentSong = null;
+        FullTrack currentSong { get; set; }
         public MediaElement AudioDisplay { get; set; }
        
         public StartPageViewModel()
@@ -80,7 +80,7 @@ namespace MusikApp.ViewModels
             bool checkIfSucces = false;
             try
             {
-                checkIfSucces = true;
+                checkIfSucces = await repo.LikeSongAsync(0, currentSong.Id);
             }
             catch
             {
@@ -100,7 +100,7 @@ namespace MusikApp.ViewModels
             bool checkIfSucces = false;
             try
             {
-                checkIfSucces = await repo.SkipSongAsync(0, 726265785);
+                checkIfSucces = await repo.SkipSongAsync(0, currentSong.Id);
             }
             catch
             {
