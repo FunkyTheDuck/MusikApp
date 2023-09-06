@@ -1,4 +1,5 @@
-﻿using AppRepository;
+﻿using AppModels;
+using AppRepository;
 using CommunityToolkit.Maui.Views;
 using Plugin.Maui.Audio;
 using SpotifyAPI.Web;
@@ -77,30 +78,15 @@ namespace MusikApp.ViewModels
 
         public async void LikeCurrentSongAsync(object obj)
         {
+            WhiteList whiteList = new WhiteList
+            {
+                UserID = 1,
+                SongID = currentSong.Id,
+            };
             bool checkIfSucces = false;
             try
             {
-                checkIfSucces = await repo.LikeSongAsync(0, currentSong.Id);
-            }
-            catch
-            {
-                checkIfSucces = false;
-            }
-            if (checkIfSucces) 
-            {
-                //fortæl brugeren det gik godt 
-            }
-            else
-            {
-                //fortæl brugeren det gik lort
-            }
-        }
-        public async void SkipCurrentSongAsync(object obj)
-        {
-            bool checkIfSucces = false;
-            try
-            {
-                checkIfSucces = await repo.SkipSongAsync(0, currentSong.Id);
+                checkIfSucces = await repo.LikeSongAsync(whiteList);
             }
             catch
             {
@@ -108,11 +94,36 @@ namespace MusikApp.ViewModels
             }
             if (checkIfSucces)
             {
-                //fortæl brugeren det gik godt 
+                await (Application.Current.MainPage).DisplayAlert("Succes", "The song has now been liked", "OK");
             }
             else
             {
-                //fortæl brugeren det gik lort
+                await (Application.Current.MainPage).DisplayAlert("Error", "The song couldn't be liked", "OK");
+            }
+        }
+        public async void SkipCurrentSongAsync(object obj)
+        {
+            BlackList blackList = new BlackList
+            {
+                UserID = 1,
+                SongID = currentSong.Id,
+            };
+            bool checkIfSucces = false;
+            try
+            {
+                checkIfSucces = await repo.SkipSongAsync(blackList);
+            }
+            catch
+            {
+                checkIfSucces = false;
+            }
+            if (checkIfSucces)
+            {
+                await (Application.Current.MainPage).DisplayAlert("Succes", "The song has now been skipped", "OK");
+            }
+            else
+            {
+                await (Application.Current.MainPage).DisplayAlert("Error", "The song couldn't be skipped", "OK");
             }
         }
         public async void GoToProfilPageAsync(object obj)

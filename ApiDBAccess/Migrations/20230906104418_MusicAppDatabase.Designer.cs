@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ApiDBAccess.Migrations
 {
     [DbContext(typeof(Database))]
-    [Migration("20230831102923_MusicAppDatabase")]
+    [Migration("20230906104418_MusicAppDatabase")]
     partial class MusicAppDatabase
     {
         /// <inheritdoc />
@@ -82,8 +82,9 @@ namespace ApiDBAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("SongID")
-                        .HasColumnType("int");
+                    b.Property<string>("SongID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("UserID")
                         .HasColumnType("int");
@@ -274,8 +275,9 @@ namespace ApiDBAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("SongID")
-                        .HasColumnType("int");
+                    b.Property<string>("SongID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("UserID")
                         .HasColumnType("int");

@@ -145,12 +145,58 @@ namespace AppDBAccess
             var response = await client.DeleteAsync(uri);
             return response.IsSuccessStatusCode;
         }
-        public async Task<bool> LikeSongAsync(int userId, string songId)
+        public async Task<bool> LikeSongAsync(DtoWhiteList whiteList)
         {
+            string json = string.Empty;
+            try
+            {
+                json = JsonConvert.SerializeObject(whiteList);
+            }
+            catch
+            {
+                return false;
+            }
+            if(!string.IsNullOrEmpty(json))
+            {
+                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+                HttpResponseMessage response;
+                try
+                {
+                    response = await client.PostAsync("https://localhost:7147/api/WhiteList", content);
+                }
+                catch
+                {
+                    return false;
+                }
+                return response.IsSuccessStatusCode;
+            }
             return false;
         }
-        public async Task<bool> SkipSongAsync(int userId, string songId)
+        public async Task<bool> SkipSongAsync(DtoBlackList blackList)
         {
+            string json = string.Empty;
+            try
+            {
+                json = JsonConvert.SerializeObject(blackList);
+            }
+            catch
+            {
+                return false;
+            }
+            if (!string.IsNullOrEmpty(json))
+            {
+                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+                HttpResponseMessage response;
+                try
+                {
+                    response = await client.PostAsync("https://localhost:7147/api/BlackList", content);
+                }
+                catch
+                {
+                    return false;
+                }
+                return response.IsSuccessStatusCode;
+            }
             return false;
         }
     }

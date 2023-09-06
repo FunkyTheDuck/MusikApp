@@ -1,4 +1,6 @@
 ﻿using AppDBAccess;
+using AppDTOModels;
+using AppModels;
 using SpotifyAPI.Web;
 using System;
 using System.Collections.Generic;
@@ -21,13 +23,38 @@ namespace AppRepository
         {
             return await spotifyDB.GetNewSongAsync(songId);
         }
-        public async Task<bool> LikeSongAsync(int userId, string songId)
+        public async Task<bool> LikeSongAsync(WhiteList whiteList)
         {
-            return true;
+            DtoWhiteList dtoWhiteList = new DtoWhiteList
+            {
+                UserID = whiteList.UserID,
+                SongID = whiteList.SongID,
+            };
+
+            try
+            {
+                return await db.LikeSongAsync(dtoWhiteList);
+            }
+            catch
+            {
+                return false;
+            }
         }
-        public async Task<bool> SkipSongAsync(int userId, string songId)
+        public async Task<bool> SkipSongAsync(BlackList blackList)
         {
-            return true;
+            DtoBlackList dtoBlackList = new DtoBlackList
+            {
+                UserID = blackList.UserID,
+                SongID = blackList.SongID,
+            };
+            try
+            {
+                return await db.SkipSongAsync(dtoBlackList);
+            }
+            catch
+            {
+                return false;
+            }
         }
         public async Task<string> GetArtistImageAsync(string id)
         {

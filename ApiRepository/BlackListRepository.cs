@@ -31,6 +31,14 @@ namespace ApiRepository
             {
                 return false;
             }
+            try
+            {
+                await db.SaveChangesAsync();
+            }
+            catch
+            {
+                return false;
+            }
             return true;
         }
     }

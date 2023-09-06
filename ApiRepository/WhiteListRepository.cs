@@ -25,7 +25,15 @@ namespace ApiRepository
             };
             try
             {
-                db.WhiteLists.Add(dtoLikedSong);
+                var temp = db.WhiteLists.Add(dtoLikedSong);
+            }
+            catch
+            {
+                return false;
+            }
+            try
+            {
+                await db.SaveChangesAsync();
             }
             catch
             {
