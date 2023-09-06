@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MusikApp.Resources.Styles.ProfilStyle">
+
+    <Style TargetType="ContentPage" x:Key="Profil">
+        <Setter Property="Background" Value="Black" />
+    </Style>
+    <Style TargetType="Border" x:Key="HeaderBorder">
+        <Setter Property="StrokeShape" Value="RoundRectangle 0,0,40,40"/>
+        <Setter Property="BackgroundColor" Value="#303030"/>
+    </Style>
+    <Style TargetType="Border" x:Key="FooterBorder">
+        <Setter Property="StrokeShape" Value="RoundRectangle 40,40,0,0"/>
+        <Setter Property="BackgroundColor" Value="#303030"/>
+    </Style>
+    <Style TargetType="Label" x:Key="BuyPremiumText">
+        <Setter Property="TextColor" Value="White"/>
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="Text" Value="Buy Premium"/>
+        <Setter Property="VerticalTextAlignment" Value="Center"/>
+        <Setter Property="Margin" Value="15,0,0,0"/>
+    </Style>
+    <Style TargetType="Label" x:Key="AppNameText">
+        <Setter Property="TextColor" Value="White"/>
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="Text" Value="App Name"/>
+        <Setter Property="HorizontalTextAlignment" Value="End"/>
+        <Setter Property="VerticalTextAlignment" Value="Center"/>
+        <Setter Property="Margin" Value="0,0,15,0"/>
+    </Style>
+    <Style TargetType="ImageButton" x:Key="FooterBtn">
+        <Setter Property="WidthRequest" Value="35"/>
+        <Setter Property="HeightRequest" Value="35"/>
+    </Style>
+    <Style TargetType="Border" x:Key="ProfilePicture">
+        <Setter Property="StrokeShape" Value="RoundRectangle 15,15,15,15"/>
+        <Setter Property="BackgroundColor" Value="#303030"/>
+        <Setter Property="HeightRequest" Value="200"/>
+        <Setter Property="WidthRequest" Value="200"/>
+    </Style>
+    <Style TargetType="Label" x:Key="Name">
+        <Setter Property="TextColor" Value="White"/>
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="WidthRequest" Value="200"/>
+    </Style>
+    <Style TargetType="Border" x:Key="LikeSkip">
+        <Setter Property="StrokeShape" Value="RoundRectangle 15,15,15,15"/>
+        <Setter Property="HeightRequest" Value="60"/>
+        <Setter Property="WidthRequest" Value="200"/>
+        <Setter Property="BackgroundColor" Value="#303030"/>
+    </Style>
+    <Style TargetType="Label" x:Key="LikeSkipText">
+        <Setter Property="TextColor" Value="White"/>
+        <Setter Property="Margin" Value="15,0,15,0"/>
+        <Setter Property="FontSize" Value="16"/>
+    </Style>
+    <Style TargetType="Image" x:Key="ProfilePictureImage">
+        <Setter Property="VerticalOptions" Value="Start"/>
+    </Style>
+    <Style TargetType="Label" x:Key="LikeActivity">
+        <Setter Property="TextColor" Value="White"/>
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="HorizontalTextAlignment" Value="Center"/>
+    </Style>
+    <Style TargetType="Border" x:Key="LikedSongs">
+        <Setter Property="StrokeShape" Value="RoundRectangle 15,15,15,15"/>
+        <Setter Property="BackgroundColor" Value="#303030"/>
+        <Setter Property="HeightRequest" Value="170"/>
+        <Setter Property="WidthRequest" Value="120"/>
+    </Style>
+    <Style TargetType="CollectionView" x:Key="CollectionView1">
+        <Setter Property="Margin" Value="10,10,10,10"/>
+    </Style>
+    <Style TargetType="Border" x:Key="SongBorder">
+        <Setter Property="StrokeShape" Value="RoundRectangle 15,15,15,15"/>
+        <Setter Property="BackgroundColor" Value="#303030"/>
+        <Setter Property="HeightRequest" Value="300"/>
+    </Style>
+    <Style TargetType="Image" x:Key="SongImage">
+        <Setter Property="VerticalOptions" Value="Start"/>
+    </Style>
+    <Style TargetType="Label" x:Key="SongName">
+        <Setter Property="TextColor" Value="White"/>
+        <Setter Property="VerticalOptions" Value="Start"/>
+        <Setter Property="HorizontalOptions" Value="Start"/>
+        <Setter Property="FontSize" Value="10"/>
+        <Setter Property="Margin" Value="0,3,0,3"/>
+    </Style>
+    <Style TargetType="Label" x:Key="AlbumName">
+        <Setter Property="TextColor" Value="White"/>
+        <Setter Property="VerticalOptions" Value="End"/>
+        <Setter Property="HorizontalOptions" Value="Start"/>
+        <Setter Property="FontSize" Value="10"/>
+    </Style>
+    <Style TargetType="Label" x:Key="ArtistName">
+        <Setter Property="TextColor" Value="White"/>
+        <Setter Property="VerticalOptions" Value="Start"/>
+        <Setter Property="HorizontalOptions" Value="End"/>
+        <Setter Property="FontSize" Value="10"/>
+        <Setter Property="Margin" Value="0,0,2,0"/>
+    </Style>
+    <Style TargetType="Border" x:Key="ArtistImageBorder">
+        <Setter Property="StrokeShape" Value="RoundRectangle 15,15,15,15"/>
+        <Setter Property="WidthRequest" Value="25"/>
+        <Setter Property="HeightRequest" Value="25"/>
+        <Setter Property="HorizontalOptions" Value="End"/>
+        <Setter Property="VerticalOptions" Value="Start"/>
+        <Setter Property="Margin" Value="0,5,0,5"/>
+    </Style>
+</ResourceDictionary>

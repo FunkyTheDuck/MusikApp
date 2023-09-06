@@ -1,8 +1,10 @@
 ﻿using AppRepository;
 using Plugin.Maui.Audio;
+using SpotifyAPI.Web;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -22,53 +24,65 @@ namespace MusikApp.ViewModels
         public string AlbumName { get; set; }
         public string ArtistName { get; set; }
 
-        AudioPlayer currentSong = null;
+        FullTrack currentSong = null;
         public StartPageViewModel()
         {
             repo = new StartPageRepository();
             GetAnotherSong();
             PlayPauseBtnSource = "play_icon.png";
-            SongImage = "test_song_image.jpg";
-            SongArtistImage = "test_song_image.jpg";
-            SongName = "Going Fast On 3 Wheels";
-            AlbumName = "Gang Gang";
-            ArtistName = "Marcus Und Simon";
             OnPropChanged(nameof(PlayPauseBtnSource));
-            OnPropChanged(nameof(SongImage));
-            OnPropChanged(nameof(SongArtistImage));
-            OnPropChanged(nameof(SongName));
-            OnPropChanged(nameof(AlbumName));
-            OnPropChanged(nameof(ArtistName));
             PlayPauseSound = new Command(PlayPauseSongAsync);
             SkipSong = new Command(SkipCurrentSongAsync);
             LikeSong = new Command(LikeCurrentSongAsync);
         }
         public async void GetAnotherSong()
         {
-            currentSong = (AudioPlayer)AudioManager.Current.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("ukulele_test.mp3"));
+            currentSong = await repo.GetSong("6uu74oWxGhnyNs3QvoeOcP");
+            PreviewUrl = currentSong.PreviewUrl;
+            SongImage = currentSong.Album.Images[0].Url;
+            SongArtistImage = await repo.GetArtistImageAsync(currentSong.Artists[0].Id);
+            SongName = currentSong.Name;
+            AlbumName = currentSong.Album.Name;
+            ArtistName = currentSong.Artists[0].Name;
+            OnPropChanged(nameof(SongImage));
+            OnPropChanged(nameof(SongArtistImage));
+            OnPropChanged(nameof(SongName));
+            OnPropChanged(nameof(AlbumName));
+            OnPropChanged(nameof(ArtistName));
+        }
 
+        private string previewUrl;
+        public string PreviewUrl 
+        {
+            get => previewUrl;
+            set 
+            {  
+                previewUrl = value;
+                OnPropChanged(nameof(PreviewUrl));
+            } 
         }
         public async void PlayPauseSongAsync(object obj)
         {
-            //tjek om sangen bliver afspillet
-            if(PlayPauseBtnSource == "play_icon.png")
-            {
-                PlayPauseBtnSource = "pause_icon.png";
-                currentSong.Play();
-            }
-            else
-            {
-                PlayPauseBtnSource = "play_icon.png";
-                currentSong.Pause();
-            }
-            OnPropChanged(nameof(PlayPauseBtnSource));
+
+
+            //if(PlayPauseBtnSource == "play_icon.png")
+            //{
+            //    PlayPauseBtnSource = "pause_icon.png";
+            //    currentSong.Play();
+            //}
+            //else
+            //{
+            //    PlayPauseBtnSource = "play_icon.png";
+            //    currentSong.Pause();
+            //}
+            //OnPropChanged(nameof(PlayPauseBtnSource));
         }
         public async void LikeCurrentSongAsync(object obj)
         {
             bool checkIfSucces = false;
             try
             {
-                checkIfSucces = await repo.LikeSongAsync(0,5326245);
+                checkIfSucces = true;
             }
             catch
             {

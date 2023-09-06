@@ -54,6 +54,7 @@
 	  <None Remove="Resources\Images\main_page_icon.png" />
 	  <None Remove="Resources\Images\pause_icon.png" />
 	  <None Remove="Resources\Images\play_icon.png" />
+	  <None Remove="Resources\Images\profilbillede.jpg" />
 	  <None Remove="Resources\Images\profil_icon.png" />
 	  <None Remove="Resources\Images\search_icon.png" />
 	  <None Remove="Resources\Images\settings_icon.png" />
@@ -67,6 +68,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Maui.MediaElement" Version="2.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 		<PackageReference Include="Plugin.Maui.Audio" Version="1.0.0" />
 	</ItemGroup>
@@ -81,6 +83,15 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\LoginPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <Compile Update="Resources\Styles\ProfilStyle.xaml.cs">
+	    <DependentUpon>ProfilStyle.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Resources\Styles\ProfilStyle.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

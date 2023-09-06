@@ -8,6 +8,8 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using SpotifyAPI.Web;
+using SpotifyAPI.Web.Auth;
 
 namespace AppDBAccess
 {
@@ -38,31 +40,21 @@ namespace AppDBAccess
                 string json = await response.Content.ReadAsStringAsync();
 
                 DtoAccessToken token = JsonConvert.DeserializeObject<DtoAccessToken>(json);
-                return token.AccessToken;
+                return token.access_token;
             }
         }
-        public async Task<RootObject> GetNewSong(string countryCode, int limit)
+        public async Task<FullTrack> GetNewSongAsync(string id)
         {
-            using (HttpClient client = new HttpClient())
-            {
-                client.BaseAddress = new Uri($"https://api.spotify.com/v1/");
-                client.DefaultRequestHeaders.Add("Accept", "application/.json");
-
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", await GetToken());
-
-                //returnere status kode 400 bad request
-                HttpResponseMessage response = await client.GetAsync($"browse/new-releases?country={countryCode}&limit={limit}");
-
-                if (response.IsSuccessStatusCode)
-                {
-                    string json = await response.Content.ReadAsStringAsync();
-                    RootObject temp = JsonConvert.DeserializeObject<RootObject>(json);
-                    return temp;
-                }
-                return null;
-            }
+            SpotifyClient spotify = new SpotifyClient(await GetToken());
+            FullTrack temp = await spotify.Tracks.Get(id);
+            return temp;
         }
-
+        public async Task<string> GetArtistImageAsync(string id)
+        {
+            SpotifyClient spotify = new SpotifyClient(await GetToken());
+            FullArtist temp = await spotify.Artists.Get(id);
+            return temp.Images[0].Url;
+        }
 
 
 
