@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MusikApp.Resources.Styles.StartPageStyle">
 
@@ -53,7 +54,7 @@
     <Style TargetType="Border" x:Key="SongBorder">
         <Setter Property="StrokeShape" Value="RoundRectangle 15,15,15,15"/>
         <Setter Property="BackgroundColor" Value="#303030"/>
-        <Setter Property="HeightRequest" Value="300"/>
+        <Setter Property="HeightRequest" Value="350"/>
     </Style>
     <Style TargetType="Image" x:Key="SongImage">
         <Setter Property="VerticalOptions" Value="Start"/>
@@ -83,5 +84,9 @@
         <Setter Property="HeightRequest" Value="40"/>
         <Setter Property="HorizontalOptions" Value="End"/>
         <Setter Property="VerticalOptions" Value="Center"/>
+    </Style>
+    <Style TargetType="toolkit:MediaElement" x:Key="AudioDisplay">
+        <Setter Property="HeightRequest" Value="0"/>
+        <Setter Property="WidthRequest" Value="0"/>
     </Style>
 </ResourceDictionary>

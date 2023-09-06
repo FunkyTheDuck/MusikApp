@@ -1,4 +1,5 @@
 ﻿using AppRepository;
+using CommunityToolkit.Maui.Views;
 using Plugin.Maui.Audio;
 using SpotifyAPI.Web;
 using System;
@@ -24,65 +25,62 @@ namespace MusikApp.ViewModels
         public string AlbumName { get; set; }
         public string ArtistName { get; set; }
 
-        FullTrack currentSong = null;
+        FullTrack currentSong { get; set; }
+        public MediaElement AudioDisplay { get; set; }
+       
         public StartPageViewModel()
         {
+            AudioDisplay = new MediaElement
+            {
+                Volume = 0.02,
+                ShouldAutoPlay = false,
+            };
             repo = new StartPageRepository();
-            GetAnotherSong();
+            GetAnotherSong("6uu74oWxGhnyNs3QvoeOcP");
             PlayPauseBtnSource = "play_icon.png";
             OnPropChanged(nameof(PlayPauseBtnSource));
             PlayPauseSound = new Command(PlayPauseSongAsync);
             SkipSong = new Command(SkipCurrentSongAsync);
             LikeSong = new Command(LikeCurrentSongAsync);
         }
-        public async void GetAnotherSong()
+        public async void GetAnotherSong(string id)
         {
-            currentSong = await repo.GetSong("6uu74oWxGhnyNs3QvoeOcP");
-            PreviewUrl = currentSong.PreviewUrl;
+            currentSong = await repo.GetSong(id);
             SongImage = currentSong.Album.Images[0].Url;
             SongArtistImage = await repo.GetArtistImageAsync(currentSong.Artists[0].Id);
             SongName = currentSong.Name;
             AlbumName = currentSong.Album.Name;
             ArtistName = currentSong.Artists[0].Name;
+            AudioDisplay.Source = currentSong.PreviewUrl;
             OnPropChanged(nameof(SongImage));
             OnPropChanged(nameof(SongArtistImage));
             OnPropChanged(nameof(SongName));
             OnPropChanged(nameof(AlbumName));
             OnPropChanged(nameof(ArtistName));
-        }
-
-        private string previewUrl;
-        public string PreviewUrl 
-        {
-            get => previewUrl;
-            set 
-            {  
-                previewUrl = value;
-                OnPropChanged(nameof(PreviewUrl));
-            } 
+            OnPropChanged(nameof(AudioDisplay));
         }
         public async void PlayPauseSongAsync(object obj)
         {
-
-
-            //if(PlayPauseBtnSource == "play_icon.png")
-            //{
-            //    PlayPauseBtnSource = "pause_icon.png";
-            //    currentSong.Play();
-            //}
-            //else
-            //{
-            //    PlayPauseBtnSource = "play_icon.png";
-            //    currentSong.Pause();
-            //}
-            //OnPropChanged(nameof(PlayPauseBtnSource));
+            if (PlayPauseBtnSource == "play_icon.png")
+            {
+                PlayPauseBtnSource = "pause_icon.png";
+                AudioDisplay.Play();
+            }
+            else
+            {
+                PlayPauseBtnSource = "play_icon.png";
+                AudioDisplay.Pause();
+            }
+            OnPropChanged(nameof(PlayPauseBtnSource));
+            OnPropChanged(nameof(AudioDisplay));
         }
+
         public async void LikeCurrentSongAsync(object obj)
         {
             bool checkIfSucces = false;
             try
             {
-                checkIfSucces = true;
+                checkIfSucces = await repo.LikeSongAsync(0, currentSong.Id);
             }
             catch
             {
@@ -102,7 +100,7 @@ namespace MusikApp.ViewModels
             bool checkIfSucces = false;
             try
             {
-                checkIfSucces = await repo.SkipSongAsync(0, 726265785);
+                checkIfSucces = await repo.SkipSongAsync(0, currentSong.Id);
             }
             catch
             {

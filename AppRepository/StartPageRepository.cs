@@ -21,12 +21,11 @@ namespace AppRepository
         {
             return await spotifyDB.GetNewSongAsync(songId);
         }
-        public async Task<bool> LikeSongAsync(int userId, int songId)
+        public async Task<bool> LikeSongAsync(int userId, string songId)
         {
-            await spotifyDB.GetNewSongAsync("6uu74oWxGhnyNs3QvoeOcP");
             return true;
         }
-        public async Task<bool> SkipSongAsync(int userId, int songId)
+        public async Task<bool> SkipSongAsync(int userId, string songId)
         {
             return true;
         }

@@ -6,6 +6,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddSingleton<IArtistPaymentRepository, ArtistPaymentRepository>();
 builder.Services.AddSingleton<ISongsRepository, SongsRepository>();
 builder.Services.AddSingleton<IUserRepository, UserRepository>();
+builder.Services.AddSingleton<IWhiteListRepository, WhiteListRepository>();
+builder.Services.AddSingleton<IBlackListRepository, BlackListRepository>();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
