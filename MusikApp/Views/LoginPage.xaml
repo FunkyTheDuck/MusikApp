@@ -38,7 +38,7 @@
                HorizontalOptions="Center"
                BackgroundColor="#505050"
                     WidthRequest="225">
-                <Entry x:Name="UserName" Placeholder="UserName" TextColor="Black"/>
+                <Entry x:Name="UserName" Text="{Binding Username}" Placeholder="UserName" TextColor="Black"/>
             </Border>
         </Border>
             <!--for writing password-->
@@ -53,10 +53,16 @@
                BackgroundColor="Gray"
                     
                     WidthRequest="225">
-                <Entry x:Name="Password" IsPassword="True" TextColor="Black"/>
+                <Entry x:Name="Password" Text="{Binding Password}" IsPassword="True" TextColor="Black"/>
             </Border>
         </Border>
-
+        <Border BackgroundColor="#303030"
+                StrokeShape="RoundRectangle 12,12,12,12"
+                WidthRequest="116"
+                Padding="6,7,6,7"
+                Margin="0,0,0,5">
+            <Button BackgroundColor="Gray" Text="Log in" Command="{Binding LoginCommand}"/>
+        </Border>
         <!--Sign Up for users-->
         <Border x:Name="SignUpUserContainer"
                StrokeShape="RoundRectangle 20,20,20,20"
@@ -65,7 +71,7 @@
                 HeightRequest="50"
                 WidthRequest="235">
             <Border.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding SoundCloudUserCommand}"/>
+                <TapGestureRecognizer Command="{Binding CreateUserCommand}"/>
             </Border.GestureRecognizers>
             <Image/>
         </Border>
