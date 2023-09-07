@@ -71,18 +71,13 @@ namespace AppDBAccess
             };
             return genres;
         }
-        public async Task<DtoAccessToken> GetOneSong()
+        public async Task<List<FullTrack>> GetListOfSongs(List<string> songIds)
         {
-            HttpResponseMessage response;
-            try
-            {
-                //response = await client.GetAsync($"https://accounts.spotify.com/api/token");
-            }
-            catch
-            {
-                response = null;
-            }
-            return null;
+            TracksRequest temp = new TracksRequest(songIds);
+            SpotifyClient spotify = new SpotifyClient(await GetToken());
+            TracksResponse listOfSongs = await spotify.Tracks.GetSeveral(temp);
+            List<FullTrack> returnList = listOfSongs.Tracks.ToList();
+            return returnList;
         }
     }
 }

@@ -27,8 +27,13 @@ namespace MusikApp.ViewModels
         public string ArtistName { get; set; }
 
         FullTrack currentSong { get; set; }
+        List<FullTrack> songQueue { get; set; }
         public MediaElement AudioDisplay { get; set; }
-       
+        //6uu74oWxGhnyNs3QvoeOcP
+        //5iDfnRTdV2mrvMK886TLRg
+        //16ePc0XhC3QFiC6qr6ZETA
+        //00FDHurakzVEiPutdUxXXq
+        //2kzwfnfhlqvmGwRVcwKS6s
         public StartPageViewModel()
         {
             AudioDisplay = new MediaElement
@@ -37,12 +42,51 @@ namespace MusikApp.ViewModels
                 ShouldAutoPlay = false,
             };
             repo = new StartPageRepository();
-            GetAnotherSong("6uu74oWxGhnyNs3QvoeOcP");
+            Load5Songs();
+            //GetAnotherSong("6uu74oWxGhnyNs3QvoeOcP");
             PlayPauseBtnSource = "play_icon.png";
             OnPropChanged(nameof(PlayPauseBtnSource));
             PlayPauseSound = new Command(PlayPauseSongAsync);
             SkipSong = new Command(SkipCurrentSongAsync);
             LikeSong = new Command(LikeCurrentSongAsync);
+        }
+        private async void Load5Songs()
+        {
+            List<string> songIds = new List<string>
+            {
+                "6uu74oWxGhnyNs3QvoeOcP",
+                "16ePc0XhC3QFiC6qr6ZETA",
+                "00FDHurakzVEiPutdUxXXq",
+                "2kzwfnfhlqvmGwRVcwKS6s",
+                "5iDfnRTdV2mrvMK886TLRg",
+            };
+            songQueue = await repo.GetListOfSongs(songIds);
+            DisplayNewSong();
+        }
+        public async void DisplayNewSong()
+        {
+            if(songQueue.Count > 0)
+            {
+                currentSong = songQueue.First();
+                songQueue.RemoveAt(0);
+                AudioDisplay.Stop();
+                SongImage = currentSong.Album.Images[0].Url;
+                SongArtistImage = await repo.GetArtistImageAsync(currentSong.Artists[0].Id);
+                SongName = currentSong.Name;
+                AlbumName = currentSong.Album.Name;
+                ArtistName = currentSong.Artists[0].Name;
+                AudioDisplay.Source = currentSong.PreviewUrl;
+                OnPropChanged(nameof(SongImage));
+                OnPropChanged(nameof(SongArtistImage));
+                OnPropChanged(nameof(SongName));
+                OnPropChanged(nameof(AlbumName));
+                OnPropChanged(nameof(ArtistName));
+                OnPropChanged(nameof(AudioDisplay));
+            }
+            //else
+            //{
+            //    GetAnotherSong("");
+            //}
         }
         public async void GetAnotherSong(string id)
         {
@@ -94,7 +138,7 @@ namespace MusikApp.ViewModels
             }
             if (checkIfSucces)
             {
-                await (Application.Current.MainPage).DisplayAlert("Succes", "The song has now been liked", "OK");
+                DisplayNewSong();
             }
             else
             {
@@ -119,7 +163,7 @@ namespace MusikApp.ViewModels
             }
             if (checkIfSucces)
             {
-                await (Application.Current.MainPage).DisplayAlert("Succes", "The song has now been skipped", "OK");
+                DisplayNewSong();
             }
             else
             {
