@@ -79,5 +79,14 @@ namespace AppDBAccess
             List<FullTrack> returnList = listOfSongs.Tracks.ToList();
             return returnList;
         }
+        //this methode will return a recommendation 
+        public async Task<FullTrack> GetRecommendations()
+        {
+            SpotifyClient spotify = new SpotifyClient(await GetToken());
+            SearchRequest temp = new SearchRequest(SearchRequest.Types.Track, "slow danish pop");
+            SearchResponse temp2 = await spotify.Search.Item(temp);
+            FullTrack returnValue = temp2.Tracks.Items.First();
+            return returnValue;
+        }
     }
 }

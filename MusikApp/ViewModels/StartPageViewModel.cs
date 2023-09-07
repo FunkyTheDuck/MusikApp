@@ -43,7 +43,6 @@ namespace MusikApp.ViewModels
             };
             repo = new StartPageRepository();
             Load5Songs();
-            //GetAnotherSong("6uu74oWxGhnyNs3QvoeOcP");
             PlayPauseBtnSource = "play_icon.png";
             OnPropChanged(nameof(PlayPauseBtnSource));
             PlayPauseSound = new Command(PlayPauseSongAsync);
