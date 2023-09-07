@@ -60,5 +60,16 @@ namespace AppRepository
         {
             return await spotifyDB.GetArtistImageAsync(id);
         }
+        public async Task<List<FullTrack>> GetListOfSongs(List<string> songIds)
+        {
+            try
+            {
+                return await spotifyDB.GetListOfSongs(songIds);
+            }
+            catch
+            {
+                return null;
+            }
+        }
     }
 }

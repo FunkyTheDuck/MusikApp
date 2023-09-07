@@ -60,7 +60,7 @@
                 </Grid.ColumnDefinitions>
                 <Image Style="{StaticResource SongImage}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" Source="{Binding SongImage}"></Image>
                 <Label Style="{StaticResource SongName}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Text="{Binding SongName}"></Label>
-                <Label Style="{StaticResource AlbumName}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding AlbumName}"></Label>
+                <Label Style="{StaticResource AlbumName}" Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding AlbumName}"></Label>
                 <Border Grid.Row="1" Grid.RowSpan="2" Grid.Column="3" Style="{StaticResource ArtistImageBorder}">
                     <Image Source="{Binding SongArtistImage}"></Image>
                 </Border>
