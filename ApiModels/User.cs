@@ -23,11 +23,11 @@ namespace ApiModels
         public string Password { get; set; }
         public bool IsPremium { get; set; }
         public bool IsArtist { get; set; }
-        public WhiteList WhiteList { get; set; }
-        public BlackList BlackList { get; set; }
-        public Settings Settings { get; set; }
-        public Premium Premium { get; set; }
-        public Artist Artist { get; set; }
-        public List<Friend> Friends { get; set; } 
+        public WhiteList? WhiteList { get; set; }
+        public BlackList? BlackList { get; set; }
+        public Settings? Settings { get; set; }
+        public Premium? Premium { get; set; }
+        public Artist? Artist { get; set; }
+        public List<Friend>? Friends { get; set; } 
     }
 }
