@@ -54,11 +54,11 @@ namespace MusikApp.ViewModels
         {
             List<string> songIds = new List<string>
             {
+                "3RlsVPIIs5KFhLFhxZ4iDF",
                 "6uu74oWxGhnyNs3QvoeOcP",
                 "16ePc0XhC3QFiC6qr6ZETA",
-                "00FDHurakzVEiPutdUxXXq",
                 "2kzwfnfhlqvmGwRVcwKS6s",
-                "5iDfnRTdV2mrvMK886TLRg",
+                "70C4NyhjD5OZUMzvWZ3njJ"
             };
             songQueue = await repo.GetListOfSongs(songIds);
             DisplayNewSong();
@@ -69,7 +69,6 @@ namespace MusikApp.ViewModels
             {
                 currentSong = songQueue.First();
                 songQueue.RemoveAt(0);
-                AudioDisplay.Stop();
                 SongImage = currentSong.Album.Images[0].Url;
                 SongArtistImage = await repo.GetArtistImageAsync(currentSong.Artists[0].Id);
                 SongName = currentSong.Name;
@@ -87,6 +86,9 @@ namespace MusikApp.ViewModels
             //{
             //    GetAnotherSong("");
             //}
+            AudioDisplay.Play();
+            PlayPauseBtnSource = "pause_icon.png";
+            OnPropChanged(nameof(PlayPauseBtnSource));
         }
         public async void GetAnotherSong(string id)
         {

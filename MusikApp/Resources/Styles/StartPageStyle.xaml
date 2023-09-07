@@ -67,7 +67,7 @@
     </Style>
     <Style TargetType="Label" x:Key="AlbumName">
         <Setter Property="TextColor" Value="White"/>
-        <Setter Property="VerticalOptions" Value="End"/>
+        <Setter Property="VerticalOptions" Value="Center"/>
         <Setter Property="HorizontalOptions" Value="Start"/>
         <Setter Property="FontSize" Value="12"/>
     </Style>
