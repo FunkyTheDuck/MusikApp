@@ -16,7 +16,6 @@ namespace ApiDBAccess
         public DbSet<DtoFriend> Friends { get; set; }
         public DbSet<DtoPremium> Premia { get; set; }
         public DbSet<DtoSettings> Settings { get; set; }
-        public DbSet<DtoSong> Songs { get; set; }
         public DbSet<DtoUser> Users { get; set; }
         public DbSet<DtoWhiteList> WhiteLists { get; set; }
 
@@ -26,15 +25,7 @@ namespace ApiDBAccess
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<DtoSong>()
-                .HasOne(e => e.BlackList)
-                .WithMany(e => e.Songs)
-                .OnDelete(DeleteBehavior.NoAction);
 
-            modelBuilder.Entity<DtoSong>()
-                .HasOne(e => e.WhiteList)
-                .WithMany(e => e.Songs)
-                .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }

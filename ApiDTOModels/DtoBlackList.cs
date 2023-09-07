@@ -12,6 +12,5 @@ namespace ApiDTOModels
         public int UserID { get; set; }
         public List<DtoUser>? User { get; set; }
         public string SongID { get; set; }
-        public List<DtoSong>? Songs { get; set; }
     }
 }

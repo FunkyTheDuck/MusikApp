@@ -10,7 +10,7 @@ namespace ApiModels
     {
         public int Id { get; set; }
         public int ArtistId { get; set; }
-        public List<Artist> Artist { get; set; }
+        public List<Artist>? Artist { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
     }

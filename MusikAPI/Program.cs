@@ -4,7 +4,6 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddSingleton<IArtistPaymentRepository, ArtistPaymentRepository>();
-builder.Services.AddSingleton<ISongsRepository, SongsRepository>();
 builder.Services.AddSingleton<IUserRepository, UserRepository>();
 builder.Services.AddSingleton<IWhiteListRepository, WhiteListRepository>();
 builder.Services.AddSingleton<IBlackListRepository, BlackListRepository>();

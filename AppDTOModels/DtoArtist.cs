@@ -12,7 +12,6 @@ namespace AppDTOModels
         public int UserId { get; set; }
         public DtoUser User { get; set; }
         public List<string>? HighlightSong { get; set; }
-        public List<DtoSong> Songs { get; set; }
         public DtoArtistPayment ArtistPayment { get; set; }
     }
 }
