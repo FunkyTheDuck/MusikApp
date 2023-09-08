@@ -2,11 +2,37 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MusikApp.Views.ChooseGenrePage"
+             xmlns:ViewModels="clr-namespace:MusikApp.ViewModels"
+             xmlns:rd="clr-namespace:MusikApp.Resources.Styles"
              Title="ChooseGenrePage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    <ContentPage.BindingContext>
+        <ViewModels:ChooseGenrePageViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <rd:ChooseGenrePageStyle/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ScrollView>
+
+        <CollectionView ItemsSource="{Binding Genres}" ItemsLayout="VerticalGrid, 3" SelectionMode="Single" SelectionChangedCommand="{Binding SelectedGenreChanged}" SelectedItem="{Binding SelectedGenre}">
+                <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <VerticalStackLayout>
+                        
+                    <Border StrokeShape="RoundRectangle 12,12,12,12" BackgroundColor="Gray" Stroke="{Binding SelectedItemColor}">
+
+                        <Label HorizontalTextAlignment="Center" FontSize="14" TextColor="White" Text="{Binding Name}"/>
+
+                    </Border>
+                    </VerticalStackLayout>
+
+                </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </ScrollView>
+
 </ContentPage>
