@@ -11,7 +11,7 @@ namespace ApiModels
     {
         public int Id { get; set; }
         public int UserId { get; set; }
-        public User User { get; set; }
+        public User? User { get; set; }
         [MaxLength(255)]
         public string ChangeGenre { get; set; }
         public int HowNewTheMusicIs { get; set; }

@@ -11,7 +11,6 @@ namespace AppModels
         public int Id { get; set; }
         public int UserID { get; set; }
         public User User { get; set; }
-        public int SongID { get; set; }
-        public List<Song> Song { get; set; }
+        public string SongID { get; set; }
     }
 }

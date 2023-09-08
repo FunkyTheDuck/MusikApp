@@ -83,18 +83,22 @@ namespace AppDBAccess
 
             return GenreList;
         }
-        public async Task<DtoAccessToken> GetOneSong()
+        public async Task<List<FullTrack>> GetListOfSongs(List<string> songIds)
         {
-            HttpResponseMessage response;
-            try
-            {
-                //response = await client.GetAsync($"https://accounts.spotify.com/api/token");
-            }
-            catch
-            {
-                response = null;
-            }
-            return null;
+            TracksRequest temp = new TracksRequest(songIds);
+            SpotifyClient spotify = new SpotifyClient(await GetToken());
+            TracksResponse listOfSongs = await spotify.Tracks.GetSeveral(temp);
+            List<FullTrack> returnList = listOfSongs.Tracks.ToList();
+            return returnList;
+        }
+        //this methode will return a recommendation 
+        public async Task<FullTrack> GetRecommendations()
+        {
+            SpotifyClient spotify = new SpotifyClient(await GetToken());
+            SearchRequest temp = new SearchRequest(SearchRequest.Types.Track, "slow danish pop");
+            SearchResponse temp2 = await spotify.Search.Item(temp);
+            FullTrack returnValue = temp2.Tracks.Items.First();
+            return returnValue;
         }
     }
 }

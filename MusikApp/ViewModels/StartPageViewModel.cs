@@ -1,4 +1,5 @@
-﻿using AppRepository;
+﻿using AppModels;
+using AppRepository;
 using CommunityToolkit.Maui.Views;
 using Plugin.Maui.Audio;
 using SpotifyAPI.Web;
@@ -25,9 +26,14 @@ namespace MusikApp.ViewModels
         public string AlbumName { get; set; }
         public string ArtistName { get; set; }
 
-        FullTrack currentSong = null;
+        FullTrack currentSong { get; set; }
+        List<FullTrack> songQueue { get; set; }
         public MediaElement AudioDisplay { get; set; }
-       
+        //6uu74oWxGhnyNs3QvoeOcP
+        //5iDfnRTdV2mrvMK886TLRg
+        //16ePc0XhC3QFiC6qr6ZETA
+        //00FDHurakzVEiPutdUxXXq
+        //2kzwfnfhlqvmGwRVcwKS6s
         public StartPageViewModel()
         {
             AudioDisplay = new MediaElement
@@ -36,12 +42,52 @@ namespace MusikApp.ViewModels
                 ShouldAutoPlay = false,
             };
             repo = new StartPageRepository();
-            GetAnotherSong("6uu74oWxGhnyNs3QvoeOcP");
+            Load5Songs();
             PlayPauseBtnSource = "play_icon.png";
             OnPropChanged(nameof(PlayPauseBtnSource));
             PlayPauseSound = new Command(PlayPauseSongAsync);
             SkipSong = new Command(SkipCurrentSongAsync);
             LikeSong = new Command(LikeCurrentSongAsync);
+        }
+        private async void Load5Songs()
+        {
+            List<string> songIds = new List<string>
+            {
+                "3RlsVPIIs5KFhLFhxZ4iDF",
+                "6uu74oWxGhnyNs3QvoeOcP",
+                "16ePc0XhC3QFiC6qr6ZETA",
+                "2kzwfnfhlqvmGwRVcwKS6s",
+                "70C4NyhjD5OZUMzvWZ3njJ"
+            };
+            songQueue = await repo.GetListOfSongs(songIds);
+            DisplayNewSong();
+        }
+        public async void DisplayNewSong()
+        {
+            if(songQueue.Count > 0)
+            {
+                currentSong = songQueue.First();
+                songQueue.RemoveAt(0);
+                SongImage = currentSong.Album.Images[0].Url;
+                SongArtistImage = await repo.GetArtistImageAsync(currentSong.Artists[0].Id);
+                SongName = currentSong.Name;
+                AlbumName = currentSong.Album.Name;
+                ArtistName = currentSong.Artists[0].Name;
+                AudioDisplay.Source = currentSong.PreviewUrl;
+                OnPropChanged(nameof(SongImage));
+                OnPropChanged(nameof(SongArtistImage));
+                OnPropChanged(nameof(SongName));
+                OnPropChanged(nameof(AlbumName));
+                OnPropChanged(nameof(ArtistName));
+                OnPropChanged(nameof(AudioDisplay));
+            }
+            //else
+            //{
+            //    GetAnotherSong("");
+            //}
+            AudioDisplay.Play();
+            PlayPauseBtnSource = "pause_icon.png";
+            OnPropChanged(nameof(PlayPauseBtnSource));
         }
         public async void GetAnotherSong(string id)
         {
@@ -77,30 +123,15 @@ namespace MusikApp.ViewModels
 
         public async void LikeCurrentSongAsync(object obj)
         {
+            WhiteList whiteList = new WhiteList
+            {
+                UserID = 1,
+                SongID = currentSong.Id,
+            };
             bool checkIfSucces = false;
             try
             {
-                checkIfSucces = true;
-            }
-            catch
-            {
-                checkIfSucces = false;
-            }
-            if (checkIfSucces) 
-            {
-                //fortæl brugeren det gik godt 
-            }
-            else
-            {
-                //fortæl brugeren det gik lort
-            }
-        }
-        public async void SkipCurrentSongAsync(object obj)
-        {
-            bool checkIfSucces = false;
-            try
-            {
-                checkIfSucces = await repo.SkipSongAsync(0, 726265785);
+                checkIfSucces = await repo.LikeSongAsync(whiteList);
             }
             catch
             {
@@ -108,11 +139,36 @@ namespace MusikApp.ViewModels
             }
             if (checkIfSucces)
             {
-                //fortæl brugeren det gik godt 
+                DisplayNewSong();
             }
             else
             {
-                //fortæl brugeren det gik lort
+                await (Application.Current.MainPage).DisplayAlert("Error", "The song couldn't be liked", "OK");
+            }
+        }
+        public async void SkipCurrentSongAsync(object obj)
+        {
+            BlackList blackList = new BlackList
+            {
+                UserID = 1,
+                SongID = currentSong.Id,
+            };
+            bool checkIfSucces = false;
+            try
+            {
+                checkIfSucces = await repo.SkipSongAsync(blackList);
+            }
+            catch
+            {
+                checkIfSucces = false;
+            }
+            if (checkIfSucces)
+            {
+                DisplayNewSong();
+            }
+            else
+            {
+                await (Application.Current.MainPage).DisplayAlert("Error", "The song couldn't be skipped", "OK");
             }
         }
         public async void GoToProfilPageAsync(object obj)

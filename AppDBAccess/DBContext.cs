@@ -57,44 +57,6 @@ namespace AppDBAccess
             var response = await client.DeleteAsync(uri);  
             return response.IsSuccessStatusCode;
         }
-        public async Task<List<DtoSong>> GetSong()
-        {
-            HttpResponseMessage response = null;
-            response = await client.GetAsync($"https://localhost:44325/api/Songs");
-            string json = await response.Content.ReadAsStringAsync();
-            List<DtoSong> songs = JsonConvert.DeserializeObject<List<DtoSong>>(json);
-            return songs;
-        }
-        public async Task<DtoArtistPayment> GetSong(int id)
-        {
-            HttpResponseMessage response = null;
-            try
-            {
-                response = await client.GetAsync($"https://localhost:44325/api/Songs/{id}");
-                string json = await response.Content.ReadAsStringAsync();
-                DtoArtistPayment artistPayment = JsonConvert.DeserializeObject<DtoArtistPayment>(json);
-                return artistPayment;
-            }
-            catch
-            {
-                return null;
-            }
-        }
-        public async Task<bool> CreateSong(DtoSong song)
-        {
-            string json = JsonConvert.SerializeObject(song);
-            StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
-            var response = await client.PostAsync("https://localhost:44325/api/Songs", content);
-            return response.IsSuccessStatusCode;
-        }
-        public async Task<bool> UpdateSong(DtoSong song)
-        {
-            string json = JsonConvert.SerializeObject(song);
-            StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
-            string uri = Path.Combine("https://localhost:44325/api/Songs", $"{song.Id}");
-            var response = await client.PutAsync(uri, content);
-            return response.IsSuccessStatusCode;
-        }
         public async Task<bool> DeleteSong(int id)
         {
             string uri = Path.Combine("https://localhost:44325/api/Songs", $"{id}");
@@ -144,6 +106,60 @@ namespace AppDBAccess
             string uri = Path.Combine("https://localhost:44325/api/User", $"{id}");
             var response = await client.DeleteAsync(uri);
             return response.IsSuccessStatusCode;
+        }
+        public async Task<bool> LikeSongAsync(DtoWhiteList whiteList)
+        {
+            string json = string.Empty;
+            try
+            {
+                json = JsonConvert.SerializeObject(whiteList);
+            }
+            catch
+            {
+                return false;
+            }
+            if(!string.IsNullOrEmpty(json))
+            {
+                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+                HttpResponseMessage response;
+                try
+                {
+                    response = await client.PostAsync("https://localhost:7147/api/WhiteList", content);
+                }
+                catch
+                {
+                    return false;
+                }
+                return response.IsSuccessStatusCode;
+            }
+            return false;
+        }
+        public async Task<bool> SkipSongAsync(DtoBlackList blackList)
+        {
+            string json = string.Empty;
+            try
+            {
+                json = JsonConvert.SerializeObject(blackList);
+            }
+            catch
+            {
+                return false;
+            }
+            if (!string.IsNullOrEmpty(json))
+            {
+                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+                HttpResponseMessage response;
+                try
+                {
+                    response = await client.PostAsync("https://localhost:7147/api/BlackList", content);
+                }
+                catch
+                {
+                    return false;
+                }
+                return response.IsSuccessStatusCode;
+            }
+            return false;
         }
     }
 }

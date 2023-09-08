@@ -27,6 +27,34 @@ namespace ApiDBAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "BlackLists",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserID = table.Column<int>(type: "int", nullable: false),
+                    SongID = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_BlackLists", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "WhiteLists",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserID = table.Column<int>(type: "int", nullable: false),
+                    SongID = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_WhiteLists", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Users",
                 columns: table => new
                 {
@@ -39,11 +67,25 @@ namespace ApiDBAccess.Migrations
                     Mail = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Password = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     IsPremium = table.Column<bool>(type: "bit", nullable: false),
-                    IsArtist = table.Column<bool>(type: "bit", nullable: false)
+                    IsArtist = table.Column<bool>(type: "bit", nullable: false),
+                    WhiteListId = table.Column<int>(type: "int", nullable: false),
+                    BlackListId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Users", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Users_BlackLists_BlackListId",
+                        column: x => x.BlackListId,
+                        principalTable: "BlackLists",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Users_WhiteLists_WhiteListId",
+                        column: x => x.WhiteListId,
+                        principalTable: "WhiteLists",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -68,26 +110,6 @@ namespace ApiDBAccess.Migrations
                     table.ForeignKey(
                         name: "FK_Artists_Users_UserId",
                         column: x => x.UserId,
-                        principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "BlackLists",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UserID = table.Column<int>(type: "int", nullable: false),
-                    SongID = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_BlackLists", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_BlackLists_Users_UserID",
-                        column: x => x.UserID,
                         principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -157,26 +179,6 @@ namespace ApiDBAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "WhiteLists",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UserID = table.Column<int>(type: "int", nullable: false),
-                    SongID = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_WhiteLists", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_WhiteLists_Users_UserID",
-                        column: x => x.UserID,
-                        principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Songs",
                 columns: table => new
                 {
@@ -223,12 +225,6 @@ namespace ApiDBAccess.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_BlackLists_UserID",
-                table: "BlackLists",
-                column: "UserID",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Friends_UserId",
                 table: "Friends",
                 column: "UserId");
@@ -261,10 +257,14 @@ namespace ApiDBAccess.Migrations
                 column: "WhiteListId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_WhiteLists_UserID",
-                table: "WhiteLists",
-                column: "UserID",
-                unique: true);
+                name: "IX_Users_BlackListId",
+                table: "Users",
+                column: "BlackListId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Users_WhiteListId",
+                table: "Users",
+                column: "WhiteListId");
         }
 
         /// <inheritdoc />
@@ -286,16 +286,16 @@ namespace ApiDBAccess.Migrations
                 name: "Artists");
 
             migrationBuilder.DropTable(
-                name: "BlackLists");
-
-            migrationBuilder.DropTable(
-                name: "WhiteLists");
-
-            migrationBuilder.DropTable(
                 name: "ArtistPayments");
 
             migrationBuilder.DropTable(
                 name: "Users");
+
+            migrationBuilder.DropTable(
+                name: "BlackLists");
+
+            migrationBuilder.DropTable(
+                name: "WhiteLists");
         }
     }
 }

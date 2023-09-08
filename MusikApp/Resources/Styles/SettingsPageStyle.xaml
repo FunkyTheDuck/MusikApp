@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MusikApp.Resources.Styles.SettingsPageStyle">
+    <Style TargetType="ContentPage" x:Key="SettingsPage">
+        <Setter Property="BackgroundColor" Value="Black"/>
+    </Style>
+    <Style TargetType="Label" x:Key="Header">
+        <Setter Property="FontSize" Value="26"/>
+        <Setter Property="HorizontalOptions" Value="Center"/>
+        <Setter Property="VerticalOptions" Value="Center"/>
+        <Setter Property="TextColor" Value="White"/>
+    </Style>
+    <Style TargetType="Label" x:Key="SettingsText">
+        <Setter Property="TextColor" Value="White"/>
+        <Setter Property="VerticalTextAlignment" Value="End"/>
+    </Style>
+    <Style TargetType="Label" x:Key="SettingsTextMaximum">
+        <Setter Property="TextColor" Value="White"/>
+        <Setter Property="HorizontalTextAlignment" Value="End"/>
+    </Style>
+    <Style TargetType="Slider" x:Key="Slider">
+        <Setter Property="ThumbColor" Value="#1DB954"/>
+        <Setter Property="VerticalOptions" Value="Center"/>
+        <Setter Property="Margin" Value="5,0,5,0"/>
+    </Style>
+    <!-- Color to the circle 1DB954-->
+    <Style TargetType="Border" x:Key="LogInBorder">
+        <Setter Property="BackgroundColor" Value="Black"/>
+        <Setter Property="Margin" Value="0,0,0,20"/>
+    </Style>
+    <Style TargetType="ImageButton" x:Key="LogInImage">
+        <Setter Property="CornerRadius" Value="20"/>
+        <Setter Property="MaximumHeightRequest" Value="100"/>
+        <Setter Property="MaximumWidthRequest" Value="300"/>
+        <Setter Property="HorizontalOptions" Value="Center"/>
+        <Setter Property="VerticalOptions" Value="Center"/>
+    </Style>
+    <Style TargetType="Border" x:Key="LogOutBtnBorder">
+        <Setter Property="Margin" Value="0,0,0,20"/>
+    </Style>
+    <Style TargetType="Button" x:Key="LogOutBtn">
+        <Setter Property="CornerRadius" Value="10"/>
+        <Setter Property="TextColor" Value="#FF0000"/>
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="BackgroundColor" Value="#FF8A8A"/>
+        <Setter Property="Opacity" Value="15"/>
+    </Style>
+</ResourceDictionary>

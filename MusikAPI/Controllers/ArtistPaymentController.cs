@@ -59,7 +59,7 @@ namespace MusikAPI.Controllers
                 }
                 if (checkIfSucces)
                 {
-                    return Ok(await repo.Update(artistPayment));
+                    return Ok();
                 }
             }
             return BadRequest();
