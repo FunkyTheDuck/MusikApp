@@ -161,5 +161,34 @@ namespace AppDBAccess
             }
             return false;
         }
+
+        public async Task<DtoSettings> GetUsersSettingsAsync(int userId)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                response = await client.GetAsync($"https://localhost:7147/api/Settings/{userId}");
+            }
+            catch 
+            {
+                return null;
+            }
+            string json = string.Empty;
+            try
+            {
+                json = await response.Content.ReadAsStringAsync();
+            }
+            catch
+            {
+                return null;
+            }
+            DtoSettings? setting;
+            if(json != null)
+            {
+                setting = JsonConvert.DeserializeObject<DtoSettings>(json);
+                return setting;
+            }
+            return null;
+        }
     }
 }
