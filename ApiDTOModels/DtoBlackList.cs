@@ -10,7 +10,7 @@ namespace ApiDTOModels
     {
         public int Id { get; set; }
         public int UserID { get; set; }
-        public List<DtoUser>? User { get; set; }
+        public DtoUser? User { get; set; }
         public string SongID { get; set; }
     }
 }

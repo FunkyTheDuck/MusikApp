@@ -3,10 +3,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace ApiDBAccess.Migrations
 {
     /// <inheritdoc />
-    public partial class MusicAppDatabase : Migration
+    public partial class MusikAppDatabase : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -27,34 +29,6 @@ namespace ApiDBAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "BlackLists",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UserID = table.Column<int>(type: "int", nullable: false),
-                    SongID = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_BlackLists", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "WhiteLists",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UserID = table.Column<int>(type: "int", nullable: false),
-                    SongID = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_WhiteLists", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Users",
                 columns: table => new
                 {
@@ -67,25 +41,11 @@ namespace ApiDBAccess.Migrations
                     Mail = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Password = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     IsPremium = table.Column<bool>(type: "bit", nullable: false),
-                    IsArtist = table.Column<bool>(type: "bit", nullable: false),
-                    WhiteListId = table.Column<int>(type: "int", nullable: false),
-                    BlackListId = table.Column<int>(type: "int", nullable: false)
+                    IsArtist = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Users", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Users_BlackLists_BlackListId",
-                        column: x => x.BlackListId,
-                        principalTable: "BlackLists",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Users_WhiteLists_WhiteListId",
-                        column: x => x.WhiteListId,
-                        principalTable: "WhiteLists",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -96,7 +56,7 @@ namespace ApiDBAccess.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<int>(type: "int", nullable: false),
                     HighlightSong = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ArtistPaymentId = table.Column<int>(type: "int", nullable: false)
+                    ArtistPaymentId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -105,11 +65,30 @@ namespace ApiDBAccess.Migrations
                         name: "FK_Artists_ArtistPayments_ArtistPaymentId",
                         column: x => x.ArtistPaymentId,
                         principalTable: "ArtistPayments",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Artists_Users_UserId",
                         column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "BlackLists",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserID = table.Column<int>(type: "int", nullable: false),
+                    SongID = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_BlackLists", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_BlackLists_Users_UserID",
+                        column: x => x.UserID,
                         principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -179,38 +158,91 @@ namespace ApiDBAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Songs",
+                name: "WhiteLists",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ArtistId = table.Column<int>(type: "int", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    AlbumImage = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
-                    AudioExample = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
-                    Genre = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    WhiteListId = table.Column<int>(type: "int", nullable: false),
-                    BlackListId = table.Column<int>(type: "int", nullable: false)
+                    UserID = table.Column<int>(type: "int", nullable: false),
+                    SongID = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Songs", x => x.Id);
+                    table.PrimaryKey("PK_WhiteLists", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Songs_Artists_ArtistId",
-                        column: x => x.ArtistId,
-                        principalTable: "Artists",
+                        name: "FK_WhiteLists_Users_UserID",
+                        column: x => x.UserID,
+                        principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Songs_BlackLists_BlackListId",
-                        column: x => x.BlackListId,
-                        principalTable: "BlackLists",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Songs_WhiteLists_WhiteListId",
-                        column: x => x.WhiteListId,
-                        principalTable: "WhiteLists",
-                        principalColumn: "Id");
+                });
+
+            migrationBuilder.InsertData(
+                table: "ArtistPayments",
+                columns: new[] { "Id", "ArtistId", "EndDate", "StartDate" },
+                values: new object[] { 1, 1, new DateTime(2023, 9, 11, 12, 3, 10, 738, DateTimeKind.Local).AddTicks(5705), new DateTime(2023, 9, 11, 12, 3, 10, 738, DateTimeKind.Local).AddTicks(5657) });
+
+            migrationBuilder.InsertData(
+                table: "Users",
+                columns: new[] { "Id", "IsArtist", "IsPremium", "LastName", "Mail", "Name", "Password", "ProfilPicture", "UserName" },
+                values: new object[,]
+                {
+                    { 1, true, true, "Bieber", "justinbieber@hotmail.com", "Justin", "Bruger123", "Billede", "JustinB" },
+                    { 2, false, true, "Wayne", "batmanerbest@gmail.com", "Bruce", "Beuger123", "Billede1", "Batman" },
+                    { 3, false, false, "Kent", "ilovelois@gmail.com", "Clark", "Bruger123", "Billede2", "Superman" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Artists",
+                columns: new[] { "Id", "ArtistPaymentId", "HighlightSong", "UserId" },
+                values: new object[] { 1, null, null, 1 });
+
+            migrationBuilder.InsertData(
+                table: "BlackLists",
+                columns: new[] { "Id", "SongID", "UserID" },
+                values: new object[,]
+                {
+                    { 1, "7xapw9Oy21WpfEcib2ErSA", 1 },
+                    { 2, "7xapw9Oy21WpfEcib2ErSA", 2 },
+                    { 3, "7xapw9Oy21WpfEcib2ErSA", 3 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Friends",
+                columns: new[] { "Id", "FriendId", "UserId" },
+                values: new object[,]
+                {
+                    { 1, 1, 2 },
+                    { 2, 3, 2 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Premia",
+                columns: new[] { "Id", "NextTransactionDay", "TransactionDay", "UserId" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2023, 9, 11, 12, 3, 10, 738, DateTimeKind.Local).AddTicks(5751), new DateTime(2023, 9, 11, 12, 3, 10, 738, DateTimeKind.Local).AddTicks(5757), 1 },
+                    { 2, new DateTime(2023, 9, 11, 12, 3, 10, 738, DateTimeKind.Local).AddTicks(5759), new DateTime(2023, 9, 11, 12, 3, 10, 738, DateTimeKind.Local).AddTicks(5761), 2 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Settings",
+                columns: new[] { "Id", "ChangeGenre", "HowManyNotifications", "HowNewTheMusicIs", "UserId" },
+                values: new object[,]
+                {
+                    { 1, "k-pop", 5, 10, 1 },
+                    { 2, "rock", 3, 5, 2 },
+                    { 3, "pop", 8, 20, 3 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "WhiteLists",
+                columns: new[] { "Id", "SongID", "UserID" },
+                values: new object[,]
+                {
+                    { 1, "6habFhsOp2NvshLv26DqMb", 1 },
+                    { 2, "6habFhsOp2NvshLv26DqMb", 2 },
+                    { 3, "6habFhsOp2NvshLv26DqMb", 3 }
                 });
 
             migrationBuilder.CreateIndex(
@@ -222,6 +254,12 @@ namespace ApiDBAccess.Migrations
                 name: "IX_Artists_UserId",
                 table: "Artists",
                 column: "UserId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_BlackLists_UserID",
+                table: "BlackLists",
+                column: "UserID",
                 unique: true);
 
             migrationBuilder.CreateIndex(
@@ -242,34 +280,21 @@ namespace ApiDBAccess.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Songs_ArtistId",
-                table: "Songs",
-                column: "ArtistId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Songs_BlackListId",
-                table: "Songs",
-                column: "BlackListId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Songs_WhiteListId",
-                table: "Songs",
-                column: "WhiteListId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Users_BlackListId",
-                table: "Users",
-                column: "BlackListId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Users_WhiteListId",
-                table: "Users",
-                column: "WhiteListId");
+                name: "IX_WhiteLists_UserID",
+                table: "WhiteLists",
+                column: "UserID",
+                unique: true);
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Artists");
+
+            migrationBuilder.DropTable(
+                name: "BlackLists");
+
             migrationBuilder.DropTable(
                 name: "Friends");
 
@@ -280,22 +305,13 @@ namespace ApiDBAccess.Migrations
                 name: "Settings");
 
             migrationBuilder.DropTable(
-                name: "Songs");
-
-            migrationBuilder.DropTable(
-                name: "Artists");
+                name: "WhiteLists");
 
             migrationBuilder.DropTable(
                 name: "ArtistPayments");
 
             migrationBuilder.DropTable(
                 name: "Users");
-
-            migrationBuilder.DropTable(
-                name: "BlackLists");
-
-            migrationBuilder.DropTable(
-                name: "WhiteLists");
         }
     }
 }

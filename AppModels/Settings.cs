@@ -15,6 +15,10 @@ namespace AppModels
         [MaxLength(255)]
         public string ChangeGenre { get; set; }
         public int HowNewTheMusicIs { get; set; }
-        public int HowManyNotifications { get; set; }
+        public int NotificationsAmount { get; set; }
+        public int Popularity { get; set; }
+        public int Energy { get; set; }
+        public int Danceability { get; set; }
+
     }
 }

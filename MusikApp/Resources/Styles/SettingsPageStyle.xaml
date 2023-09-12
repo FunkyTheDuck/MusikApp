@@ -24,7 +24,6 @@
         <Setter Property="VerticalOptions" Value="Center"/>
         <Setter Property="Margin" Value="5,0,5,0"/>
     </Style>
-    <!-- Color to the circle 1DB954-->
     <Style TargetType="Border" x:Key="LogInBorder">
         <Setter Property="BackgroundColor" Value="Black"/>
         <Setter Property="Margin" Value="0,0,0,20"/>

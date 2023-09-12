@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AppModels;
+using AppRepository;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -10,6 +12,8 @@ namespace MusikApp.ViewModels
     public class SettingsPageViewModel : BaseViewModels
     {
         public ObservableCollection<string> currentChoosenGenre { get; set; }
+        public Settings Setting { get; set; }
+        private SettingsPageRepository repo { get; set; }
         public SettingsPageViewModel()
         {
             currentChoosenGenre = new ObservableCollection<string>
@@ -18,7 +22,12 @@ namespace MusikApp.ViewModels
                 "EDM",
                 "Country"
             };
+            GetUsersSettings();
             OnPropChanged(nameof(currentChoosenGenre));
+        }
+        private async void GetUsersSettings()
+        {
+            Setting = await repo.GetUsersSettingsAsync(1);
         }
 
     }
