@@ -27,18 +27,15 @@ namespace MusikApp.ViewModels
         {
             Genres = await GenreRepo.GetGenresAsync();
             OnPropChanged(nameof(Genres));
-
-            SelectedGenreChanged = new Command(HandleSelctionChanged);
+            SelectGenre();
         }
 
-        public void HandleSelctionChanged()
+
+        public void SelectGenre()
         {
-            if (SelectedGenre != null)
-            {
-                SelectedItemColor = Color.FromHex("#454B1B");
-            }
+            //der skal sættes en api kald op for at kunne gå videre
+            //SelectedGenre = //en api kald
         }
-
     }
 
 }

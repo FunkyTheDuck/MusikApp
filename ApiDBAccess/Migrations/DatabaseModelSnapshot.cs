@@ -82,8 +82,8 @@ namespace ApiDBAccess.Migrations
                         {
                             Id = 1,
                             ArtistId = 1,
-                            EndDate = new DateTime(2023, 9, 11, 12, 3, 10, 738, DateTimeKind.Local).AddTicks(5705),
-                            StartDate = new DateTime(2023, 9, 11, 12, 3, 10, 738, DateTimeKind.Local).AddTicks(5657)
+                            EndDate = new DateTime(2023, 9, 12, 10, 45, 4, 904, DateTimeKind.Local).AddTicks(4814),
+                            StartDate = new DateTime(2023, 9, 12, 10, 45, 4, 904, DateTimeKind.Local).AddTicks(4758)
                         });
                 });
 
@@ -193,15 +193,15 @@ namespace ApiDBAccess.Migrations
                         new
                         {
                             Id = 1,
-                            NextTransactionDay = new DateTime(2023, 9, 11, 12, 3, 10, 738, DateTimeKind.Local).AddTicks(5751),
-                            TransactionDay = new DateTime(2023, 9, 11, 12, 3, 10, 738, DateTimeKind.Local).AddTicks(5757),
+                            NextTransactionDay = new DateTime(2023, 9, 12, 10, 45, 4, 904, DateTimeKind.Local).AddTicks(4892),
+                            TransactionDay = new DateTime(2023, 9, 12, 10, 45, 4, 904, DateTimeKind.Local).AddTicks(4894),
                             UserId = 1
                         },
                         new
                         {
                             Id = 2,
-                            NextTransactionDay = new DateTime(2023, 9, 11, 12, 3, 10, 738, DateTimeKind.Local).AddTicks(5759),
-                            TransactionDay = new DateTime(2023, 9, 11, 12, 3, 10, 738, DateTimeKind.Local).AddTicks(5761),
+                            NextTransactionDay = new DateTime(2023, 9, 12, 10, 45, 4, 904, DateTimeKind.Local).AddTicks(4896),
+                            TransactionDay = new DateTime(2023, 9, 12, 10, 45, 4, 904, DateTimeKind.Local).AddTicks(4898),
                             UserId = 2
                         });
                 });
@@ -228,6 +228,15 @@ namespace ApiDBAccess.Migrations
                     b.Property<int>("HowNewTheMusicIs")
                         .HasColumnType("int");
 
+                    b.Property<int>("NotificationsAmount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Popularity")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("UserId")
@@ -240,24 +249,33 @@ namespace ApiDBAccess.Migrations
                         {
                             Id = 1,
                             ChangeGenre = "k-pop",
-                            HowManyNotifications = 5,
+                            Danceability = 0,
+                            Energy = 0,
                             HowNewTheMusicIs = 10,
+                            NotificationsAmount = 5,
+                            Popularity = 0,
                             UserId = 1
                         },
                         new
                         {
                             Id = 2,
                             ChangeGenre = "rock",
-                            HowManyNotifications = 3,
+                            Danceability = 0,
+                            Energy = 0,
                             HowNewTheMusicIs = 5,
+                            NotificationsAmount = 3,
+                            Popularity = 0,
                             UserId = 2
                         },
                         new
                         {
                             Id = 3,
                             ChangeGenre = "pop",
-                            HowManyNotifications = 8,
+                            Danceability = 0,
+                            Energy = 0,
                             HowNewTheMusicIs = 20,
+                            NotificationsAmount = 8,
+                            Popularity = 0,
                             UserId = 3
                         });
                 });
@@ -451,34 +469,7 @@ namespace ApiDBAccess.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("ApiDTOModels.DtoSong", b =>
-                {
-                    b.HasOne("ApiDTOModels.DtoArtist", "Artist")
-                        .WithMany("Songs")
-                        .HasForeignKey("ArtistId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ApiDTOModels.DtoBlackList", "BlackList")
-                        .WithMany("Songs")
-                        .HasForeignKey("BlackListId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.HasOne("ApiDTOModels.DtoWhiteList", "WhiteList")
-                        .WithMany("Songs")
-                        .HasForeignKey("WhiteListId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("Artist");
-
-                    b.Navigation("BlackList");
-
-                    b.Navigation("WhiteList");
-                });
-
-            modelBuilder.Entity("ApiDTOModels.DtoUser", b =>
+            modelBuilder.Entity("ApiDTOModels.DtoWhiteList", b =>
                 {
                     b.HasOne("ApiDTOModels.DtoUser", "User")
                         .WithOne("WhiteList")
@@ -486,26 +477,12 @@ namespace ApiDBAccess.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("BlackList");
-
-                    b.Navigation("WhiteList");
-                });
-
-            modelBuilder.Entity("ApiDTOModels.DtoArtist", b =>
-                {
-                    b.Navigation("Songs");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("ApiDTOModels.DtoArtistPayment", b =>
                 {
                     b.Navigation("Artist");
-                });
-
-            modelBuilder.Entity("ApiDTOModels.DtoBlackList", b =>
-                {
-                    b.Navigation("Songs");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("ApiDTOModels.DtoUser", b =>
@@ -523,13 +500,9 @@ namespace ApiDBAccess.Migrations
 
                     b.Navigation("Settings")
                         .IsRequired();
-                });
 
-            modelBuilder.Entity("ApiDTOModels.DtoWhiteList", b =>
-                {
-                    b.Navigation("Songs");
-
-                    b.Navigation("User");
+                    b.Navigation("WhiteList")
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
