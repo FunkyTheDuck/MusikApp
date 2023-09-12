@@ -4,6 +4,7 @@ using ApiDBAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ApiDBAccess.Migrations
 {
     [DbContext(typeof(Database))]
-    partial class DatabaseModelSnapshot : ModelSnapshot
+    [Migration("20230912090647_FixWhiteListUserKeys")]
+    partial class FixWhiteListUserKeys
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -82,8 +85,8 @@ namespace ApiDBAccess.Migrations
                         {
                             Id = 1,
                             ArtistId = 1,
-                            EndDate = new DateTime(2023, 9, 12, 11, 8, 2, 549, DateTimeKind.Local).AddTicks(5285),
-                            StartDate = new DateTime(2023, 9, 12, 11, 8, 2, 549, DateTimeKind.Local).AddTicks(5230)
+                            EndDate = new DateTime(2023, 9, 12, 11, 6, 47, 98, DateTimeKind.Local).AddTicks(6321),
+                            StartDate = new DateTime(2023, 9, 12, 11, 6, 47, 98, DateTimeKind.Local).AddTicks(6262)
                         });
                 });
 
@@ -104,7 +107,8 @@ namespace ApiDBAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserID");
+                    b.HasIndex("UserID")
+                        .IsUnique();
 
                     b.ToTable("BlackLists");
 
@@ -192,15 +196,15 @@ namespace ApiDBAccess.Migrations
                         new
                         {
                             Id = 1,
-                            NextTransactionDay = new DateTime(2023, 9, 12, 11, 8, 2, 549, DateTimeKind.Local).AddTicks(5348),
-                            TransactionDay = new DateTime(2023, 9, 12, 11, 8, 2, 549, DateTimeKind.Local).AddTicks(5350),
+                            NextTransactionDay = new DateTime(2023, 9, 12, 11, 6, 47, 98, DateTimeKind.Local).AddTicks(6412),
+                            TransactionDay = new DateTime(2023, 9, 12, 11, 6, 47, 98, DateTimeKind.Local).AddTicks(6414),
                             UserId = 1
                         },
                         new
                         {
                             Id = 2,
-                            NextTransactionDay = new DateTime(2023, 9, 12, 11, 8, 2, 549, DateTimeKind.Local).AddTicks(5352),
-                            TransactionDay = new DateTime(2023, 9, 12, 11, 8, 2, 549, DateTimeKind.Local).AddTicks(5353),
+                            NextTransactionDay = new DateTime(2023, 9, 12, 11, 6, 47, 98, DateTimeKind.Local).AddTicks(6415),
+                            TransactionDay = new DateTime(2023, 9, 12, 11, 6, 47, 98, DateTimeKind.Local).AddTicks(6416),
                             UserId = 2
                         });
                 });
@@ -381,7 +385,8 @@ namespace ApiDBAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserID");
+                    b.HasIndex("UserID")
+                        .IsUnique();
 
                     b.ToTable("WhiteLists");
 
@@ -426,8 +431,8 @@ namespace ApiDBAccess.Migrations
             modelBuilder.Entity("ApiDTOModels.DtoBlackList", b =>
                 {
                     b.HasOne("ApiDTOModels.DtoUser", "User")
-                        .WithMany("BlackList")
-                        .HasForeignKey("UserID")
+                        .WithOne("BlackList")
+                        .HasForeignKey("ApiDTOModels.DtoBlackList", "UserID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -470,8 +475,8 @@ namespace ApiDBAccess.Migrations
             modelBuilder.Entity("ApiDTOModels.DtoWhiteList", b =>
                 {
                     b.HasOne("ApiDTOModels.DtoUser", "User")
-                        .WithMany("WhiteList")
-                        .HasForeignKey("UserID")
+                        .WithOne("WhiteList")
+                        .HasForeignKey("ApiDTOModels.DtoWhiteList", "UserID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -488,7 +493,8 @@ namespace ApiDBAccess.Migrations
                     b.Navigation("Artist")
                         .IsRequired();
 
-                    b.Navigation("BlackList");
+                    b.Navigation("BlackList")
+                        .IsRequired();
 
                     b.Navigation("Friends");
 
@@ -498,7 +504,8 @@ namespace ApiDBAccess.Migrations
                     b.Navigation("Settings")
                         .IsRequired();
 
-                    b.Navigation("WhiteList");
+                    b.Navigation("WhiteList")
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
