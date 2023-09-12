@@ -219,13 +219,13 @@ namespace ApiDBAccess.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
-                    b.Property<int>("HowManyNotifications")
+                    b.Property<int>("Danceability")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Energy")
                         .HasColumnType("int");
 
                     b.Property<int>("HowNewTheMusicIs")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -451,7 +451,34 @@ namespace ApiDBAccess.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("ApiDTOModels.DtoWhiteList", b =>
+            modelBuilder.Entity("ApiDTOModels.DtoSong", b =>
+                {
+                    b.HasOne("ApiDTOModels.DtoArtist", "Artist")
+                        .WithMany("Songs")
+                        .HasForeignKey("ArtistId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ApiDTOModels.DtoBlackList", "BlackList")
+                        .WithMany("Songs")
+                        .HasForeignKey("BlackListId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("ApiDTOModels.DtoWhiteList", "WhiteList")
+                        .WithMany("Songs")
+                        .HasForeignKey("WhiteListId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Artist");
+
+                    b.Navigation("BlackList");
+
+                    b.Navigation("WhiteList");
+                });
+
+            modelBuilder.Entity("ApiDTOModels.DtoUser", b =>
                 {
                     b.HasOne("ApiDTOModels.DtoUser", "User")
                         .WithOne("WhiteList")
@@ -459,12 +486,26 @@ namespace ApiDBAccess.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("User");
+                    b.Navigation("BlackList");
+
+                    b.Navigation("WhiteList");
+                });
+
+            modelBuilder.Entity("ApiDTOModels.DtoArtist", b =>
+                {
+                    b.Navigation("Songs");
                 });
 
             modelBuilder.Entity("ApiDTOModels.DtoArtistPayment", b =>
                 {
                     b.Navigation("Artist");
+                });
+
+            modelBuilder.Entity("ApiDTOModels.DtoBlackList", b =>
+                {
+                    b.Navigation("Songs");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("ApiDTOModels.DtoUser", b =>
@@ -482,9 +523,13 @@ namespace ApiDBAccess.Migrations
 
                     b.Navigation("Settings")
                         .IsRequired();
+                });
 
-                    b.Navigation("WhiteList")
-                        .IsRequired();
+            modelBuilder.Entity("ApiDTOModels.DtoWhiteList", b =>
+                {
+                    b.Navigation("Songs");
+
+                    b.Navigation("User");
                 });
 #pragma warning restore 612, 618
         }
