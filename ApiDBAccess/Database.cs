@@ -40,9 +40,9 @@ namespace ApiDBAccess
                 new DtoPremium { Id = 1, UserId = 1, NextTransactionDay = DateTime.Now, TransactionDay = DateTime.Now },
                 new DtoPremium { Id = 2, UserId = 2, NextTransactionDay = DateTime.Now, TransactionDay = DateTime.Now });
             modelBuilder.Entity<DtoSettings>().HasData(
-                new DtoSettings { Id = 1, UserId = 1, ChangeGenre = "k-pop", HowNewTheMusicIs = 10, HowManyNotifications = 5 },
-                new DtoSettings { Id = 2, UserId = 2, ChangeGenre = "rock", HowNewTheMusicIs = 5, HowManyNotifications = 3 },
-                new DtoSettings { Id = 3, UserId = 3, ChangeGenre = "pop", HowNewTheMusicIs = 20, HowManyNotifications = 8 });
+                new DtoSettings { Id = 1, UserId = 1, ChangeGenre = "k-pop", HowNewTheMusicIs = 10, NotificationsAmount = 5 },
+                new DtoSettings { Id = 2, UserId = 2, ChangeGenre = "rock", HowNewTheMusicIs = 5, NotificationsAmount = 3 },
+                new DtoSettings { Id = 3, UserId = 3, ChangeGenre = "pop", HowNewTheMusicIs = 20, NotificationsAmount = 8 });
             modelBuilder.Entity<DtoBlackList>().HasData(
                 new DtoBlackList { Id = 1, UserID = 1, SongID = "7xapw9Oy21WpfEcib2ErSA" },
                 new DtoBlackList { Id = 2, UserID = 2, SongID = "7xapw9Oy21WpfEcib2ErSA" },

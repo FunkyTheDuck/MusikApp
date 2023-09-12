@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ApiDBAccess.Migrations
 {
     /// <inheritdoc />
-    public partial class MusikAppDatabase : Migration
+    public partial class musikdatabase : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -144,7 +144,10 @@ namespace ApiDBAccess.Migrations
                     UserId = table.Column<int>(type: "int", nullable: false),
                     ChangeGenre = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     HowNewTheMusicIs = table.Column<int>(type: "int", nullable: false),
-                    HowManyNotifications = table.Column<int>(type: "int", nullable: false)
+                    NotificationsAmount = table.Column<int>(type: "int", nullable: false),
+                    Popularity = table.Column<int>(type: "int", nullable: false),
+                    Energy = table.Column<int>(type: "int", nullable: false),
+                    Danceability = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -180,7 +183,7 @@ namespace ApiDBAccess.Migrations
             migrationBuilder.InsertData(
                 table: "ArtistPayments",
                 columns: new[] { "Id", "ArtistId", "EndDate", "StartDate" },
-                values: new object[] { 1, 1, new DateTime(2023, 9, 11, 12, 3, 10, 738, DateTimeKind.Local).AddTicks(5705), new DateTime(2023, 9, 11, 12, 3, 10, 738, DateTimeKind.Local).AddTicks(5657) });
+                values: new object[] { 1, 1, new DateTime(2023, 9, 12, 10, 45, 4, 904, DateTimeKind.Local).AddTicks(4814), new DateTime(2023, 9, 12, 10, 45, 4, 904, DateTimeKind.Local).AddTicks(4758) });
 
             migrationBuilder.InsertData(
                 table: "Users",
@@ -221,18 +224,18 @@ namespace ApiDBAccess.Migrations
                 columns: new[] { "Id", "NextTransactionDay", "TransactionDay", "UserId" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2023, 9, 11, 12, 3, 10, 738, DateTimeKind.Local).AddTicks(5751), new DateTime(2023, 9, 11, 12, 3, 10, 738, DateTimeKind.Local).AddTicks(5757), 1 },
-                    { 2, new DateTime(2023, 9, 11, 12, 3, 10, 738, DateTimeKind.Local).AddTicks(5759), new DateTime(2023, 9, 11, 12, 3, 10, 738, DateTimeKind.Local).AddTicks(5761), 2 }
+                    { 1, new DateTime(2023, 9, 12, 10, 45, 4, 904, DateTimeKind.Local).AddTicks(4892), new DateTime(2023, 9, 12, 10, 45, 4, 904, DateTimeKind.Local).AddTicks(4894), 1 },
+                    { 2, new DateTime(2023, 9, 12, 10, 45, 4, 904, DateTimeKind.Local).AddTicks(4896), new DateTime(2023, 9, 12, 10, 45, 4, 904, DateTimeKind.Local).AddTicks(4898), 2 }
                 });
 
             migrationBuilder.InsertData(
                 table: "Settings",
-                columns: new[] { "Id", "ChangeGenre", "HowManyNotifications", "HowNewTheMusicIs", "UserId" },
+                columns: new[] { "Id", "ChangeGenre", "Danceability", "Energy", "HowNewTheMusicIs", "NotificationsAmount", "Popularity", "UserId" },
                 values: new object[,]
                 {
-                    { 1, "k-pop", 5, 10, 1 },
-                    { 2, "rock", 3, 5, 2 },
-                    { 3, "pop", 8, 20, 3 }
+                    { 1, "k-pop", 0, 0, 10, 5, 0, 1 },
+                    { 2, "rock", 0, 0, 5, 3, 0, 2 },
+                    { 3, "pop", 0, 0, 20, 8, 0, 3 }
                 });
 
             migrationBuilder.InsertData(

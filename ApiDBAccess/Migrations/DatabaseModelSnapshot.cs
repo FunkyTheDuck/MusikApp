@@ -82,8 +82,8 @@ namespace ApiDBAccess.Migrations
                         {
                             Id = 1,
                             ArtistId = 1,
-                            EndDate = new DateTime(2023, 9, 11, 12, 3, 10, 738, DateTimeKind.Local).AddTicks(5705),
-                            StartDate = new DateTime(2023, 9, 11, 12, 3, 10, 738, DateTimeKind.Local).AddTicks(5657)
+                            EndDate = new DateTime(2023, 9, 12, 10, 45, 4, 904, DateTimeKind.Local).AddTicks(4814),
+                            StartDate = new DateTime(2023, 9, 12, 10, 45, 4, 904, DateTimeKind.Local).AddTicks(4758)
                         });
                 });
 
@@ -193,15 +193,15 @@ namespace ApiDBAccess.Migrations
                         new
                         {
                             Id = 1,
-                            NextTransactionDay = new DateTime(2023, 9, 11, 12, 3, 10, 738, DateTimeKind.Local).AddTicks(5751),
-                            TransactionDay = new DateTime(2023, 9, 11, 12, 3, 10, 738, DateTimeKind.Local).AddTicks(5757),
+                            NextTransactionDay = new DateTime(2023, 9, 12, 10, 45, 4, 904, DateTimeKind.Local).AddTicks(4892),
+                            TransactionDay = new DateTime(2023, 9, 12, 10, 45, 4, 904, DateTimeKind.Local).AddTicks(4894),
                             UserId = 1
                         },
                         new
                         {
                             Id = 2,
-                            NextTransactionDay = new DateTime(2023, 9, 11, 12, 3, 10, 738, DateTimeKind.Local).AddTicks(5759),
-                            TransactionDay = new DateTime(2023, 9, 11, 12, 3, 10, 738, DateTimeKind.Local).AddTicks(5761),
+                            NextTransactionDay = new DateTime(2023, 9, 12, 10, 45, 4, 904, DateTimeKind.Local).AddTicks(4896),
+                            TransactionDay = new DateTime(2023, 9, 12, 10, 45, 4, 904, DateTimeKind.Local).AddTicks(4898),
                             UserId = 2
                         });
                 });
@@ -219,10 +219,19 @@ namespace ApiDBAccess.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
-                    b.Property<int>("HowManyNotifications")
+                    b.Property<int>("Danceability")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Energy")
                         .HasColumnType("int");
 
                     b.Property<int>("HowNewTheMusicIs")
+                        .HasColumnType("int");
+
+                    b.Property<int>("NotificationsAmount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Popularity")
                         .HasColumnType("int");
 
                     b.Property<int>("UserId")
@@ -240,24 +249,33 @@ namespace ApiDBAccess.Migrations
                         {
                             Id = 1,
                             ChangeGenre = "k-pop",
-                            HowManyNotifications = 5,
+                            Danceability = 0,
+                            Energy = 0,
                             HowNewTheMusicIs = 10,
+                            NotificationsAmount = 5,
+                            Popularity = 0,
                             UserId = 1
                         },
                         new
                         {
                             Id = 2,
                             ChangeGenre = "rock",
-                            HowManyNotifications = 3,
+                            Danceability = 0,
+                            Energy = 0,
                             HowNewTheMusicIs = 5,
+                            NotificationsAmount = 3,
+                            Popularity = 0,
                             UserId = 2
                         },
                         new
                         {
                             Id = 3,
                             ChangeGenre = "pop",
-                            HowManyNotifications = 8,
+                            Danceability = 0,
+                            Energy = 0,
                             HowNewTheMusicIs = 20,
+                            NotificationsAmount = 8,
+                            Popularity = 0,
                             UserId = 3
                         });
                 });
