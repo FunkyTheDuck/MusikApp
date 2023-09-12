@@ -12,6 +12,6 @@ namespace ApiDTOModels
         public int UserId { get; set; }
         public DtoUser User { get; set; }
         public string? HighlightSong { get; set; }
-        public DtoArtistPayment ArtistPayment { get; set; }
+        public DtoArtistPayment? ArtistPayment { get; set; }
     }
 }

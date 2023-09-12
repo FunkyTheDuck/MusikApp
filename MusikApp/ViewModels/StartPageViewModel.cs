@@ -33,7 +33,7 @@ namespace MusikApp.ViewModels
         {
             AudioDisplay = new MediaElement
             {
-                Volume = 0.02,
+                Volume = 0.1,
                 ShouldAutoPlay = false,
             };
             repo = new StartPageRepository();

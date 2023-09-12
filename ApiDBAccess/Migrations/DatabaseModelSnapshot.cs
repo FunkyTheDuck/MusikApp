@@ -30,7 +30,7 @@ namespace ApiDBAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("ArtistPaymentId")
+                    b.Property<int?>("ArtistPaymentId")
                         .HasColumnType("int");
 
                     b.Property<string>("HighlightSong")
@@ -47,6 +47,13 @@ namespace ApiDBAccess.Migrations
                         .IsUnique();
 
                     b.ToTable("Artists");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            UserId = 1
+                        });
                 });
 
             modelBuilder.Entity("ApiDTOModels.DtoArtistPayment", b =>
@@ -69,6 +76,15 @@ namespace ApiDBAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ArtistPayments");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ArtistId = 1,
+                            EndDate = new DateTime(2023, 9, 12, 10, 45, 4, 904, DateTimeKind.Local).AddTicks(4814),
+                            StartDate = new DateTime(2023, 9, 12, 10, 45, 4, 904, DateTimeKind.Local).AddTicks(4758)
+                        });
                 });
 
             modelBuilder.Entity("ApiDTOModels.DtoBlackList", b =>
@@ -88,7 +104,30 @@ namespace ApiDBAccess.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("UserID")
+                        .IsUnique();
+
                     b.ToTable("BlackLists");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            SongID = "7xapw9Oy21WpfEcib2ErSA",
+                            UserID = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            SongID = "7xapw9Oy21WpfEcib2ErSA",
+                            UserID = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            SongID = "7xapw9Oy21WpfEcib2ErSA",
+                            UserID = 3
+                        });
                 });
 
             modelBuilder.Entity("ApiDTOModels.DtoFriend", b =>
@@ -110,6 +149,20 @@ namespace ApiDBAccess.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Friends");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            FriendId = 1,
+                            UserId = 2
+                        },
+                        new
+                        {
+                            Id = 2,
+                            FriendId = 3,
+                            UserId = 2
+                        });
                 });
 
             modelBuilder.Entity("ApiDTOModels.DtoPremium", b =>
@@ -135,6 +188,22 @@ namespace ApiDBAccess.Migrations
                         .IsUnique();
 
                     b.ToTable("Premia");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            NextTransactionDay = new DateTime(2023, 9, 12, 10, 45, 4, 904, DateTimeKind.Local).AddTicks(4892),
+                            TransactionDay = new DateTime(2023, 9, 12, 10, 45, 4, 904, DateTimeKind.Local).AddTicks(4894),
+                            UserId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            NextTransactionDay = new DateTime(2023, 9, 12, 10, 45, 4, 904, DateTimeKind.Local).AddTicks(4896),
+                            TransactionDay = new DateTime(2023, 9, 12, 10, 45, 4, 904, DateTimeKind.Local).AddTicks(4898),
+                            UserId = 2
+                        });
                 });
 
             modelBuilder.Entity("ApiDTOModels.DtoSettings", b =>
@@ -174,6 +243,41 @@ namespace ApiDBAccess.Migrations
                         .IsUnique();
 
                     b.ToTable("Settings");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ChangeGenre = "k-pop",
+                            Danceability = 0,
+                            Energy = 0,
+                            HowNewTheMusicIs = 10,
+                            NotificationsAmount = 5,
+                            Popularity = 0,
+                            UserId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            ChangeGenre = "rock",
+                            Danceability = 0,
+                            Energy = 0,
+                            HowNewTheMusicIs = 5,
+                            NotificationsAmount = 3,
+                            Popularity = 0,
+                            UserId = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            ChangeGenre = "pop",
+                            Danceability = 0,
+                            Energy = 0,
+                            HowNewTheMusicIs = 20,
+                            NotificationsAmount = 8,
+                            Popularity = 0,
+                            UserId = 3
+                        });
                 });
 
             modelBuilder.Entity("ApiDTOModels.DtoUser", b =>
@@ -183,9 +287,6 @@ namespace ApiDBAccess.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("BlackListId")
-                        .HasColumnType("int");
 
                     b.Property<bool>("IsArtist")
                         .HasColumnType("bit");
@@ -221,16 +322,47 @@ namespace ApiDBAccess.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
-                    b.Property<int>("WhiteListId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("BlackListId");
-
-                    b.HasIndex("WhiteListId");
-
                     b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            IsArtist = true,
+                            IsPremium = true,
+                            LastName = "Bieber",
+                            Mail = "justinbieber@hotmail.com",
+                            Name = "Justin",
+                            Password = "Bruger123",
+                            ProfilPicture = "Billede",
+                            UserName = "JustinB"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            IsArtist = false,
+                            IsPremium = true,
+                            LastName = "Wayne",
+                            Mail = "batmanerbest@gmail.com",
+                            Name = "Bruce",
+                            Password = "Beuger123",
+                            ProfilPicture = "Billede1",
+                            UserName = "Batman"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            IsArtist = false,
+                            IsPremium = false,
+                            LastName = "Kent",
+                            Mail = "ilovelois@gmail.com",
+                            Name = "Clark",
+                            Password = "Bruger123",
+                            ProfilPicture = "Billede2",
+                            UserName = "Superman"
+                        });
                 });
 
             modelBuilder.Entity("ApiDTOModels.DtoWhiteList", b =>
@@ -250,16 +382,37 @@ namespace ApiDBAccess.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("UserID")
+                        .IsUnique();
+
                     b.ToTable("WhiteLists");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            SongID = "6habFhsOp2NvshLv26DqMb",
+                            UserID = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            SongID = "6habFhsOp2NvshLv26DqMb",
+                            UserID = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            SongID = "6habFhsOp2NvshLv26DqMb",
+                            UserID = 3
+                        });
                 });
 
             modelBuilder.Entity("ApiDTOModels.DtoArtist", b =>
                 {
                     b.HasOne("ApiDTOModels.DtoArtistPayment", "ArtistPayment")
                         .WithMany("Artist")
-                        .HasForeignKey("ArtistPaymentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ArtistPaymentId");
 
                     b.HasOne("ApiDTOModels.DtoUser", "User")
                         .WithOne("Artist")
@@ -268,6 +421,17 @@ namespace ApiDBAccess.Migrations
                         .IsRequired();
 
                     b.Navigation("ArtistPayment");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("ApiDTOModels.DtoBlackList", b =>
+                {
+                    b.HasOne("ApiDTOModels.DtoUser", "User")
+                        .WithOne("BlackList")
+                        .HasForeignKey("ApiDTOModels.DtoBlackList", "UserID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("User");
                 });
@@ -305,23 +469,15 @@ namespace ApiDBAccess.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("ApiDTOModels.DtoUser", b =>
+            modelBuilder.Entity("ApiDTOModels.DtoWhiteList", b =>
                 {
-                    b.HasOne("ApiDTOModels.DtoBlackList", "BlackList")
-                        .WithMany("User")
-                        .HasForeignKey("BlackListId")
+                    b.HasOne("ApiDTOModels.DtoUser", "User")
+                        .WithOne("WhiteList")
+                        .HasForeignKey("ApiDTOModels.DtoWhiteList", "UserID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ApiDTOModels.DtoWhiteList", "WhiteList")
-                        .WithMany("User")
-                        .HasForeignKey("WhiteListId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("BlackList");
-
-                    b.Navigation("WhiteList");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("ApiDTOModels.DtoArtistPayment", b =>
@@ -329,14 +485,12 @@ namespace ApiDBAccess.Migrations
                     b.Navigation("Artist");
                 });
 
-            modelBuilder.Entity("ApiDTOModels.DtoBlackList", b =>
-                {
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("ApiDTOModels.DtoUser", b =>
                 {
                     b.Navigation("Artist")
+                        .IsRequired();
+
+                    b.Navigation("BlackList")
                         .IsRequired();
 
                     b.Navigation("Friends");
@@ -346,11 +500,9 @@ namespace ApiDBAccess.Migrations
 
                     b.Navigation("Settings")
                         .IsRequired();
-                });
 
-            modelBuilder.Entity("ApiDTOModels.DtoWhiteList", b =>
-                {
-                    b.Navigation("User");
+                    b.Navigation("WhiteList")
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

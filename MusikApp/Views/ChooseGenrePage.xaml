@@ -22,7 +22,7 @@
                 <DataTemplate>
                     <VerticalStackLayout>
                         
-                    <Border StrokeShape="RoundRectangle 12,12,12,12" BackgroundColor="Gray" Stroke="{Binding SelectedItemColor}">
+                    <Border StrokeShape="RoundRectangle 12,12,12,12" BackgroundColor="Gray">
 
                         <Label HorizontalTextAlignment="Center" FontSize="14" TextColor="White" Text="{Binding Name}"/>
 
