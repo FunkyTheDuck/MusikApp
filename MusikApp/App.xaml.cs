@@ -7,7 +7,7 @@ namespace MusikApp
         public App()
         {
             InitializeComponent();
-            MainPage = new NavigationPage(new ChooseGenrePage());
+            MainPage = new AppShell();
         }
     }
 }

@@ -27,7 +27,14 @@ namespace MusikApp.ViewModels
         }
         private async void GetUsersSettings()
         {
-            Setting = await repo.GetUsersSettingsAsync(1);
+            try
+            {
+                //Setting = await repo.GetUsersSettingsAsync(1);
+            }
+            catch
+            {
+
+            }
         }
 
     }
