@@ -45,4 +45,16 @@
         <Setter Property="BackgroundColor" Value="#FF8A8A"/>
         <Setter Property="Opacity" Value="15"/>
     </Style>
+    <Style TargetType="Button" x:Key="GenreBtn">
+        <Setter Property="TextColor" Value="White"/>
+        <Setter Property="BackgroundColor" Value="#303030"/>
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="VerticalOptions" Value="Center"/>
+    </Style>
+    <Style TargetType="Button" x:Key="AddNewGenreBtn">
+        <Setter Property="TextColor" Value="White"/>
+        <Setter Property="BackgroundColor" Value="#303030"/>
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="VerticalOptions" Value="Center"/>
+    </Style>
 </ResourceDictionary>

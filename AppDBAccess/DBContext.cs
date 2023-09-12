@@ -190,5 +190,21 @@ namespace AppDBAccess
             }
             return null;
         }
+
+        public async Task<bool> UpdateSettingsAsync(DtoSettings dtoSetting)
+        {
+            string json = JsonConvert.SerializeObject(dtoSetting);
+            StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+            HttpResponseMessage response; 
+            try
+            {
+                response = await client.PutAsync($"https://localhost:7147/api/Settings", content);
+            }
+            catch
+            {
+                return false;
+            }
+            return response.IsSuccessStatusCode;
+        }
     }
 }

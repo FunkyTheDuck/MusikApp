@@ -25,5 +25,26 @@ namespace MusikAPI.Controllers
                 return NotFound();
             }
         }
+        [HttpPut]
+        public async Task<IActionResult> UpdateUserSettingsAsync(Settings setting)
+        {
+            if(setting != null)
+            {
+                bool checkIfSucces = false;
+                try
+                {
+                    checkIfSucces = await repo.UpdateUserSettingsAsync(setting);
+                }
+                catch
+                {
+                    return NotFound();
+                }
+                if(checkIfSucces)
+                {
+                    return Ok();
+                }
+            }
+            return BadRequest();
+        }
     }
 }
