@@ -78,15 +78,15 @@
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="35"/>
-                <RowDefinition Height="*"/> 
+                <RowDefinition Height="*"/>
                 <RowDefinition Height="35"/>
             </Grid.RowDefinitions>
             <ImageButton Command="{Binding SkipSong}" Grid.Row="1" Style="{StaticResource SkipLikeBtn}" Grid.Column="0" Source="skip_icon.png"/>
             <ImageButton Command="{Binding PlayPauseSound}" Grid.Row="1" Style="{StaticResource PausePlayBtn}" Grid.Column="2"  Source="{Binding PlayPauseBtnSource}"/>
             <ContentView Style="{StaticResource AudioDisplay}" 
                          Content="{Binding AudioDisplay}"/>
-            
-            
+
+
             <ImageButton Command="{Binding LikeSong}" Grid.Row="1" Style="{StaticResource SkipLikeBtn}" Grid.Column="4"  Source="like_icon.png"/>
         </Grid>
     </Grid>

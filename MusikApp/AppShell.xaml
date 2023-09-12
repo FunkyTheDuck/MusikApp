@@ -14,7 +14,7 @@
 
     <TabBar>
         <ShellContent Icon="search_icon.png">
-            <view:Profil/>
+            <view:FriendsPage/>
         </ShellContent>
         <ShellContent Icon="main_page_icon.png">
             <view:StartPage/>
@@ -23,7 +23,7 @@
             <view:Profil/>
         </ShellContent>
         <ShellContent Icon="friends_icon.png">
-            <view:StartPage/>
+            <view:FriendsPage/>
         </ShellContent>
         <ShellContent Icon="settings_icon.png">
             <view:SettingsPage/>

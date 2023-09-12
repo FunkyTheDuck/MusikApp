@@ -16,10 +16,6 @@
         <Setter Property="StrokeShape" Value="RoundRectangle 0,0,40,40"/>
         <Setter Property="BackgroundColor" Value="#303030"/>
     </Style>
-    <Style TargetType="Border" x:Key="FooterBorder">
-        <Setter Property="StrokeShape" Value="RoundRectangle 40,40,0,0"/>
-        <Setter Property="BackgroundColor" Value="#303030"/>
-    </Style>
     <Style TargetType="Label" x:Key="BuyPremiumText">
         <Setter Property="TextColor" Value="White"/>
         <Setter Property="FontSize" Value="16"/>
@@ -34,10 +30,6 @@
         <Setter Property="HorizontalTextAlignment" Value="End"/>
         <Setter Property="VerticalTextAlignment" Value="Center"/>
         <Setter Property="Margin" Value="0,0,15,0"/>
-    </Style>
-    <Style TargetType="ImageButton" x:Key="FooterBtn">
-        <Setter Property="WidthRequest" Value="35"/>
-        <Setter Property="HeightRequest" Value="35"/>
     </Style>
     <Style TargetType="ImageButton" x:Key="SkipLikeBtn">
         <Setter Property="WidthRequest" Value="55"/>
