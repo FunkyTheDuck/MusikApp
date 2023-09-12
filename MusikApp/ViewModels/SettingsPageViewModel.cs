@@ -22,7 +22,7 @@ namespace MusikApp.ViewModels
                 "EDM",
                 "Country"
             };
-            GetUsersSettings();
+            //GetUsersSettings();
             OnPropChanged(nameof(currentChoosenGenre));
         }
         private async void GetUsersSettings()
