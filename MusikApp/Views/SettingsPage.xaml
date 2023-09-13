@@ -16,7 +16,7 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </ContentPage.Resources>
-    
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
@@ -29,11 +29,24 @@
         </Grid.RowDefinitions>
         <Label Grid.Column="1" Style="{StaticResource Header}" Text="Settings"/>
         <ScrollView Grid.Column="1" Grid.Row="1">
+            
             <StackLayout>
+                <Label Style="{StaticResource SettingsText}" Text="Genre"/>
                 <Grid>
-                    <ListView ItemsSource="{Binding currentChoosenGenre}">
-                        
-                    </ListView>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <CollectionView ItemsSource="{Binding currentChoosenGenre}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <HorizontalStackLayout>
+                                    <Button Style="{StaticResource GenreBtn}" Text="{Binding Name}"/>
+                                </HorizontalStackLayout>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                    <Button Grid.Row="1" Command="{Binding AddNewGenre}" Style="{StaticResource AddNewGenreBtn}" Text="+"/>
                 </Grid>
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -47,7 +60,7 @@
                         <RowDefinition Height="25"/>
                     </Grid.RowDefinitions>
                     <Label Style="{StaticResource SettingsText}" Grid.ColumnSpan="2" Text="Release Date" />
-                    <Slider Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource Slider}" Minimum="0" Maximum="100"/>
+                    <Slider Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource Slider}" Value="{Binding ChangeReleaseDate}" Minimum="0" Maximum="100"/>
                     <Label Style="{StaticResource SettingsText}" Grid.Row="2" Text="Old"/>
                     <Label Style="{StaticResource SettingsTextMaximum}" Grid.Column="2" Grid.Row="2" Text="New"/>
                 </Grid>
@@ -63,7 +76,7 @@
                         <RowDefinition Height="25"/>
                     </Grid.RowDefinitions>
                     <Label Style="{StaticResource SettingsText}" Grid.ColumnSpan="2" Text="Popularity" />
-                    <Slider Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource Slider}" Minimum="0" Maximum="100"/>
+                    <Slider Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource Slider}" Value="{Binding ChangePopularity}"  Minimum="0" Maximum="100"/>
                     <Label Style="{StaticResource SettingsText}" Grid.Row="2" Text="0"/>
                     <Label Style="{StaticResource SettingsTextMaximum}" Grid.Column="2" Grid.Row="2" Text="100"/>
                 </Grid>
@@ -79,7 +92,7 @@
                         <RowDefinition Height="25"/>
                     </Grid.RowDefinitions>
                     <Label Style="{StaticResource SettingsText}" Grid.ColumnSpan="2" Text="Energy" />
-                    <Slider Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource Slider}" Minimum="0" Maximum="100"/>
+                    <Slider Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource Slider}" Value="{Binding ChangeEnergy}"  Minimum="0" Maximum="100"/>
                     <Label Style="{StaticResource SettingsText}" Grid.Row="2" Text="0"/>
                     <Label Style="{StaticResource SettingsTextMaximum}" Grid.Column="2" Grid.Row="2" Text="100"/>
                 </Grid>
@@ -95,7 +108,7 @@
                         <RowDefinition Height="25"/>
                     </Grid.RowDefinitions>
                     <Label Style="{StaticResource SettingsText}" Grid.ColumnSpan="2" Text="Danceability" />
-                    <Slider Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource Slider}" Minimum="0" Maximum="100"/>
+                    <Slider Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource Slider}" Value="{Binding ChangeDanceability}"  Minimum="0" Maximum="100"/>
                     <Label Style="{StaticResource SettingsText}" Grid.Row="2" Text="0"/>
                     <Label Style="{StaticResource SettingsTextMaximum}" Grid.Column="2" Grid.Row="2" Text="100"/>
                 </Grid>
@@ -111,12 +124,12 @@
                         <RowDefinition Height="25"/>
                     </Grid.RowDefinitions>
                     <Label Style="{StaticResource SettingsText}" Grid.ColumnSpan="2" Text="Daily notifications" />
-                    <Slider Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource Slider}" Minimum="0" Maximum="10" Scale="5"/>
+                    <Slider Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource Slider}" Value="{Binding ChangeDailyNotification}"  Minimum="0" Maximum="10"/>
                     <Label Style="{StaticResource SettingsText}" Grid.Row="2" Text="3"/>
                     <Label Style="{StaticResource SettingsTextMaximum}" Grid.Column="2" Grid.Row="2" Text="10"/>
                 </Grid>
                 <Border Style="{StaticResource LogInBorder}">
-                    <ImageButton Style="{StaticResource LogInImage}" Source="spotifysignin.png"/> 
+                    <ImageButton Style="{StaticResource LogInImage}" Source="spotifysignin.png"/>
                 </Border>
                 <Border Style="{StaticResource LogInBorder}">
                     <ImageButton Style="{StaticResource LogInImage}" Source="applemusicsignin.png"/>

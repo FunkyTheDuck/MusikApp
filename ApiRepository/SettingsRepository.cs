@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -32,6 +33,7 @@ namespace ApiRepository
             {
                 Settings settings = new Settings
                 {
+                    Id = dtoSettings.Id,
                     UserId = dtoSettings.UserId,
                     ChangeGenre = dtoSettings.ChangeGenre,
                     HowNewTheMusicIs = dtoSettings.HowNewTheMusicIs,
@@ -43,6 +45,46 @@ namespace ApiRepository
                 return settings;
             }
             return null;
+        }
+
+        public async Task<bool> UpdateUserSettingsAsync(Settings setting)
+        {
+            if(setting != null)
+            {
+                DtoSettings dtoSetting = new DtoSettings
+                {
+                    Id = setting.Id,
+                    UserId = setting.UserId,
+                    ChangeGenre = setting.ChangeGenre,
+                    HowNewTheMusicIs = setting.HowNewTheMusicIs,
+                    NotificationsAmount = setting.NotificationsAmount,
+                    Popularity = setting.Popularity,
+                    Energy = setting.Energy,
+                    Danceability = setting.Danceability
+                };
+                try
+                {
+                    db.Settings.Update(dtoSetting);
+                }
+                catch
+                {
+                    return false;
+                }
+                int checkIfSucces;
+                try
+                {
+                    checkIfSucces = await db.SaveChangesAsync();
+                }
+                catch
+                {
+                    return false;
+                }
+                if(checkIfSucces > 0)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }
