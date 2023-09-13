@@ -32,6 +32,13 @@ namespace MusikApp
             }
 		    builder.Logging.AddDebug(); 
 #endif
+
+//#if ANDROID && DEBUG
+//            Platforms.Android.DangerousAndroidMessageHandlerEmitter.Register();
+//            Platforms.Android.DangerousTrustProvider.Register();
+//		    builder.Logging.AddDebug(); 
+//#endif
+
             return builder.Build();
         }
     }
