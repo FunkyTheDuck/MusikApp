@@ -26,9 +26,9 @@ namespace ApiDBAccess
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<DtoUser>().HasData(
-                new DtoUser { Id = 1, ProfilPicture = "Billede", Name = "Justin", LastName = "Bieber", UserName = "JustinB", Password = "Bruger123", Mail = "justinbieber@hotmail.com", IsPremium = true, IsArtist = true },
-                new DtoUser { Id = 2, ProfilPicture = "Billede1", Name = "Bruce", LastName = "Wayne", UserName = "Batman", Password = "Beuger123", Mail = "batmanerbest@gmail.com", IsPremium = true, IsArtist = false },
-                new DtoUser { Id = 3, ProfilPicture = "Billede2", Name = "Clark", LastName = "Kent", UserName = "Superman", Password = "Bruger123", Mail = "ilovelois@gmail.com", IsPremium = false, IsArtist = false });
+                new DtoUser { Id = 1, ProfilPicture = "Billede", Name = "Justin", LastName = "Bieber", UserName = "JustinB", Password = "Bruger123", Mail = "justinbieber@hotmail.com", IsPremium = true, IsArtist = true, LastOnline = DateTime.Now.AddDays(1)},
+                new DtoUser { Id = 2, ProfilPicture = "Billede1", Name = "Bruce", LastName = "Wayne", UserName = "Batman", Password = "Beuger123", Mail = "batmanerbest@gmail.com", IsPremium = true, IsArtist = false, LastOnline = DateTime.Now.AddHours(1) },
+                new DtoUser { Id = 3, ProfilPicture = "Billede2", Name = "Clark", LastName = "Kent", UserName = "Superman", Password = "Bruger123", Mail = "ilovelois@gmail.com", IsPremium = false, IsArtist = false, LastOnline = DateTime.Now });
             modelBuilder.Entity<DtoArtistPayment>().HasData(
                 new DtoArtistPayment { Id = 1, ArtistId = 1, StartDate = DateTime.Now, EndDate = DateTime.Now });
             modelBuilder.Entity<DtoArtist>().HasData(

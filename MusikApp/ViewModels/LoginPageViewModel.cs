@@ -1,4 +1,6 @@
-﻿using MusikApp.Views;
+﻿using AppModels;
+using AppRepository;
+using MusikApp.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,12 +17,14 @@ namespace MusikApp.ViewModels
         public ICommand AppleUserCommand { get; set; }
         public ICommand SoundCloudUserCommand { get; set; }
         public ICommand LoginCommand { get; set; }
+        UserRepository repo { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
 
 
         public LoginPageViewModel()
         {
+            repo = new();
             CreateUserCommand = new Command(UserTapped);
             SpotifyUserCommand = new Command(SpotifyTapped);
             AppleUserCommand = new Command(AppleTapped);
@@ -30,10 +34,21 @@ namespace MusikApp.ViewModels
 
         private async void OnLoginClicked()
         {
-            if (Username == "Admin" && Password == "Admin")
+            User checkuser;
+            try
             {
-                await Application.Current.MainPage.Navigation.PushAsync(new StartPage());
+                checkuser = await repo.GetUserAsync(Username, Password);
+                if (checkuser.UserName == Username && checkuser.Password == Password)
+                {
+                    await Application.Current.MainPage.Navigation.PushAsync(new StartPage());
+                }
             }
+            catch (Exception)
+            {
+                await (Application.Current.MainPage).DisplayAlert("Error", "couldn't login check username and password", "OK");
+            }
+
+
         }
 
         public async void SpotifyTapped()

@@ -25,6 +25,11 @@ namespace MusikAPI.Controllers
         {
             return Ok(await repo.GetUsers(id));
         }
+        [HttpGet("{username}/{password}")]
+        public async Task<IActionResult> GetUser(string username, string password)
+        {
+            return Ok(await repo.GetUserAsync(username, password));
+        }
         [HttpPost]
         public async Task<IActionResult> PostUsers(User user)
         {

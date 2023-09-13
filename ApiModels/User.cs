@@ -23,6 +23,7 @@ namespace ApiModels
         public string Password { get; set; }
         public bool IsPremium { get; set; }
         public bool IsArtist { get; set; }
+        public DateTime LastOnline { get; set; }
         public WhiteList? WhiteList { get; set; }
         public BlackList? BlackList { get; set; }
         public Settings? Settings { get; set; }

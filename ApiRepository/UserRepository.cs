@@ -39,6 +39,7 @@ namespace ApiRepository
                     Password = dtoUser.Password,
                     IsArtist = dtoUser.IsArtist,
                     IsPremium = dtoUser.IsPremium,
+                    LastOnline = dtoUser.LastOnline,
                 };
                 users.Add(user);
             }
@@ -48,6 +49,26 @@ namespace ApiRepository
         {
             DtoUser dtoUser;
             dtoUser = await db.Users.FirstOrDefaultAsync(x => x.Id == id);
+            User user = new User
+            {
+                Id = dtoUser.Id,
+                ProfilPicture = dtoUser.ProfilPicture,
+                UserName = dtoUser.UserName,
+                Name = dtoUser.Name,
+                LastName = dtoUser.LastName,
+                Mail = dtoUser.Mail,
+                Password = dtoUser.Password,
+                IsArtist = dtoUser.IsArtist,
+                IsPremium = dtoUser.IsPremium,
+                LastOnline = dtoUser.LastOnline,
+            };
+            return user;
+        }
+
+        public async Task<User> GetUserAsync(string username, string password)
+        {
+            DtoUser dtoUser;
+            dtoUser = await db.Users.FirstOrDefaultAsync(x => x.UserName == username && x.Password == password);
             User user = new User
             {
                 Id = dtoUser.Id,
@@ -75,6 +96,7 @@ namespace ApiRepository
                 Password = user.Password,
                 IsArtist = user.IsArtist,
                 IsPremium = user.IsPremium,
+                LastOnline = user.LastOnline,
             };
             await db.Users.AddAsync(dtoUser);
             try
@@ -101,6 +123,7 @@ namespace ApiRepository
                 Password = user.Password,
                 IsArtist = user.IsArtist,
                 IsPremium = user.IsPremium,
+                LastOnline = user.LastOnline,
             };
             db.Users.Update(dtoUser);
             try

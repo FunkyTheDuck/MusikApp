@@ -19,7 +19,7 @@ namespace MusikApp
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
             bool isVirtual = DeviceInfo.Current.DeviceType switch
-            {
+            { 
                 DeviceType.Physical => false,
                 DeviceType.Virtual => true,
                 _ => false
@@ -32,6 +32,13 @@ namespace MusikApp
             //}
             builder.Logging.AddDebug();
 #endif
+
+//#if ANDROID && DEBUG
+//            Platforms.Android.DangerousAndroidMessageHandlerEmitter.Register();
+//            Platforms.Android.DangerousTrustProvider.Register();
+//		    builder.Logging.AddDebug(); 
+//#endif
+
             return builder.Build();
         }
     }
