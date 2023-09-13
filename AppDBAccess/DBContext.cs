@@ -1,5 +1,7 @@
 ﻿using AppDTOModels;
+using AppModels;
 using Newtonsoft.Json;
+using System.Globalization;
 using System.Net.Http.Headers;
 using System.Text;
 
@@ -71,12 +73,44 @@ namespace AppDBAccess
             List<DtoUser> users = JsonConvert.DeserializeObject<List<DtoUser>>(json);
             return users;
         }
+        public async Task<DtoUser> GetUserAsync(int id)
+        {
+            HttpResponseMessage response = null;
+            try
+            {
+                response = await client.GetAsync($"https://10.0.0.2:7147/api/user/{id}");
+                string json = await response.Content.ReadAsStringAsync();
+                DtoUser user = JsonConvert.DeserializeObject<DtoUser>(json);
+                return user;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+        public async Task<DtoUser> GetUserAsync(string username, string password)
+        {
+            HttpClient client = new HttpClient();
+            
+            try
+            {
+                HttpResponseMessage response = await client.GetAsync($"https://localhost:7147/api/User/{username}/{password}");
+                string json = await response.Content.ReadAsStringAsync();
+                DtoUser user = JsonConvert.DeserializeObject<DtoUser>(json);
+                return user;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
         public async Task<DtoArtistPayment> GetUser(int id)
         {
             HttpResponseMessage response = null;
             try
             {
-                response = await client.GetAsync($"https://10.0.2.2:7147/api/User/{id}");
+                response = await client.GetAsync($"https://10.0.0.2:7147/api/User/{id}");
                 string json = await response.Content.ReadAsStringAsync();
                 DtoArtistPayment artistPayment = JsonConvert.DeserializeObject<DtoArtistPayment>(json);
                 return artistPayment;
