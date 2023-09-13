@@ -29,16 +29,11 @@ namespace MusikApp.ViewModels
         FullTrack currentSong { get; set; }
         List<FullTrack> songQueue { get; set; }
         public MediaElement AudioDisplay { get; set; }
-        //6uu74oWxGhnyNs3QvoeOcP
-        //5iDfnRTdV2mrvMK886TLRg
-        //16ePc0XhC3QFiC6qr6ZETA
-        //00FDHurakzVEiPutdUxXXq
-        //2kzwfnfhlqvmGwRVcwKS6s
         public StartPageViewModel()
         {
             AudioDisplay = new MediaElement
             {
-                Volume = 0.1,
+                Volume = 0.02,
                 ShouldAutoPlay = false,
             };
             repo = new StartPageRepository();

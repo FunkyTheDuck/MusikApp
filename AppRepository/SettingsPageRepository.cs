@@ -31,6 +31,7 @@ namespace AppRepository
             {
                 Settings settings = new Settings
                 {
+                    Id = dtoSettingns.Id,
                     UserId = dtoSettingns.UserId,
                     ChangeGenre = dtoSettingns.ChangeGenre,
                     HowNewTheMusicIs = dtoSettingns.HowNewTheMusicIs,
@@ -42,6 +43,25 @@ namespace AppRepository
                 return settings;
             }
             return null;
+        }
+        public async Task<bool> UpdateSettingsAsync(Settings setting)
+        {
+            if(setting != null)
+            {
+                DtoSettings dtoSetting = new DtoSettings
+                {
+                    Id = setting.Id,
+                    UserId = setting.UserId,
+                    ChangeGenre = setting.ChangeGenre,
+                    HowNewTheMusicIs = setting.HowNewTheMusicIs,
+                    NotificationsAmount = setting.NotificationsAmount,
+                    Popularity = setting.Popularity,
+                    Energy = setting.Energy,
+                    Danceability = setting.Danceability
+                };
+                return await db.UpdateSettingsAsync(dtoSetting);
+            }
+            return false;
         }
     }
 }
