@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MusikApp.ViewModels
 {
-    public class ProfilViewModel
+    public class ProfilViewModel : BaseViewModels
     {
         public string Name { get; set; }
         public int likes { get; set; }
@@ -27,7 +27,7 @@ namespace MusikApp.ViewModels
             Name = "Thomas Jasper Cat, Sr.";
             likes = 420;
             skips = 69;
-            isArtist = true;
+            isArtist = false;
             profilpicture = "profilbillede.jpg";
         }
     }

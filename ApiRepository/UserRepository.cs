@@ -39,6 +39,7 @@ namespace ApiRepository
                     Password = dtoUser.Password,
                     IsArtist = dtoUser.IsArtist,
                     IsPremium = dtoUser.IsPremium,
+                    LastOnline = dtoUser.LastOnline,
                 };
                 users.Add(user);
             }
@@ -59,6 +60,7 @@ namespace ApiRepository
                 Password = dtoUser.Password,
                 IsArtist = dtoUser.IsArtist,
                 IsPremium = dtoUser.IsPremium,
+                LastOnline = dtoUser.LastOnline,
             };
             return user;
         }
@@ -75,6 +77,7 @@ namespace ApiRepository
                 Password = user.Password,
                 IsArtist = user.IsArtist,
                 IsPremium = user.IsPremium,
+                LastOnline = user.LastOnline,
             };
             await db.Users.AddAsync(dtoUser);
             try
@@ -101,6 +104,7 @@ namespace ApiRepository
                 Password = user.Password,
                 IsArtist = user.IsArtist,
                 IsPremium = user.IsPremium,
+                LastOnline = user.LastOnline,
             };
             db.Users.Update(dtoUser);
             try
