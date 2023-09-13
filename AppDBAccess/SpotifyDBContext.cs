@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using SpotifyAPI.Web;
 using SpotifyAPI.Web.Auth;
 using AppModels;
+using System.Reflection.PortableExecutable;
 
 namespace AppDBAccess
 {
@@ -95,10 +96,34 @@ namespace AppDBAccess
         public async Task<FullTrack> GetRecommendations()
         {
             SpotifyClient spotify = new SpotifyClient(await GetToken());
-            SearchRequest temp = new SearchRequest(SearchRequest.Types.Track, "slow danish pop");
-            SearchResponse temp2 = await spotify.Search.Item(temp);
-            FullTrack returnValue = temp2.Tracks.Items.First();
-            return returnValue;
+            SearchRequest request = new SearchRequest(SearchRequest.Types.Track, "DK rock");
+            SearchResponse response = await spotify.Search.Item(request);
+            FullTrack recommendedSong = response.Tracks.Items.First();
+            return recommendedSong;
+        }
+        public async Task<Track[]> GetListOfRecommendations(int amount, string recommend)
+        {
+            //Få lavet så at den sorter på users settings chooses
+
+            HttpClient httpClient = new HttpClient();
+            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", await GetToken());
+            HttpResponseMessage response = null;
+            try
+            {
+                response = await httpClient.GetAsync($"https://api.spotify.com/v1/recommendations?limit={amount}&market=DK&seed_artists=2I6gQ8HicF6er2NgjfkwGd&seed_genres=rock");
+            }
+            catch
+            {
+                return null;
+            }
+            if(response.IsSuccessStatusCode && response != null)
+            {
+                string json = await response.Content.ReadAsStringAsync();
+                Rootobject temp = JsonConvert.DeserializeObject<Rootobject>(json);
+                return temp.tracks;
+            }
+            return null;
+
         }
     }
 }

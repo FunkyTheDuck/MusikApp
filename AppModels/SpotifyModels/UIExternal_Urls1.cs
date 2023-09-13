@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace AppDTOModels.SpotifyModels
 {
-    public class Rootobject
+    public class UIExternal_Urls1
     {
-        public Track[] tracks { get; set; }
-        public Seed[] seeds { get; set; }
+        public string spotify { get; set; }
     }
 }

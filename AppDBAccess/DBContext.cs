@@ -167,7 +167,7 @@ namespace AppDBAccess
             HttpResponseMessage response;
             try
             {
-                response = await client.GetAsync($"https://localhost:7147/api/Settings/{userId}");
+                response = await client.GetAsync($"https://10.0.2.2:7147/api/Settings/{userId}");
             }
             catch 
             {
@@ -198,7 +198,7 @@ namespace AppDBAccess
             HttpResponseMessage response; 
             try
             {
-                response = await client.PutAsync($"https://localhost:7147/api/Settings", content);
+                response = await client.PutAsync($"https://10.0.2.2:7147/api/Settings", content);
             }
             catch
             {
