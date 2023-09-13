@@ -103,7 +103,7 @@ namespace AppDBAccess
             
             try
             {
-                HttpResponseMessage response = await client.GetAsync($"https://localhost:7147/api/User/{username}/{password}");
+                HttpResponseMessage response = await client.GetAsync($"https://{ip}:7147/api/User/{username}/{password}");
                 string json = await response.Content.ReadAsStringAsync();
                 DtoUser user = JsonConvert.DeserializeObject<DtoUser>(json);
                 return user;
@@ -241,7 +241,7 @@ namespace AppDBAccess
             HttpResponseMessage response; 
             try
             {
-                response = await client.PutAsync($"https://localhost:7147/api/Settings", content);
+                response = await client.PutAsync($"https://{ip}:7147/api/Settings", content);
             }
             catch
             {
