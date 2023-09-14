@@ -9,8 +9,4 @@ public partial class Profil : ContentPage
         InitializeComponent();
         BindingContext = viewModel;
     }
-    public Profil()
-    {
-        InitializeComponent();
-    }
 }

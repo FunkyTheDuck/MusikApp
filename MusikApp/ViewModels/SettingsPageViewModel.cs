@@ -16,7 +16,7 @@ namespace MusikApp.ViewModels
         public ICommand AddNewGenre { get; set; }
         public ObservableCollection<Genre> currentChoosenGenre { get; set; }
         public Settings Setting { get; set; }
-        private SettingsPageRepository repo { get; set; }
+        private ISettingsPageRepository repo { get; set; }
         #region Variable 
         private bool isDoingChanges = false;
         private double changeReleaseDate { get; set; }
@@ -70,9 +70,9 @@ namespace MusikApp.ViewModels
             }
         }
         #endregion
-        public SettingsPageViewModel()
+        public SettingsPageViewModel(ISettingsPageRepository repo)
         {
-            repo = new SettingsPageRepository();
+            this.repo = repo;
             AddNewGenre = new Command(ChooseNewGenre);
             GetUsersSettings();
         }

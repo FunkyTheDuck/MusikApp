@@ -13,10 +13,10 @@
     Shell.PresentationMode="Modal">
 
     <TabBar>
-        <Tab Icon="seach_icon.png">
+        <Tab Icon="search_icon.png">
             <ShellContent ContentTemplate="{DataTemplate view:FriendsPage}"/>
         </Tab>
-        <Tab Icon="main_page_icon.pn">
+        <Tab Icon="main_page_icon.png">
             <ShellContent ContentTemplate="{DataTemplate view:StartPage}"/>
         </Tab>
         <Tab Icon="profil_icon.png">

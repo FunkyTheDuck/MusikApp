@@ -13,8 +13,13 @@ namespace MusikApp
             var builder = MauiApp.CreateBuilder();
             builder.Services.AddSingleton<IStartPageRepository, StartPageRepository>();
             builder.Services.AddSingleton<IProfilPageRepository, ProfilPageRepository>();
+            builder.Services.AddSingleton<ISettingsPageRepository, SettingsPageRepository>();
             builder.Services.AddScoped<ProfilViewModel>();
             builder.Services.AddScoped<Profil>();
+            builder.Services.AddScoped<StartPageViewModel>();
+            builder.Services.AddScoped<StartPage>();
+            builder.Services.AddScoped<SettingsPageViewModel>();
+            builder.Services.AddScoped<SettingsPage>();
             builder
                 .UseMauiApp<App>()
                 .UseMauiCommunityToolkitMediaElement()
