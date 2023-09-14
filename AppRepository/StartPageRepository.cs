@@ -1,7 +1,9 @@
 ﻿using AppDBAccess;
 using AppDTOModels;
+using AppDTOModels.SpotifyModels;
 using AppModels;
 using SpotifyAPI.Web;
+using Swan;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -71,6 +73,42 @@ namespace AppRepository
             {
                 return null;
             }
+        }
+        public async Task<List<DisplayedSong>> GetListOfRecommendation(int amount)
+        {
+            Track[] arrayOfSongs = await spotifyDB.GetListOfRecommendations(amount, "");
+            if (arrayOfSongs.Length > 0)
+            {
+                List<DisplayedSong> songList = new List<DisplayedSong>();
+                foreach (Track track in arrayOfSongs)
+                {
+                    DisplayedSong song;
+                    try
+                    {
+                        song = new DisplayedSong
+                        {
+                            Id = track.id,
+                            SongImage = track.album.images.FirstOrDefault().url,
+                            SongArtistImage = await GetArtistImageAsync(track.artists.FirstOrDefault().id),
+                            SongName = track.name,
+                            AlbumName = track.album.name,
+                            ArtistName = track.artists.FirstOrDefault().name,
+                            IsPlayable = track.is_playable,
+                            PreviewUrl = track.preview_url
+                        };
+                        songList.Add(song);
+                    }
+                    catch
+                    {
+
+                    }
+                }
+                if (songList.Count > 0)
+                {
+                    return songList;
+                }
+            }
+            return null;
         }
     }
 }

@@ -4,7 +4,7 @@
              xmlns:ViewModels="clr-namespace:MusikApp.ViewModels"
              xmlns:rd="clr-namespace:MusikApp.Resources.Styles"
              x:Class="MusikApp.Views.SettingsPage"
-             Title="SettingsPage"
+             Title=""
              Style="{StaticResource SettingsPage}">
     <ContentPage.BindingContext>
         <ViewModels:SettingsPageViewModel/>

@@ -85,7 +85,11 @@ namespace MusikApp.ViewModels
             }
             catch
             {
-
+                return;
+            }
+            if(Setting != null)
+            {
+                return;
             }
             currentChoosenGenre = new ObservableCollection<Genre>();
             foreach(string genre in Setting.ChangeGenre.Split(","))
@@ -99,7 +103,7 @@ namespace MusikApp.ViewModels
         }
         private async void ChooseNewGenre(object obj)
         {
-            //await Shell.Current.GoToAsync();
+            await Shell.Current.GoToAsync(nameof(ChooseGenrePage));
         }
         private async void ChangeReleaseDateAsync()
         {

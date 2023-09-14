@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using SpotifyAPI.Web;
 using SpotifyAPI.Web.Auth;
 using AppModels;
+using System.Reflection.PortableExecutable;
 
 namespace AppDBAccess
 {
@@ -54,7 +55,18 @@ namespace AppDBAccess
         {
             SpotifyClient spotify = new SpotifyClient(await GetToken());
             FullArtist temp = await spotify.Artists.Get(id);
-            return temp.Images[0].Url;
+            try
+            {
+                if(temp.Images != null)
+                {
+                    return temp.Images.LastOrDefault().Url;
+                }
+            }
+            catch
+            {
+                return "not_found.png";
+            }
+            return "not_found.png";
         }
         public async Task<List<Genre>> GetAllGenresAsync()
         {
@@ -95,10 +107,37 @@ namespace AppDBAccess
         public async Task<FullTrack> GetRecommendations()
         {
             SpotifyClient spotify = new SpotifyClient(await GetToken());
-            SearchRequest temp = new SearchRequest(SearchRequest.Types.Track, "slow danish pop");
-            SearchResponse temp2 = await spotify.Search.Item(temp);
-            FullTrack returnValue = temp2.Tracks.Items.First();
-            return returnValue;
+            SearchRequest request = new SearchRequest(SearchRequest.Types.Track, "DK rock");
+            SearchResponse response = await spotify.Search.Item(request);
+            FullTrack recommendedSong = response.Tracks.Items.First();
+            return recommendedSong;
+        }
+        public async Task<Track[]> GetListOfRecommendations(int amount, string recommend)
+        {
+            //Få lavet så at den sorter på users settings chooses
+
+            DBContext db = new DBContext();
+            DtoSettings settings = await db.GetUsersSettingsAsync(1);
+            string genre = settings.ChangeGenre;
+            HttpClient httpClient = new HttpClient();
+            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", await GetToken());
+            HttpResponseMessage response = null;
+            try
+            {
+                response = await httpClient.GetAsync($"https://api.spotify.com/v1/recommendations?limit={amount}&market=DK&seed_genres={genre.ToLower()}");
+            }
+            catch
+            {
+                return null;
+            }
+            if(response.IsSuccessStatusCode && response != null)
+            {
+                string json = await response.Content.ReadAsStringAsync();
+                Rootobject temp = JsonConvert.DeserializeObject<Rootobject>(json);
+                return temp.tracks;
+            }
+            return null;
+
         }
     }
 }
