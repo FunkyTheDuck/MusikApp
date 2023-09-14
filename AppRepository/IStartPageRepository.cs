@@ -9,6 +9,7 @@ namespace AppRepository
         Task<bool> LikeSongAsync(WhiteList whiteList);
         Task<bool> SkipSongAsync(BlackList blackList);
         Task<string> GetArtistImageAsync(string id);
+        Task<DisplayedArtist> GetArtistAsync(string id);
         Task<List<FullTrack>> GetListOfSongs(List<string> songIds);
         Task<List<DisplayedSong>> GetListOfRecommendation(int amount);
     }

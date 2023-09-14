@@ -14,7 +14,7 @@ namespace MusikApp.ViewModels
         public ICommand LikeSong { get; set; }
         public ICommand ArtistClicked { get; set; }
         public string PlayPauseBtnSource { get; set; }
-
+        private string artistId { get; set; }
         public DisplayedSong currentSong { get; set; }
         List<DisplayedSong> songQueue { get; set; }
         public MediaElement AudioDisplay { get; set; }
@@ -159,7 +159,8 @@ namespace MusikApp.ViewModels
         }
         private async void ArtistClickedAsync(object obj)
         {
-            await (Application.Current.MainPage).ShowPopupAsync(new ArtistPopUp());
+            DisplayedArtist clickedArtist = await repo.GetArtistAsync(currentSong.ArtistId);
+            await (Application.Current.MainPage).ShowPopupAsync(new ArtistPopUp(clickedArtist));
         }
     }
 }

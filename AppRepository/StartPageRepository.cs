@@ -63,6 +63,27 @@ namespace AppRepository
         {
             return await spotifyDB.GetArtistImageAsync(id);
         }
+        public async Task<DisplayedArtist> GetArtistAsync(string id)
+        {
+            FullArtist dtoArtist;
+            try
+            {
+                dtoArtist = await spotifyDB.GetArtistAsync(id);
+            }
+            catch
+            {
+                return null;
+            }
+            DisplayedArtist artist = new DisplayedArtist
+            {
+                Id = dtoArtist.Id,
+                Name = dtoArtist.Name,
+                ImageUrl = dtoArtist.Images.FirstOrDefault().Url,
+                LinkToSpotify = dtoArtist.Uri,
+            };
+
+            return artist;
+        }
         public async Task<List<FullTrack>> GetListOfSongs(List<string> songIds)
         {
             try
@@ -93,6 +114,7 @@ namespace AppRepository
                             SongName = track.name,
                             AlbumName = track.album.name,
                             ArtistName = track.artists.FirstOrDefault().name,
+                            ArtistId = track.artists.First().id,
                             IsPlayable = track.is_playable,
                             PreviewUrl = track.preview_url
                         };

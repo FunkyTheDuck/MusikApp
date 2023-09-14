@@ -71,6 +71,12 @@ namespace AppDBAccess
             }
             return "not_found.png";
         }
+        public async Task<FullArtist> GetArtistAsync(string artistId)
+        {
+            SpotifyClient spotify = new SpotifyClient(await GetToken());
+            FullArtist artist = await spotify.Artists.Get(artistId);
+            return artist;
+        }
         public async Task<List<Genre>> GetAllGenresAsync()
         {
             List<Genre> GenreList = new();

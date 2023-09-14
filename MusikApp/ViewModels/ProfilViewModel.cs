@@ -32,7 +32,7 @@ namespace MusikApp.ViewModels
         }
         public async void GetAllLikedSong()
         {
-            LikedSongsList = await repo.GetAllLikedSongs(1, 50);
+            LikedSongsList = await repo.GetAllLikedSongs(1, 10);
             OnPropChanged(nameof(LikedSongsList));
         }
     }
