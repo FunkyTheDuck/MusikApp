@@ -13,28 +13,34 @@ namespace MusikApp.ViewModels
     public class ChooseGenrePageViewModel : BaseViewModels
     {
         GenrePageRepository GenreRepo { get; set; }
+        SettingsPageRepository settingRepo {  get; set; }
         public List<Genre> Genres { get; set; }
         public Genre SelectedGenre { get; set; }
         public ICommand SelectedGenreChanged { get; set; }
         public Color SelectedItemColor { get; set; }
         public ChooseGenrePageViewModel()
         {
+            settingRepo = new SettingsPageRepository();
             GenreRepo = new();
             GetGenres();
+            SelectedGenreChanged = new Command(SelectGenre);
         }
 
         public async void GetGenres()
         {
             Genres = await GenreRepo.GetGenresAsync();
             OnPropChanged(nameof(Genres));
-            SelectGenre();
         }
 
 
-        public void SelectGenre()
+        private async void SelectGenre()
         {
-            //der skal sættes en api kald op for at kunne gå videre
-            //SelectedGenre = //en api kald
+            Settings settings = await settingRepo.GetUsersSettingsAsync(1);
+            settings.ChangeGenre += $", {SelectedGenre.Name}";
+            
+            await settingRepo.UpdateSettingsAsync(settings);
+
+            await Shell.Current.GoToAsync($"..");
         }
     }
 
