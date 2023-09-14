@@ -57,12 +57,16 @@ namespace AppDBAccess
             FullArtist temp = await spotify.Artists.Get(id);
             try
             {
-                return temp.Images.LastOrDefault().Url;
+                if(temp.Images != null)
+                {
+                    return temp.Images.LastOrDefault().Url;
+                }
             }
             catch
             {
                 return "not_found.png";
             }
+            return "not_found.png";
         }
         public async Task<List<Genre>> GetAllGenresAsync()
         {
