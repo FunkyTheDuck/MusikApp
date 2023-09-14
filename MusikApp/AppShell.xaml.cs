@@ -8,7 +8,8 @@ namespace MusikApp
         {
             InitializeComponent();
 
-            //Routing.RegisterRoute(nameof(ChooseGenrePage), typeof(ChooseGenrePage));
+            Routing.RegisterRoute(nameof(ChooseGenrePage), typeof(ChooseGenrePage));
+            Routing.RegisterRoute(nameof(SettingsPage), typeof(SettingsPage));
         }
     }
 }

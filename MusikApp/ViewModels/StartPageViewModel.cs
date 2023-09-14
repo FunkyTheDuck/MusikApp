@@ -8,7 +8,7 @@ namespace MusikApp.ViewModels
 {
     public class StartPageViewModel : BaseViewModels
     {
-        StartPageRepository repo { get; set; }
+        IStartPageRepository repo { get; set; }
         public ICommand PlayPauseSound { get; set; }
         public ICommand SkipSong { get; set; }
         public ICommand LikeSong { get; set; }
@@ -18,8 +18,9 @@ namespace MusikApp.ViewModels
         public DisplayedSong currentSong { get; set; }
         List<DisplayedSong> songQueue { get; set; }
         public MediaElement AudioDisplay { get; set; }
-        public StartPageViewModel()
+        public StartPageViewModel(IStartPageRepository repo)
         {
+            this.repo = repo;
             AudioDisplay = new MediaElement
             {
                 Volume = 0.03,

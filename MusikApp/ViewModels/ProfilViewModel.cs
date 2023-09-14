@@ -1,4 +1,5 @@
 ﻿using AppModels;
+using AppRepository;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -17,18 +18,28 @@ namespace MusikApp.ViewModels
         public int likesArtist { get; set; }
         public int skipsArtist { get; set; }
         public string profilpicture {  get; set; }
-        public List<string> SongImage { get; set; }
-        public List<string> SongArtistImage { get; set; }
-        public List<string> SongName { get; set; }
-        public List<string> AlbumName { get; set; }
-        public List<string> ArtistName { get; set; }
-        public ProfilViewModel() 
+        public ObservableCollection<DisplayedSong> LikedSongsList { get; set; }
+        ProfilPageRepository repo { get; set; }
+        public ProfilViewModel(IProfilPageRepository repo)
         {
-            Name = "Thomas Jasper Cat, Sr.";
-            likes = 420;
+            this.repo = new ProfilPageRepository();
+            Name = "Thomas Jasper Cat, Sr";
             skips = 69;
-            isArtist = false;
+            isArtist = true;
             profilpicture = "profilbillede.jpg";
+            LikedSongsList = new ObservableCollection<DisplayedSong>();
+            GetAllLikedSong();
+        }
+        public async void GetAllLikedSong()
+        {
+            List<DisplayedSong> list = await repo.GetAllLikedSongs(1, 50);
+            foreach (DisplayedSong song in list)
+            {
+                LikedSongsList.Add(song);
+            }
+            likes = list.Count;
+            OnPropChanged(nameof(likes));
+            OnPropChanged(nameof(LikedSongsList));
         }
     }
 }

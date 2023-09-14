@@ -13,21 +13,21 @@
     Shell.PresentationMode="Modal">
 
     <TabBar>
-        <ShellContent Icon="search_icon.png">
-            <view:FriendsPage/>
-        </ShellContent>
-        <ShellContent Icon="main_page_icon.png">
-            <view:StartPage/>
-        </ShellContent>
-        <ShellContent Icon="profil_icon.png">
-            <view:Profil/>
-        </ShellContent>
-        <ShellContent Icon="friends_icon.png">
-            <view:FriendsPage/>
-        </ShellContent>
-        <ShellContent Icon="settings_icon.png">
-            <view:SettingsPage/>
-        </ShellContent>
+        <Tab Icon="search_icon.png">
+            <ShellContent ContentTemplate="{DataTemplate view:FriendsPage}"/>
+        </Tab>
+        <Tab Icon="main_page_icon.png">
+            <ShellContent ContentTemplate="{DataTemplate view:StartPage}"/>
+        </Tab>
+        <Tab Icon="profil_icon.png">
+            <ShellContent ContentTemplate="{DataTemplate view:Profil}"/>
+        </Tab>
+        <Tab Icon="friends_icon.png">
+            <ShellContent ContentTemplate="{DataTemplate view:FriendsPage}"/>
+        </Tab>
+        <Tab Icon="settings_icon.png">
+            <ShellContent ContentTemplate="{DataTemplate view:SettingsPage}"/>
+        </Tab>
     </TabBar>
     
 </Shell>

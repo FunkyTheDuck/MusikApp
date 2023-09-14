@@ -119,8 +119,8 @@ namespace AppDBAccess
         {
             //Få lavet så at den sorter på users settings chooses
 
-            DtoSettings settings = await db.GetUsersSettingsAsync(2);
-            string genre = "Rock";
+            DtoSettings settings = await db.GetUsersSettingsAsync(1);
+            string genre = settings.ChangeGenre;
             HttpClient httpClient = new HttpClient();
             httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", await GetToken());
             HttpResponseMessage response = null;

@@ -1,5 +1,6 @@
 ﻿using AppModels;
 using AppRepository;
+using MusikApp.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -40,7 +41,7 @@ namespace MusikApp.ViewModels
             
             await settingRepo.UpdateSettingsAsync(settings);
 
-            await Shell.Current.GoToAsync($"..");
+            await Shell.Current.GoToAsync(nameof(SettingsPage), false);
         }
     }
 

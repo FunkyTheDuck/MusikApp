@@ -13,6 +13,18 @@ namespace MusikAPI.Controllers
         {
             this.repo = repo;
         }
+        [HttpGet("{userId}")] 
+        public async Task<IActionResult> Get(int userId)
+        {
+            try
+            {
+                return Ok(await repo.GetUsersLikedSongs(userId));
+            }
+            catch
+            {
+                return NotFound();
+            }
+        }
         [HttpPost]
         public async Task<IActionResult> Post(WhiteList likedSong)
         {
@@ -25,7 +37,7 @@ namespace MusikAPI.Controllers
                 }
                 catch
                 {
-                    NotFound();
+                    return NotFound();
                 }
                 if (checkIfSucces)
                 {

@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace AppRepository
 {
-    public class SettingsPageRepository
+    public class SettingsPageRepository : ISettingsPageRepository
     {
-        DBContext db { get;set; }
-        public SettingsPageRepository() 
+        DBContext db { get; set; }
+        public SettingsPageRepository()
         {
             db = new DBContext();
         }
@@ -27,7 +27,7 @@ namespace AppRepository
             {
                 return null;
             }
-            if(dtoSettingns != null)
+            if (dtoSettingns != null)
             {
                 Settings settings = new Settings
                 {
@@ -46,7 +46,7 @@ namespace AppRepository
         }
         public async Task<bool> UpdateSettingsAsync(Settings setting)
         {
-            if(setting != null)
+            if (setting != null)
             {
                 DtoSettings dtoSetting = new DtoSettings
                 {
