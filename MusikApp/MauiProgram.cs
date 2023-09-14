@@ -32,19 +32,12 @@ namespace MusikApp
                 _ => false
             };
 #if ANDROID && DEBUG
-            //if (isVirtual)
-            //{
-            //    Platforms.Android.DangerousAndroidMessageHandlerEmitter.Register();
-            //    Platforms.Android.DangerousTrustProvider.Register();
-            //}
+            Platforms.Android.DangerousAndroidMessageHandlerEmitter.Register();
+            Platforms.Android.DangerousTrustProvider.Register();
             builder.Logging.AddDebug();
 #endif
 
-//#if ANDROID && DEBUG
-//            Platforms.Android.DangerousAndroidMessageHandlerEmitter.Register();
-//            Platforms.Android.DangerousTrustProvider.Register();
-//		    builder.Logging.AddDebug(); 
-//#endif
+
 
             return builder.Build();
         }

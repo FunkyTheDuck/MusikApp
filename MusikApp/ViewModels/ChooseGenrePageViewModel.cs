@@ -1,5 +1,6 @@
 ﻿using AppModels;
 using AppRepository;
+using MusikApp.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -36,11 +37,11 @@ namespace MusikApp.ViewModels
         private async void SelectGenre()
         {
             Settings settings = await settingRepo.GetUsersSettingsAsync(1);
-            settings.ChangeGenre += $", {SelectedGenre.Name}";
+            settings.ChangeGenre += $",{SelectedGenre.Name}";
             
             await settingRepo.UpdateSettingsAsync(settings);
 
-            await Shell.Current.GoToAsync($"..");
+            await Shell.Current.GoToAsync(nameof(SettingsPage), false);
         }
     }
 

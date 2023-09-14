@@ -87,7 +87,7 @@ namespace MusikApp.ViewModels
             {
                 return;
             }
-            if(Setting != null)
+            if(Setting == null)
             {
                 return;
             }

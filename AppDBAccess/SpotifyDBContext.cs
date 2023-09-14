@@ -19,8 +19,11 @@ namespace AppDBAccess
     {
         string clientId;
         string clientSecret;
+        DBContext db;
         public SpotifyDBContext()
         {
+
+            db = new DBContext();
             clientId = "7a45756d65a741c4bcb45c05844738e8";
             clientSecret = "b815f5b7a685493494948e7a677f3bcc";
         }
@@ -116,7 +119,6 @@ namespace AppDBAccess
         {
             //Få lavet så at den sorter på users settings chooses
 
-            DBContext db = new DBContext();
             DtoSettings settings = await db.GetUsersSettingsAsync(1);
             string genre = settings.ChangeGenre;
             HttpClient httpClient = new HttpClient();
