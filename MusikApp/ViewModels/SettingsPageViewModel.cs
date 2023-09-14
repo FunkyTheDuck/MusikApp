@@ -99,7 +99,7 @@ namespace MusikApp.ViewModels
         }
         private async void ChooseNewGenre(object obj)
         {
-            //await Shell.Current.GoToAsync();
+            await Shell.Current.GoToAsync(nameof(ChooseGenrePage));
         }
         private async void ChangeReleaseDateAsync()
         {
