@@ -82,8 +82,8 @@ namespace ApiDBAccess.Migrations
                         {
                             Id = 1,
                             ArtistId = 1,
-                            EndDate = new DateTime(2023, 9, 13, 13, 24, 57, 899, DateTimeKind.Local).AddTicks(5180),
-                            StartDate = new DateTime(2023, 9, 13, 13, 24, 57, 899, DateTimeKind.Local).AddTicks(5178)
+                            EndDate = new DateTime(2023, 9, 12, 11, 8, 2, 549, DateTimeKind.Local).AddTicks(5285),
+                            StartDate = new DateTime(2023, 9, 12, 11, 8, 2, 549, DateTimeKind.Local).AddTicks(5230)
                         });
                 });
 
@@ -192,15 +192,15 @@ namespace ApiDBAccess.Migrations
                         new
                         {
                             Id = 1,
-                            NextTransactionDay = new DateTime(2023, 9, 13, 13, 24, 57, 899, DateTimeKind.Local).AddTicks(5227),
-                            TransactionDay = new DateTime(2023, 9, 13, 13, 24, 57, 899, DateTimeKind.Local).AddTicks(5231),
+                            NextTransactionDay = new DateTime(2023, 9, 12, 11, 8, 2, 549, DateTimeKind.Local).AddTicks(5348),
+                            TransactionDay = new DateTime(2023, 9, 12, 11, 8, 2, 549, DateTimeKind.Local).AddTicks(5350),
                             UserId = 1
                         },
                         new
                         {
                             Id = 2,
-                            NextTransactionDay = new DateTime(2023, 9, 13, 13, 24, 57, 899, DateTimeKind.Local).AddTicks(5233),
-                            TransactionDay = new DateTime(2023, 9, 13, 13, 24, 57, 899, DateTimeKind.Local).AddTicks(5234),
+                            NextTransactionDay = new DateTime(2023, 9, 12, 11, 8, 2, 549, DateTimeKind.Local).AddTicks(5352),
+                            TransactionDay = new DateTime(2023, 9, 12, 11, 8, 2, 549, DateTimeKind.Local).AddTicks(5353),
                             UserId = 2
                         });
                 });
@@ -298,9 +298,6 @@ namespace ApiDBAccess.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<DateTime>("LastOnline")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("Mail")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -335,7 +332,6 @@ namespace ApiDBAccess.Migrations
                             IsArtist = true,
                             IsPremium = true,
                             LastName = "Bieber",
-                            LastOnline = new DateTime(2023, 9, 14, 13, 24, 57, 899, DateTimeKind.Local).AddTicks(4974),
                             Mail = "justinbieber@hotmail.com",
                             Name = "Justin",
                             Password = "Bruger123",
@@ -348,7 +344,6 @@ namespace ApiDBAccess.Migrations
                             IsArtist = false,
                             IsPremium = true,
                             LastName = "Wayne",
-                            LastOnline = new DateTime(2023, 9, 13, 14, 24, 57, 899, DateTimeKind.Local).AddTicks(5041),
                             Mail = "batmanerbest@gmail.com",
                             Name = "Bruce",
                             Password = "Beuger123",
@@ -361,7 +356,6 @@ namespace ApiDBAccess.Migrations
                             IsArtist = false,
                             IsPremium = false,
                             LastName = "Kent",
-                            LastOnline = new DateTime(2023, 9, 13, 13, 24, 57, 899, DateTimeKind.Local).AddTicks(5045),
                             Mail = "ilovelois@gmail.com",
                             Name = "Clark",
                             Password = "Bruger123",

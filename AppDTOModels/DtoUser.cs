@@ -23,7 +23,6 @@ namespace AppDTOModels
         public string Password { get; set; }
         public bool IsPremium { get; set; }
         public bool IsArtist { get; set; }
-        public DateTime LastOnline { get; set; }
         public DtoWhiteList WhiteList { get; set; }
         public DtoBlackList BlackList { get; set; }
         public DtoSettings Settings { get; set; }

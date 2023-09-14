@@ -4,7 +4,7 @@
              xmlns:ViewModels="clr-namespace:MusikApp.ViewModels"
              xmlns:rd="clr-namespace:MusikApp.Resources.Styles"
              x:Class="MusikApp.Views.FriendsPage"
-             Title=""
+             Title="FriendsPage"
              Style="{StaticResource FriendsPage}">
     
     <ContentPage.BindingContext>
@@ -33,62 +33,7 @@
                 <ColumnDefinition Width="50"/>
             </Grid.ColumnDefinitions>
 
-            <Border Grid.ColumnSpan="3" Style="{StaticResource HeaderBorder}">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="150"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="150"/>
-                    </Grid.ColumnDefinitions>
-                    <Label Grid.Column="0" Style="{StaticResource BuyPremiumText}"></Label>
-                    <Label Grid.Column="2" Style="{StaticResource AppNameText}"></Label>
-                </Grid>
-            </Border>
-
-            <Label Grid.Row="2" Grid.Column="1" Style="{StaticResource Header}" Text="Friends"/>
-
-            <CollectionView Grid.Row="3" Grid.Column="1" ItemsSource="{Binding Friends}" Style="{StaticResource FriendsCollection}">
-                <CollectionView.ItemsLayout>
-                    <GridItemsLayout Orientation="Vertical" Span="1" VerticalItemSpacing="10"/>
-                </CollectionView.ItemsLayout>
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Border Style="{StaticResource Friends}">
-                            <ContentView>
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="*"/>
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="70"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Border Grid.Row="0" Grid.Column="0" Style="{StaticResource ProfilBillede}">
-                                        <Image Source="{Binding ProfilPicture}"></Image>
-                                    </Border>
-                                    <Label Style="{StaticResource FriendName}" Grid.Row="0" Grid.Column="1" LineBreakMode="NoWrap">
-                                        <Label.FormattedText>
-                                            <FormattedString>
-                                                <Span Text="{Binding Name}"/>
-                                                <Span Text=" "/>
-                                                <Span Text="{Binding LastName}"/>
-                                            </FormattedString>
-                                        </Label.FormattedText>
-                                    </Label>
-                                    <Label Style="{StaticResource LastOnline}" Grid.Row="0" Grid.Column="1" Text="{Binding UserName}" LineBreakMode="NoWrap">
-                                        <Label.FormattedText>
-                                            <FormattedString>
-                                                <Span Text="Last Online: "/>
-                                                <Span Text="{Binding LastOnline}"/>
-                                            </FormattedString>
-                                        </Label.FormattedText>
-                                    </Label>
-                                </Grid>
-                            </ContentView>
-                        </Border>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+            <Label Grid.Row="1" Grid.Column="1" Style="{StaticResource Header}" Text="Friends"/>
         </Grid>
     </ScrollView>
 </ContentPage>

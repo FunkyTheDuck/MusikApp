@@ -23,7 +23,6 @@ namespace ApiDTOModels
         public string Password { get; set; }
         public bool IsPremium { get; set; }
         public bool IsArtist { get; set; }
-        public DateTime LastOnline { get; set; }
         public List<DtoWhiteList> WhiteList { get; set; }
         public List<DtoBlackList> BlackList { get; set; }
         public DtoSettings Settings { get; set; }
