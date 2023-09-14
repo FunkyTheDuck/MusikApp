@@ -14,7 +14,7 @@ public partial class StartPage : ContentPage
         string userId = await SecureStorage.Default.GetAsync("userId");
         if (string.IsNullOrEmpty(userId))
         {
-            //await Shell.Current.GoToAsync(nameof(LoginPage));
+            await Shell.Current.GoToAsync(nameof(LoginPage));
         }
     }
 }

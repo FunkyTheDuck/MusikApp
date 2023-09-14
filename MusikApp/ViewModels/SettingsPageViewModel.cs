@@ -13,6 +13,7 @@ namespace MusikApp.ViewModels
 {
     public class SettingsPageViewModel : BaseViewModels
     {
+        public ICommand LogoutButton { get; set; }
         public ICommand AddNewGenre { get; set; }
         public ObservableCollection<Genre> currentChoosenGenre { get; set; }
         public Settings Setting { get; set; }
@@ -74,6 +75,7 @@ namespace MusikApp.ViewModels
         {
             this.repo = repo;
             AddNewGenre = new Command(ChooseNewGenre);
+            LogoutButton = new Command(LogOutClickedAsync);
             GetUsersSettings();
         }
 
@@ -154,6 +156,11 @@ namespace MusikApp.ViewModels
                 await repo.UpdateSettingsAsync(Setting);
                 isDoingChanges = false;
             }
+        }
+        private async void LogOutClickedAsync()
+        {
+            SecureStorage.Default.Remove("userId");
+            await Shell.Current.GoToAsync(nameof(LoginPage));
         }
     }
 }
