@@ -1,6 +1,8 @@
 ﻿using AppRepository;
 using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
+using MusikApp.ViewModels;
+using MusikApp.Views;
 
 namespace MusikApp
 {
@@ -10,6 +12,9 @@ namespace MusikApp
         {
             var builder = MauiApp.CreateBuilder();
             builder.Services.AddSingleton<IStartPageRepository, StartPageRepository>();
+            builder.Services.AddSingleton<IProfilPageRepository, ProfilPageRepository>();
+            builder.Services.AddScoped<ProfilViewModel>();
+            builder.Services.AddScoped<Profil>();
             builder
                 .UseMauiApp<App>()
                 .UseMauiCommunityToolkitMediaElement()
@@ -19,6 +24,7 @@ namespace MusikApp
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
+
             bool isVirtual = DeviceInfo.Current.DeviceType switch
             { 
                 DeviceType.Physical => false,

@@ -1,6 +1,7 @@
 ﻿using AppDTOModels;
 using AppModels;
 using Newtonsoft.Json;
+using SpotifyAPI.Web.Http;
 using System.Globalization;
 using System.Net.Http.Headers;
 using System.Text;
@@ -226,7 +227,7 @@ namespace AppDBAccess
                 return null;
             }
             DtoSettings? setting;
-            if(json != null)
+            if(!string.IsNullOrEmpty(json))
             {
                 setting = JsonConvert.DeserializeObject<DtoSettings>(json);
                 return setting;
@@ -248,6 +249,44 @@ namespace AppDBAccess
                 return false;
             }
             return response.IsSuccessStatusCode;
+        }
+        public async Task<List<string>> GetAllLikedSongsId(int userId)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                response = await client.GetAsync($"https://{ip}:7147/api/WhiteList/{userId}");
+            }
+            catch
+            {
+                return new List<string>();
+            }
+            string json = string.Empty;
+            try
+            {
+                json = await response.Content.ReadAsStringAsync();
+            }
+            catch
+            {
+                return new List<string>();
+            }
+            if(!string.IsNullOrEmpty(json))
+            {
+                List<string> likedSongsId;
+                try
+                {
+                    likedSongsId = JsonConvert.DeserializeObject<List<string>>(json);
+                }
+                catch
+                {
+                    return new List<string>();
+                }
+                if(likedSongsId != null)
+                {
+                    return likedSongsId;
+                }
+            }
+            return new List<string>();
         }
     }
 }

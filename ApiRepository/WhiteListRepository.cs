@@ -1,6 +1,7 @@
 ﻿using ApiDBAccess;
 using ApiDTOModels;
 using ApiModels;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +26,7 @@ namespace ApiRepository
             };
             try
             {
-                var temp = db.WhiteLists.Add(dtoLikedSong);
+                db.WhiteLists.Add(dtoLikedSong);
             }
             catch
             {
@@ -40,6 +41,28 @@ namespace ApiRepository
                 return false;
             }
             return true;
+        }
+        public async Task<List<string>> GetUsersLikedSongs(int userId)
+        {
+            List<DtoWhiteList> likedSongs;
+            try
+            {
+                likedSongs = await db.WhiteLists.Where(x => x.UserID == userId).ToListAsync();
+            }
+            catch
+            {
+                return new List<string>();
+            }
+            if(likedSongs.Count > 0)
+            {
+                List<string> likedSongsId = new List<string>();
+                foreach(DtoWhiteList songId in likedSongs)
+                {
+                    likedSongsId.Add(songId.SongID);
+                }
+                return likedSongsId;
+            }
+            return new List<string>();
         }
     }
 }
