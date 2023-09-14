@@ -18,21 +18,27 @@ namespace MusikApp.ViewModels
         public int likesArtist { get; set; }
         public int skipsArtist { get; set; }
         public string profilpicture {  get; set; }
-        public List<DisplayedSong> LikedSongsList { get; set; }
+        public ObservableCollection<DisplayedSong> LikedSongsList { get; set; }
         ProfilPageRepository repo { get; set; }
         public ProfilViewModel(IProfilPageRepository repo)
         {
             this.repo = new ProfilPageRepository();
-            Name = "Thomas Jasper Cat, Sr.";
-            likes = 420;
+            Name = "Thomas Jasper Cat, Sr";
             skips = 69;
             isArtist = true;
             profilpicture = "profilbillede.jpg";
+            LikedSongsList = new ObservableCollection<DisplayedSong>();
             GetAllLikedSong();
         }
         public async void GetAllLikedSong()
         {
-            LikedSongsList = await repo.GetAllLikedSongs(1, 50);
+            List<DisplayedSong> list = await repo.GetAllLikedSongs(1, 50);
+            foreach (DisplayedSong song in list)
+            {
+                LikedSongsList.Add(song);
+            }
+            likes = list.Count;
+            OnPropChanged(nameof(likes));
             OnPropChanged(nameof(LikedSongsList));
         }
     }
