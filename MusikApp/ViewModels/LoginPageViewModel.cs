@@ -40,6 +40,7 @@ namespace MusikApp.ViewModels
                 checkuser = await repo.GetUserAsync(Username, Password);
                 if (checkuser.UserName == Username && checkuser.Password == Password)
                 {
+                    await SecureStorage.Default.SetAsync("userId", checkuser.Id.ToString());
                     await Application.Current.MainPage.Navigation.PushAsync(new AppShell());
                 }
             }
