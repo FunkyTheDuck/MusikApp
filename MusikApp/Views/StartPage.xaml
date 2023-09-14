@@ -58,13 +58,13 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="15"/>
                 </Grid.ColumnDefinitions>
-                <Image Style="{StaticResource SongImage}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" Source="{Binding SongImage}"></Image>
-                <Label Style="{StaticResource SongName}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Text="{Binding SongName}"></Label>
-                <Label Style="{StaticResource AlbumName}" Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding AlbumName}"></Label>
+                <Image Style="{StaticResource SongImage}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" Source="{Binding currentSong.SongImage}"></Image>
+                <Label Style="{StaticResource SongName}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Text="{Binding currentSong.SongName}"></Label>
+                <Label Style="{StaticResource AlbumName}" Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding currentSong.AlbumName}"></Label>
                 <Border Grid.Row="1" Grid.RowSpan="2" Grid.Column="3" Style="{StaticResource ArtistImageBorder}">
-                    <Image Source="{Binding SongArtistImage}"></Image>
+                    <ImageButton Command="{Binding ArtistClicked}" Source="{Binding currentSong.SongArtistImage}"></ImageButton>
                 </Border>
-                <Label Style="{StaticResource ArtistName}" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Text="{Binding ArtistName}"></Label>
+                <Label Style="{StaticResource ArtistName}" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Text="{Binding currentSong.ArtistName}"></Label>
             </Grid>
         </Border>
 

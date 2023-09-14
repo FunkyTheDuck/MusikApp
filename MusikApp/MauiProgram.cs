@@ -13,6 +13,7 @@ namespace MusikApp
             builder
                 .UseMauiApp<App>()
                 .UseMauiCommunityToolkitMediaElement()
+                .UseMauiCommunityToolkit()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -25,12 +26,12 @@ namespace MusikApp
                 _ => false
             };
 #if ANDROID && DEBUG
-            if (isVirtual)
-            {
-                Platforms.Android.DangerousAndroidMessageHandlerEmitter.Register();
-                Platforms.Android.DangerousTrustProvider.Register();
-            }
-		    builder.Logging.AddDebug(); 
+            //if (isVirtual)
+            //{
+            //    Platforms.Android.DangerousAndroidMessageHandlerEmitter.Register();
+            //    Platforms.Android.DangerousTrustProvider.Register();
+            //}
+            builder.Logging.AddDebug();
 #endif
 
 //#if ANDROID && DEBUG

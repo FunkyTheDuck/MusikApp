@@ -85,7 +85,11 @@ namespace MusikApp.ViewModels
             }
             catch
             {
-
+                return;
+            }
+            if(Setting != null)
+            {
+                return;
             }
             currentChoosenGenre = new ObservableCollection<Genre>();
             foreach(string genre in Setting.ChangeGenre.Split(","))

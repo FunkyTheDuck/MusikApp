@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace AppDTOModels.SpotifyModels
 {
-    public class Rootobject
+    public class UIImage
     {
-        public Track[] tracks { get; set; }
-        public Seed[] seeds { get; set; }
+        public int height { get; set; }
+        public string url { get; set; }
+        public int width { get; set; }
     }
 }
