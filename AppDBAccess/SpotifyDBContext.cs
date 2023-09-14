@@ -106,6 +106,10 @@ namespace AppDBAccess
         }
         public async Task<List<FullTrack>> GetListOfSongs(List<string> songIds)
         {
+            if(songIds.Count > 50)
+            {
+                return null;
+            }
             TracksRequest temp = new TracksRequest(songIds);
             SpotifyClient spotify = new SpotifyClient(await GetToken());
             TracksResponse listOfSongs = await spotify.Tracks.GetSeveral(temp);

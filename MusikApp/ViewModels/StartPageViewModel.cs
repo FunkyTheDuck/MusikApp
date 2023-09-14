@@ -36,6 +36,7 @@ namespace MusikApp.ViewModels
             LikeSong = new Command(LikeCurrentSongAsync);
             ArtistClicked = new Command(ArtistClickedAsync);
         }
+        
         private async void LoadNewSongs(int amount, bool firstCall)
         {
             List<DisplayedSong> New5Songs;
