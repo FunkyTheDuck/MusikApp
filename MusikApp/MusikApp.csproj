@@ -61,7 +61,6 @@
 	  <None Remove="Resources\Images\friends_icon.png" />
 	  <None Remove="Resources\Images\like_icon.png" />
 	  <None Remove="Resources\Images\main_page_icon.png" />
-	  <None Remove="Resources\Images\not_found.png" />
 	  <None Remove="Resources\Images\pause_icon.png" />
 	  <None Remove="Resources\Images\play_icon.png" />
 	  <None Remove="Resources\Images\profilbillede.jpg" />
@@ -78,7 +77,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="CommunityToolkit.Maui" Version="5.3.0" />
 		<PackageReference Include="CommunityToolkit.Maui.MediaElement" Version="2.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 		<PackageReference Include="Plugin.Maui.Audio" Version="1.0.0" />
@@ -90,9 +88,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Resources\Styles\ArtistPopUpStyle.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
 	  <MauiXaml Update="Resources\Styles\ChooseGenrePageStyle.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -100,9 +95,6 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Resources\Styles\SettingsPageStyle.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\ArtistPopUp.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\ChooseGenrePage.xaml">

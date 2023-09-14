@@ -1,7 +1,6 @@
 ﻿using AppModels;
 using AppRepository;
 using CommunityToolkit.Maui.Views;
-using MusikApp.Views;
 using System.Windows.Input;
 
 namespace MusikApp.ViewModels
@@ -12,7 +11,6 @@ namespace MusikApp.ViewModels
         public ICommand PlayPauseSound { get; set; }
         public ICommand SkipSong { get; set; }
         public ICommand LikeSong { get; set; }
-        public ICommand ArtistClicked { get; set; }
         public string PlayPauseBtnSource { get; set; }
 
         public DisplayedSong currentSong { get; set; }
@@ -33,7 +31,6 @@ namespace MusikApp.ViewModels
             PlayPauseSound = new Command(PlayPauseSongAsync);
             SkipSong = new Command(SkipCurrentSongAsync);
             LikeSong = new Command(LikeCurrentSongAsync);
-            ArtistClicked = new Command(ArtistClickedAsync);
         }
         private async void LoadNewSongs(int amount, bool firstCall)
         {
@@ -67,10 +64,6 @@ namespace MusikApp.ViewModels
                 catch
                 {
                     return;
-                }
-                if(string.IsNullOrEmpty(currentSong.SongImage))
-                {
-                    currentSong.SongImage = "not_found.png";
                 }
                 if (!currentSong.IsPlayable || string.IsNullOrEmpty(currentSong.PreviewUrl))
                 {
@@ -128,7 +121,7 @@ namespace MusikApp.ViewModels
             }
             else
             {
-                await (Application.Current.MainPage).DisplayAlert("Error", "spotify:artist:4RqlUMU9O5BNUhsRaukbRZ", "OK");
+                await (Application.Current.MainPage).DisplayAlert("Error", "The song couldn't be liked", "OK");
             }
         }
         public async void SkipCurrentSongAsync(object obj)
@@ -155,10 +148,6 @@ namespace MusikApp.ViewModels
             {
                 await (Application.Current.MainPage).DisplayAlert("Error", "The song couldn't be skipped", "OK");
             }
-        }
-        private async void ArtistClickedAsync(object obj)
-        {
-            await (Application.Current.MainPage).ShowPopupAsync(new ArtistPopUp());
         }
     }
 }
