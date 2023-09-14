@@ -112,12 +112,15 @@ namespace AppDBAccess
         {
             //Få lavet så at den sorter på users settings chooses
 
+            DBContext db = new DBContext();
+            DtoSettings settings = await db.GetUsersSettingsAsync(1);
+            string genre = settings.ChangeGenre;
             HttpClient httpClient = new HttpClient();
             httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", await GetToken());
             HttpResponseMessage response = null;
             try
             {
-                response = await httpClient.GetAsync($"https://api.spotify.com/v1/recommendations?limit={amount}&market=DK&seed_artists=2I6gQ8HicF6er2NgjfkwGd&seed_genres=rock");
+                response = await httpClient.GetAsync($"https://api.spotify.com/v1/recommendations?limit={amount}&market=DK&seed_genres={genre.ToLower()}");
             }
             catch
             {
