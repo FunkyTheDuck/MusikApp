@@ -26,7 +26,7 @@ namespace MusikApp.ViewModels
             Name = "Thomas Jasper Cat, Sr.";
             likes = 420;
             skips = 69;
-            isArtist = false;
+            isArtist = true;
             profilpicture = "profilbillede.jpg";
             GetAllLikedSong();
         }

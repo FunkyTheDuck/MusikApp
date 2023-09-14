@@ -25,12 +25,6 @@ namespace MusikApp
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
-            bool isVirtual = DeviceInfo.Current.DeviceType switch
-            { 
-                DeviceType.Physical => false,
-                DeviceType.Virtual => true,
-                _ => false
-            };
 #if ANDROID && DEBUG
             Platforms.Android.DangerousAndroidMessageHandlerEmitter.Register();
             Platforms.Android.DangerousTrustProvider.Register();
