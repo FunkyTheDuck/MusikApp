@@ -12,6 +12,7 @@ using SpotifyAPI.Web;
 using SpotifyAPI.Web.Auth;
 using AppModels;
 using System.Reflection.PortableExecutable;
+using Xamarin.Essentials;
 
 namespace AppDBAccess
 {
@@ -22,7 +23,6 @@ namespace AppDBAccess
         DBContext db;
         public SpotifyDBContext()
         {
-
             db = new DBContext();
             clientId = "7a45756d65a741c4bcb45c05844738e8";
             clientSecret = "b815f5b7a685493494948e7a677f3bcc";
@@ -125,11 +125,10 @@ namespace AppDBAccess
             FullTrack recommendedSong = response.Tracks.Items.First();
             return recommendedSong;
         }
-        public async Task<Track[]> GetListOfRecommendations(int amount, string recommend)
+        public async Task<Track[]> GetListOfRecommendations(int id, int amount, string recommend)
         {
             //Få lavet så at den sorter på users settings chooses
-
-            DtoSettings settings = await db.GetUsersSettingsAsync(1);
+            DtoSettings settings = await db.GetUsersSettingsAsync(id);
             string genre = settings.ChangeGenre;
             HttpClient httpClient = new HttpClient();
             httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", await GetToken());

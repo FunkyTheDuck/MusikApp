@@ -6,5 +6,6 @@ namespace AppRepository
     {
         Task<Settings> GetUsersSettingsAsync(int userId);
         Task<bool> UpdateSettingsAsync(Settings setting);
+        Task<bool> CreateSettingsAsync(int userid);
     }
 }

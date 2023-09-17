@@ -17,7 +17,7 @@
     </ContentPage.Resources>
     <ScrollView>
 
-        <CollectionView ItemsSource="{Binding Genres}" ItemsLayout="VerticalGrid, 3" SelectionMode="Multiple" SelectionChangedCommand="{Binding SelectedGenreChanged}" SelectedItem="{Binding SelectedGenre}">
+        <CollectionView ItemsSource="{Binding Genres}" ItemsLayout="VerticalGrid, 3" SelectionMode="Single" SelectionChangedCommand="{Binding SelectedGenreChanged}" SelectedItem="{Binding SelectedGenre}">
                 <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <VerticalStackLayout>

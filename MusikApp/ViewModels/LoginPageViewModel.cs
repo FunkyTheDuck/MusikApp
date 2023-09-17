@@ -41,7 +41,8 @@ namespace MusikApp.ViewModels
                 if (checkuser.UserName == Username && checkuser.Password == Password)
                 {
                     await SecureStorage.Default.SetAsync("userId", checkuser.Id.ToString());
-                    await Application.Current.MainPage.Navigation.PushAsync(new AppShell());
+                    await Shell.Current.GoToAsync("//StartPage");
+                    //await Application.Current.MainPage.Navigation.PushModalAsync(new MainPage());
                 }
             }
             catch (Exception)
@@ -69,7 +70,7 @@ namespace MusikApp.ViewModels
 
         public async void UserTapped()
         {
-            await Application.Current.MainPage.Navigation.PushModalAsync(new CreateUserPage());
+            await Shell.Current.GoToAsync("//CreateUserPage");
         }
         
     }

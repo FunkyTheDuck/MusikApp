@@ -36,12 +36,19 @@ namespace MusikApp.ViewModels
 
         private async void SelectGenre()
         {
-            Settings settings = await settingRepo.GetUsersSettingsAsync(1);
-            settings.ChangeGenre += $",{SelectedGenre.Name}";
+            Settings settings = await settingRepo.GetUsersSettingsAsync(Convert.ToInt32(await SecureStorage.Default.GetAsync("userId")));
+            if (settings.ChangeGenre == "")
+            {
+                settings.ChangeGenre += $"{SelectedGenre.Name}";
+            }
+            else
+            {
+                settings.ChangeGenre += $",{SelectedGenre.Name}";
+            }
             
             await settingRepo.UpdateSettingsAsync(settings);
 
-            await Shell.Current.GoToAsync(nameof(SettingsPage), false);
+            await Shell.Current.GoToAsync("//StartPage");
         }
     }
 
