@@ -134,7 +134,7 @@ namespace AppDBAccess
             HttpClient httpClient = new HttpClient();
             httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", await GetToken());
             HttpResponseMessage response = null;
-            try
+            try 
             {
                 response = await httpClient.GetAsync($"https://api.spotify.com/v1/recommendations?limit={amount}&market=DK&seed_genres={genre.ToLower()}");
             }

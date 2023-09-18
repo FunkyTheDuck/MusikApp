@@ -114,6 +114,7 @@ namespace MusikApp.ViewModels
             {
                 UserID = 1,
                 SongID = currentSong.Id,
+                SongArtistId = currentSong.ArtistId,
             };
             bool checkIfSucces = false;
             try
@@ -139,6 +140,7 @@ namespace MusikApp.ViewModels
             {
                 UserID = 1,
                 SongID = currentSong.Id,
+                SongArtistId= currentSong.ArtistId,
             };
             bool checkIfSucces = false;
             try

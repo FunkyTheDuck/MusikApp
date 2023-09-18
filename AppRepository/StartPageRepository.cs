@@ -32,6 +32,7 @@ namespace AppRepository
             {
                 UserID = whiteList.UserID,
                 SongID = whiteList.SongID,
+                SongArtistId = whiteList.SongArtistId
             };
             
             try
@@ -49,6 +50,7 @@ namespace AppRepository
             {
                 UserID = blackList.UserID,
                 SongID = blackList.SongID,
+                SongArtistId = blackList.SongArtistId
             };
             try
             {
@@ -81,7 +83,20 @@ namespace AppRepository
                 ImageUrl = dtoArtist.Images.FirstOrDefault().Url,
                 LinkToSpotify = dtoArtist.Uri,
             };
-
+            List<int> skipAndLike = await db.GetLikedAndSkipsForArtistAsync(artist.Id);
+            if(skipAndLike != null)
+            {
+                if (skipAndLike.Count == 2)
+                {
+                    artist.AmountOfLikes = skipAndLike[0];
+                    artist.AmountOfSkips = skipAndLike[1];
+                }
+                else
+                {
+                    artist.AmountOfLikes = 0;
+                    artist.AmountOfSkips = 0;
+                }
+            }
             return artist;
         }
         public async Task<List<FullTrack>> GetListOfSongs(List<string> songIds)

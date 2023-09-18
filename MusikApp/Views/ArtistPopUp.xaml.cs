@@ -12,6 +12,8 @@ public partial class ArtistPopUp : Popup
 		ArtistImage.Source = artist.ImageUrl;
         ArtistName.Text = artist.Name;
         linkToArtistSpotify = artist.LinkToSpotify;
+        AmountOfLikes.Text = artist.AmountOfLikes.ToString("N0", System.Globalization.CultureInfo.GetCultureInfo("de"));
+        AmountOfSkips.Text = artist.AmountOfSkips.ToString("N0", System.Globalization.CultureInfo.GetCultureInfo("de"));
     }
 
     private async void ArtistLink_Clicked(object sender, EventArgs e)

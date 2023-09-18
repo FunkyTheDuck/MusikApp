@@ -4,6 +4,7 @@ using ApiDBAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ApiDBAccess.Migrations
 {
     [DbContext(typeof(Database))]
-    partial class DatabaseModelSnapshot : ModelSnapshot
+    [Migration("20230918082329_AddedArtistLikesAndSkips")]
+    partial class AddedArtistLikesAndSkips
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -58,11 +61,8 @@ namespace ApiDBAccess.Migrations
 
             modelBuilder.Entity("ApiDTOModels.DtoArtistInfo", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("AmountOfSongSkipped")
                         .HasColumnType("int");
@@ -105,8 +105,8 @@ namespace ApiDBAccess.Migrations
                         {
                             Id = 1,
                             ArtistId = 1,
-                            EndDate = new DateTime(2023, 9, 18, 11, 28, 34, 440, DateTimeKind.Local).AddTicks(2704),
-                            StartDate = new DateTime(2023, 9, 18, 11, 28, 34, 440, DateTimeKind.Local).AddTicks(2701)
+                            EndDate = new DateTime(2023, 9, 18, 10, 23, 29, 431, DateTimeKind.Local).AddTicks(4946),
+                            StartDate = new DateTime(2023, 9, 18, 10, 23, 29, 431, DateTimeKind.Local).AddTicks(4944)
                         });
                 });
 
@@ -222,15 +222,15 @@ namespace ApiDBAccess.Migrations
                         new
                         {
                             Id = 1,
-                            NextTransactionDay = new DateTime(2023, 9, 18, 11, 28, 34, 440, DateTimeKind.Local).AddTicks(2759),
-                            TransactionDay = new DateTime(2023, 9, 18, 11, 28, 34, 440, DateTimeKind.Local).AddTicks(2761),
+                            NextTransactionDay = new DateTime(2023, 9, 18, 10, 23, 29, 431, DateTimeKind.Local).AddTicks(5004),
+                            TransactionDay = new DateTime(2023, 9, 18, 10, 23, 29, 431, DateTimeKind.Local).AddTicks(5005),
                             UserId = 1
                         },
                         new
                         {
                             Id = 2,
-                            NextTransactionDay = new DateTime(2023, 9, 18, 11, 28, 34, 440, DateTimeKind.Local).AddTicks(2763),
-                            TransactionDay = new DateTime(2023, 9, 18, 11, 28, 34, 440, DateTimeKind.Local).AddTicks(2764),
+                            NextTransactionDay = new DateTime(2023, 9, 18, 10, 23, 29, 431, DateTimeKind.Local).AddTicks(5007),
+                            TransactionDay = new DateTime(2023, 9, 18, 10, 23, 29, 431, DateTimeKind.Local).AddTicks(5008),
                             UserId = 2
                         });
                 });
@@ -365,7 +365,7 @@ namespace ApiDBAccess.Migrations
                             IsArtist = true,
                             IsPremium = true,
                             LastName = "Bieber",
-                            LastOnline = new DateTime(2023, 9, 19, 11, 28, 34, 440, DateTimeKind.Local).AddTicks(2511),
+                            LastOnline = new DateTime(2023, 9, 19, 10, 23, 29, 431, DateTimeKind.Local).AddTicks(4771),
                             Mail = "justinbieber@hotmail.com",
                             Name = "Justin",
                             Password = "Bruger123",
@@ -378,7 +378,7 @@ namespace ApiDBAccess.Migrations
                             IsArtist = false,
                             IsPremium = true,
                             LastName = "Wayne",
-                            LastOnline = new DateTime(2023, 9, 18, 12, 28, 34, 440, DateTimeKind.Local).AddTicks(2574),
+                            LastOnline = new DateTime(2023, 9, 18, 11, 23, 29, 431, DateTimeKind.Local).AddTicks(4826),
                             Mail = "batmanerbest@gmail.com",
                             Name = "Bruce",
                             Password = "Beuger123",
@@ -391,7 +391,7 @@ namespace ApiDBAccess.Migrations
                             IsArtist = false,
                             IsPremium = false,
                             LastName = "Kent",
-                            LastOnline = new DateTime(2023, 9, 18, 11, 28, 34, 440, DateTimeKind.Local).AddTicks(2577),
+                            LastOnline = new DateTime(2023, 9, 18, 10, 23, 29, 431, DateTimeKind.Local).AddTicks(4829),
                             Mail = "ilovelois@gmail.com",
                             Name = "Clark",
                             Password = "Bruger123",
