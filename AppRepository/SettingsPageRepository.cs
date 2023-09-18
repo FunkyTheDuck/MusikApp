@@ -63,5 +63,13 @@ namespace AppRepository
             }
             return false;
         }
+        public async Task<bool> CreateSettingsAsync(int userid)
+        {
+            DtoSettings dtoSettings = new DtoSettings
+            {
+                UserId = userid,
+            };
+            return await db.CreateSettingsAsync(dtoSettings);
+        }
     }
 }

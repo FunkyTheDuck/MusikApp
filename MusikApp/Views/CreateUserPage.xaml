@@ -15,6 +15,7 @@
             >
             <Label 
             Text="Create new user"
+            TextColor="White"
             HorizontalOptions="Center"
                 VerticalOptions="Center"
             FontSize="25"/>
@@ -26,7 +27,7 @@
     Padding="4,5,4,5"
         Margin="0,30,0,15">
             <VerticalStackLayout>
-                <Label Text="UserName" Margin="5,0,0,0"/>
+                <Label Text="UserName" TextColor="White" Margin="5,0,0,0"/>
                 <Border x:Name="UserNameContainer"
        StrokeShape="RoundRectangle 20,20,20,20"
        HorizontalOptions="Center"
@@ -43,7 +44,7 @@
     Padding="4,5,4,5"
         Margin="0,0,0,15">
             <VerticalStackLayout>
-                <Label Text="Name" Margin="5,0,0,0"/>
+                <Label Text="Name" TextColor="White" Margin="5,0,0,0"/>
                 <Border x:Name="NameContainer"
        StrokeShape="RoundRectangle 20,20,20,20"
        HorizontalOptions="Center"
@@ -60,7 +61,7 @@
     Padding="4,5,4,5"
         Margin="0,0,0,15">
             <VerticalStackLayout>
-                <Label Text="LastName" Margin="5,0,0,0"/>
+                <Label Text="LastName" TextColor="White" Margin="5,0,0,0"/>
                 <Border x:Name="LastNameContainer"
        StrokeShape="RoundRectangle 20,20,20,20"
        HorizontalOptions="Center"
@@ -77,7 +78,7 @@
     Padding="4,5,4,5"
         Margin="0,0,0,15">
             <VerticalStackLayout>
-                <Label Text="Mail" Margin="5,0,0,0"/>
+                <Label Text="Mail" TextColor="White" Margin="5,0,0,0"/>
                 <Border x:Name="MailContainer"
        StrokeShape="RoundRectangle 20,20,20,20"
        HorizontalOptions="Center"
@@ -94,7 +95,7 @@
     Padding="4,5,4,5"
         Margin="0,0,0,15">
             <VerticalStackLayout>
-                <Label Text="Password" Margin="5,0,0,0"/>
+                <Label Text="Password" TextColor="White" Margin="5,0,0,0"/>
                 <Border x:Name="PasswordContainer"
        StrokeShape="RoundRectangle 20,20,20,20"
        HorizontalOptions="Center"
@@ -111,7 +112,7 @@
     Padding="4,5,4,5"
         Margin="0,0,0,15">
             <VerticalStackLayout>
-                <Label Text="Validate Password" Margin="5,0,0,0"/>
+                <Label Text="Validate Password" TextColor="White" Margin="5,0,0,0"/>
                 <Border x:Name="ValidatePasswordContainer"
         StrokeShape="RoundRectangle 20,20,20,20"
         HorizontalOptions="Center"
@@ -126,7 +127,7 @@
                 WidthRequest="116"
                 Padding="4,5,4,5"
                 Margin="0,0,0,5">
-            <Button BackgroundColor="Gray" Text="Create user" Command="{Binding RegisterCommand}"/>
+            <Button BackgroundColor="#303030" Text="Create user" Command="{Binding RegisterCommand}"/>
         </Border>
     </VerticalStackLayout>
 </ContentPage>

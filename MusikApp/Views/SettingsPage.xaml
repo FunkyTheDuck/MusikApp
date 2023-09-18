@@ -134,7 +134,7 @@
                     <ImageButton Style="{StaticResource LogInImage}" Source="soundcloudsignin.png"/>
                 </Border>
                 <Border Style="{StaticResource LogOutBtnBorder}">
-                    <Button Style="{StaticResource LogOutBtn}" Text="Log out"/>
+                    <Button Style="{StaticResource LogOutBtn}" Command="{Binding LogoutButton}" Text="Log out"/>
                 </Border>
             </StackLayout>
         </ScrollView>

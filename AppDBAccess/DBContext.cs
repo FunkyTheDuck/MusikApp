@@ -250,6 +250,14 @@ namespace AppDBAccess
             }
             return response.IsSuccessStatusCode;
         }
+        public async Task<bool> CreateSettingsAsync(DtoSettings dtoSetting)
+        {
+            dtoSetting.ChangeGenre = "";
+            string json = JsonConvert.SerializeObject(dtoSetting);
+            StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+            var response = await client.PostAsync($"https://{ip}:7147/api/Settings", content);
+            return response.IsSuccessStatusCode;
+        }
         public async Task<List<string>> GetAllLikedSongsId(int userId)
         {
             HttpResponseMessage response;

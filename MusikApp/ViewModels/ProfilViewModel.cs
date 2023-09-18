@@ -32,7 +32,7 @@ namespace MusikApp.ViewModels
         }
         public async void GetAllLikedSong()
         {
-            List<DisplayedSong> list = await repo.GetAllLikedSongs(1, 50);
+            List<DisplayedSong> list = await repo.GetAllLikedSongs(Convert.ToInt32(await SecureStorage.Default.GetAsync("userId")), 50);
             foreach (DisplayedSong song in list)
             {
                 LikedSongsList.Add(song);

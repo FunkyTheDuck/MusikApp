@@ -28,7 +28,7 @@ namespace MusikAPI.Controllers
         [HttpPut]
         public async Task<IActionResult> UpdateUserSettingsAsync(Settings setting)
         {
-            if(setting != null)
+            if (setting != null)
             {
                 bool checkIfSucces = false;
                 try
@@ -39,7 +39,28 @@ namespace MusikAPI.Controllers
                 {
                     return NotFound();
                 }
-                if(checkIfSucces)
+                if (checkIfSucces)
+                {
+                    return Ok();
+                }
+            }
+            return BadRequest();
+        }
+        [HttpPost]
+        public async Task<IActionResult> CreateUserSettingsAsync(Settings setting)
+        {
+            if (setting != null)
+            {
+                bool checkIfSucces = false;
+                try
+                {
+                    checkIfSucces = await repo.CreateUserSettingsAsync(setting);
+                }
+                catch
+                {
+                    return NotFound();
+                }
+                if (checkIfSucces)
                 {
                     return Ok();
                 }

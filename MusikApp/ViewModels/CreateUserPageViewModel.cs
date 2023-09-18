@@ -1,4 +1,6 @@
 ﻿using AppModels;
+using AppRepository;
+using MusikApp.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,9 +20,13 @@ namespace MusikApp.ViewModels
         public string ValidatePassword {get; set;}
 
         public ICommand RegisterCommand { get; set; }
+        UserRepository repo { get; set; }
+        SettingsPageRepository settingsRepository { get; set; }
 
         public CreateUserPageViewModel()
         {
+            repo = new UserRepository();
+            settingsRepository = new SettingsPageRepository();
             RegisterCommand = new Command(RegisterUserClicked);
         }
 
@@ -51,9 +57,22 @@ namespace MusikApp.ViewModels
                 UserName = UserName,
                 Mail = Mail,
                 Password = Password,
+                IsArtist = false,
+                IsPremium = false,
             };
-            await App.Current.MainPage.DisplayAlert("Success", "it succeseed", "ok");
-            //api kald til at lave brugeren
+
+            bool created = await repo.CreateUserAsync(user);
+            if (created)
+            {
+                User createduser = await repo.GetUserAsync(UserName, Password);
+
+                await settingsRepository.CreateSettingsAsync(createduser.Id);
+                await SecureStorage.Default.SetAsync("userId", createduser.Id.ToString());
+
+                await Shell.Current.GoToAsync("//ChooseGenrePage");
+            }
+
+            
         }
 
         private bool ContainsUppercaseLetter(string password)

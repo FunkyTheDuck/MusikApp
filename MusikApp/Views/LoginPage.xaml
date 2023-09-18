@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MusikApp.Views.LoginPage"
              xmlns:ViewModels="clr-namespace:MusikApp.ViewModels"
-             Title="LoginPage">
+             Title="">
     <ContentPage.BindingContext>
         <ViewModels:LoginPageViewModel/>
     </ContentPage.BindingContext>
@@ -15,6 +15,7 @@
             >
             <Label 
             Text="Welcome to Musicly"
+            TextColor="White"
             HorizontalOptions="Center"
                 VerticalOptions="Center"
             FontSize="25"/>
@@ -61,7 +62,7 @@
                 WidthRequest="116"
                 Padding="6,7,6,7"
                 Margin="0,0,0,5">
-            <Button BackgroundColor="Gray" Text="Log in" Command="{Binding LoginCommand}"/>
+            <Button BackgroundColor="#303030" Text="Log in" Command="{Binding LoginCommand}"/>
         </Border>
         <!--Sign Up for users-->
         <Border x:Name="SignUpUserContainer"
@@ -70,10 +71,7 @@
                BackgroundColor="#303030"
                 HeightRequest="50"
                 WidthRequest="235">
-            <Border.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding CreateUserCommand}"/>
-            </Border.GestureRecognizers>
-            <Image/>
+            <Button BackgroundColor="#303030" Text="Create User" Command="{Binding CreateUserCommand}"/>
         </Border>
         <!--sign in for spotify users-->
         <Border x:Name="SignInSpotifyUserContainer"

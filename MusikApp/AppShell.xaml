@@ -12,7 +12,13 @@
     Shell.TabBarTitleColor="White"
     Shell.PresentationMode="Modal">
 
-    <TabBar>
+    <ShellContent Shell.NavBarIsVisible="False" NavigationPage.HasNavigationBar="False" ContentTemplate="{DataTemplate view:LoginPage}" Route="LoginPage"/>
+
+    <ShellContent Shell.NavBarIsVisible="False" NavigationPage.HasNavigationBar="False" ContentTemplate="{DataTemplate view:ChooseGenrePage}" Route="ChooseGenrePage"/>
+
+    <ShellContent Shell.NavBarIsVisible="False" NavigationPage.HasNavigationBar="False" ContentTemplate="{DataTemplate view:CreateUserPage}" Route="CreateUserPage"/>
+
+    <TabBar Route="StartPage">
         <Tab Icon="search_icon.png">
             <ShellContent ContentTemplate="{DataTemplate view:FriendsPage}"/>
         </Tab>
