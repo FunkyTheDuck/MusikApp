@@ -13,6 +13,7 @@ using SpotifyAPI.Web.Auth;
 using AppModels;
 using System.Reflection.PortableExecutable;
 using Xamarin.Essentials;
+using static System.Net.WebRequestMethods;
 
 namespace AppDBAccess
 {
@@ -125,17 +126,50 @@ namespace AppDBAccess
             FullTrack recommendedSong = response.Tracks.Items.First();
             return recommendedSong;
         }
-        public async Task<Track[]> GetListOfRecommendations(int id, int amount, string recommend)
+        public async Task<Track[]> GetListOfRecommendations(int id, int amount)
         {
             //Få lavet så at den sorter på users settings chooses
-            DtoSettings settings = await db.GetUsersSettingsAsync(id);
-            string genre = settings.ChangeGenre;
+            DtoSettings settings = await db.GetUsersSettingsAsync(3);
+            string uri = $"https://api.spotify.com/v1/recommendations?limit={amount}";
+            for (int i = 0; i < 5; i++)
+            {
+                switch (i)
+                {
+                    case 0:
+                        if(!string.IsNullOrEmpty(settings.ChangeGenre))
+                        {
+                            uri += $"&seed_genres={settings.ChangeGenre.ToLower()}";
+                        }
+                        break;
+                    case 1:
+                        if(settings.Danceability != 0)
+                        {
+                            uri += $"&target_danceability={settings.Danceability}";
+                        }
+                        break;
+                    case 2:
+                        if(settings.Energy != 0)
+                        {
+                            uri += $"&target_energy={settings.Energy}";
+                        }
+                        break;
+                    case 3:
+                        if(settings.Popularity != 0)
+                        {
+                            uri += $"&target_popularity={settings.Popularity}";
+                        }
+                        break;
+                    default:
+
+                        break;
+                }
+            }
             HttpClient httpClient = new HttpClient();
             httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", await GetToken());
             HttpResponseMessage response = null;
             try 
             {
-                response = await httpClient.GetAsync($"https://api.spotify.com/v1/recommendations?limit={amount}&market=DK&seed_genres={genre.ToLower()}");
+                response = await httpClient.GetAsync(uri);
             }
             catch
             {

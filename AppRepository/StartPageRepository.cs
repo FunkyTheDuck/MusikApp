@@ -112,7 +112,7 @@ namespace AppRepository
         }
         public async Task<List<DisplayedSong>> GetListOfRecommendation(int id, int amount)
         {
-            Track[] arrayOfSongs = await spotifyDB.GetListOfRecommendations(id, amount, "");
+            Track[] arrayOfSongs = await spotifyDB.GetListOfRecommendations(id, amount);
             if (arrayOfSongs.Length > 0)
             {
                 List<DisplayedSong> songList = new List<DisplayedSong>();
