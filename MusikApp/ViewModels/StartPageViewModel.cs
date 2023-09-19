@@ -121,6 +121,7 @@ namespace MusikApp.ViewModels
             {
                 UserID = Convert.ToInt32(await SecureStorage.Default.GetAsync("userId")),
                 SongID = currentSong.Id,
+                SongArtistId = currentSong.ArtistId,
             };
             bool checkIfSucces = false;
             try
@@ -146,6 +147,7 @@ namespace MusikApp.ViewModels
             {
                 UserID = Convert.ToInt32(await SecureStorage.Default.GetAsync("userId")),
                 SongID = currentSong.Id,
+                SongArtistId= currentSong.ArtistId,
             };
             bool checkIfSucces = false;
             try

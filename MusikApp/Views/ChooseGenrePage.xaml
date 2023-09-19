@@ -16,23 +16,22 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ScrollView>
+        <StackLayout>
 
-        <CollectionView ItemsSource="{Binding Genres}" ItemsLayout="VerticalGrid, 3" SelectionMode="Single" SelectionChangedCommand="{Binding SelectedGenreChanged}" SelectedItem="{Binding SelectedGenre}">
+            <CollectionView ItemsSource="{Binding Genres}" ItemsLayout="VerticalGrid, 3" SelectionMode="Multiple" SelectedItems="{Binding SelectedGenre}">
                 <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <VerticalStackLayout>
-                        
-                    <Border StrokeShape="RoundRectangle 12,12,12,12" BackgroundColor="Gray">
-
-                        <Label HorizontalTextAlignment="Center" FontSize="14" TextColor="White" Text="{Binding Name}"/>
-
-                    </Border>
-                    </VerticalStackLayout>
-
-                </DataTemplate>
+                    <DataTemplate>
+                        <Border  BackgroundColor="Gray">
+                            <Label HorizontalTextAlignment="Center" FontSize="14" TextColor="White" Text="{Binding Name}"/>
+                        </Border>
+                    </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
+            <HorizontalStackLayout>
+                <Button Margin="90,0,55,0" Command="{Binding SelectedGenreChanged}" Text="Confirm"></Button>
+                <Button Text="Cancel"></Button>
+            </HorizontalStackLayout>
 
-        </ScrollView>
-
+        </StackLayout>
+    </ScrollView>
 </ContentPage>

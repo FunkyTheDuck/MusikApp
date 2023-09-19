@@ -12,5 +12,6 @@ namespace ApiModels
         public int UserID { get; set; }
         public User? User { get; set; }
         public string SongID { get; set; }
+        public string SongArtistId { get; set; }
     }
 }

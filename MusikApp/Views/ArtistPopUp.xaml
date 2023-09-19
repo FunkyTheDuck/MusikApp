@@ -10,8 +10,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="150"/>
             <RowDefinition Height="50"/>
-            <RowDefinition Height="75"/>
-            <RowDefinition Height="75"/>
+            <RowDefinition Height="20"/>
             <RowDefinition Height="75"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -23,7 +22,9 @@
         </Grid.ColumnDefinitions>
         <Image Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center" x:Name="ArtistImage"/>
         <Label Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="1" HorizontalOptions="Start" VerticalOptions="Start" x:Name="ArtistName"/>
-        <Border Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2" BackgroundColor="#303030">
+        <Label Grid.Column="1" Grid.Row="2" x:Name="AmountOfLikes"/>
+        <Label Grid.Column="3" Grid.Row="2" x:Name="AmountOfSkips"/>
+        <Border Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="3" BackgroundColor="#303030">
             <ImageButton Clicked="ArtistLink_Clicked" Source="spotifysignin.png"/>
         </Border>
     </Grid>

@@ -296,5 +296,43 @@ namespace AppDBAccess
             }
             return new List<string>();
         }
+        public async Task<List<int>> GetLikedAndSkipsForArtistAsync(string artistId)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                response = await client.GetAsync($"https://{ip}:7147/api/ArtistInfoController/{artistId}");
+            }
+            catch
+            {
+                return null;
+            }
+            string json = string.Empty;
+            try
+            {
+                json = await response.Content.ReadAsStringAsync();
+            }
+            catch
+            {
+                return null;
+            }
+            if(!string.IsNullOrEmpty(json))
+            {
+                List<int> likedAndSkippedAmount = new List<int>();
+                try
+                {
+                    likedAndSkippedAmount = JsonConvert.DeserializeObject<List<int>>(json);
+                }
+                catch
+                {
+                    return null;
+                }
+                if(likedAndSkippedAmount.Count == 2)
+                {
+                    return likedAndSkippedAmount;
+                }
+            }
+            return null;
+        }
     }
 }

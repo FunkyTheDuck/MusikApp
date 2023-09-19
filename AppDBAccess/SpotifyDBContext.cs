@@ -13,17 +13,20 @@ using SpotifyAPI.Web.Auth;
 using AppModels;
 using System.Reflection.PortableExecutable;
 using Xamarin.Essentials;
+using static System.Net.WebRequestMethods;
 
 namespace AppDBAccess
 {
     public class SpotifyDBContext
     {
+        HttpClient httpClient;
         string clientId;
         string clientSecret;
         DBContext db;
         public SpotifyDBContext()
         {
             db = new DBContext();
+            httpClient = new HttpClient();
             clientId = "7a45756d65a741c4bcb45c05844738e8";
             clientSecret = "b815f5b7a685493494948e7a677f3bcc";
         }
@@ -58,9 +61,10 @@ namespace AppDBAccess
         {
             SpotifyClient spotify = new SpotifyClient(await GetToken());
             FullArtist temp = await spotify.Artists.Get(id);
+
             try
             {
-                if(temp.Images != null)
+                if (temp.Images != null)
                 {
                     return temp.Images.LastOrDefault().Url;
                 }
@@ -71,15 +75,35 @@ namespace AppDBAccess
             }
             return "not_found.png";
         }
+        public async Task<List<string>> GetMultipleArtistImageAsync(List<string> ids)
+        {
+            SpotifyClient spotify = new SpotifyClient(await GetToken());
+            ArtistsRequest listOfIds = new ArtistsRequest(ids);
+            ArtistsResponse artistResponse = await spotify.Artists.GetSeveral(listOfIds);
+            List<FullArtist> listOfArtist = artistResponse.Artists.ToList();
+            List<string> listOfImageUrls = new List<string>();
+            foreach (FullArtist artist in listOfArtist)
+            {
+                try
+                {
+                    listOfImageUrls.Add(artist.Images.LastOrDefault().Url);
+                }
+                catch
+                {
+                    listOfImageUrls.Add("not_found.png");
+                }
+            }
+            return listOfImageUrls;
+        }
         public async Task<FullArtist> GetArtistAsync(string artistId)
         {
             SpotifyClient spotify = new SpotifyClient(await GetToken());
             FullArtist artist = await spotify.Artists.Get(artistId);
             return artist;
         }
-        public async Task<List<Genre>> GetAllGenresAsync()
+        public async Task<ObservableCollection<Genre>> GetAllGenresAsync()
         {
-            List<Genre> GenreList = new();
+            ObservableCollection<Genre> GenreList = new();
             List<string> genres = new List<string>()
 
             {
@@ -91,7 +115,7 @@ namespace AppDBAccess
             "metalcore", "minimal-techno", "movies", "mpb", "new-age", "new-release", "opera", "pagode", "party", "philippines-opm", "piano", "pop", "pop-film", "post-dubstep", "power-pop",
             "progressive-house", "psych-rock", "punk", "punk-rock", "r-n-b", "rainy-day", "reggae", "reggaeton", "road-trip", "rock", "rock-n-roll", "rockabilly", "romance", "sad",
             "salsa", "samba", "sertanejo", "show-tunes", "singer-songwriter", "ska", "sleep", "songwriter", "soul", "soundtracks", "spanish", "study", "summer", "swedish", "synth-pop",
-            "tango", "techno", "trance", "trip-hop", "turkish", "work-out", "world-music" 
+            "tango", "techno", "trance", "trip-hop", "turkish", "work-out", "world-music"
             };
             foreach (var item in genres)
             {
@@ -106,7 +130,7 @@ namespace AppDBAccess
         }
         public async Task<List<FullTrack>> GetListOfSongs(List<string> songIds)
         {
-            if(songIds.Count > 50)
+            if (songIds.Count > 50)
             {
                 return null;
             }
@@ -125,30 +149,77 @@ namespace AppDBAccess
             FullTrack recommendedSong = response.Tracks.Items.First();
             return recommendedSong;
         }
-        public async Task<Track[]> GetListOfRecommendations(int id, int amount, string recommend)
+        public async Task<Track[]> GetListOfRecommendations(int id, int amount)
         {
-            //Få lavet så at den sorter på users settings chooses
             DtoSettings settings = await db.GetUsersSettingsAsync(id);
-            string genre = settings.ChangeGenre;
-            HttpClient httpClient = new HttpClient();
+            string uri = $"https://api.spotify.com/v1/recommendations?limit={amount}";
+            for (int i = 0; i < 5; i++)
+            {
+                switch (i)
+                {
+                    case 0:
+                        if (!string.IsNullOrEmpty(settings.ChangeGenre))
+                        {
+                            uri += $"&seed_genres={settings.ChangeGenre.ToLower()}";
+                        }
+                        break;
+                    case 1:
+                        if (settings.Danceability != 0)
+                        {
+                            uri += $"&target_danceability={settings.Danceability}";
+                        }
+                        break;
+                    case 2:
+                        if (settings.Energy != 0)
+                        {
+                            uri += $"&target_energy={settings.Energy}";
+                        }
+                        break;
+                    case 3:
+                        if (settings.Popularity != 0)
+                        {
+                            uri += $"&target_popularity={settings.Popularity}";
+                        }
+                        break;
+                    default:
+
+                        break;
+                }
+            }
             httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", await GetToken());
             HttpResponseMessage response = null;
             try
             {
-                response = await httpClient.GetAsync($"https://api.spotify.com/v1/recommendations?limit={amount}&market=DK&seed_genres={genre.ToLower()}");
+                response = await httpClient.GetAsync(uri);
             }
             catch
             {
                 return null;
             }
-            if(response.IsSuccessStatusCode && response != null)
+            if (response.IsSuccessStatusCode && response != null)
             {
                 string json = await response.Content.ReadAsStringAsync();
                 Rootobject temp = JsonConvert.DeserializeObject<Rootobject>(json);
+
+                List<string> listOfLikedSongs = await db.GetAllLikedSongsId(id);
+
+                List<string> whiteListMatch = new List<string>();
+                for (int i = 0; i < temp.tracks.Length; i++)
+                {
+                    whiteListMatch = listOfLikedSongs.Where(x => x == temp.tracks[i].id).ToList();
+                }
+                if (whiteListMatch.Count > 0)
+                {
+                    Track[] tracks = new Track[amount - whiteListMatch.Count];
+                    for (int j = 0; j < whiteListMatch.Count; j++)
+                    {
+                        tracks[j] = temp.tracks.FirstOrDefault(match => match.id != whiteListMatch[j]);
+                    }
+                    return tracks;
+                }
                 return temp.tracks;
             }
             return null;
-
         }
     }
 }
