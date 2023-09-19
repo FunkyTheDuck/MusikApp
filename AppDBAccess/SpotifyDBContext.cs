@@ -12,6 +12,7 @@ using SpotifyAPI.Web;
 using SpotifyAPI.Web.Auth;
 using AppModels;
 using System.Reflection.PortableExecutable;
+using System.Collections.ObjectModel;
 
 namespace AppDBAccess
 {
@@ -77,9 +78,9 @@ namespace AppDBAccess
             FullArtist artist = await spotify.Artists.Get(artistId);
             return artist;
         }
-        public async Task<List<Genre>> GetAllGenresAsync()
+        public async Task<ObservableCollection<Genre>> GetAllGenresAsync()
         {
-            List<Genre> GenreList = new();
+            ObservableCollection<Genre> GenreList = new();
             List<string> genres = new List<string>()
 
             {
