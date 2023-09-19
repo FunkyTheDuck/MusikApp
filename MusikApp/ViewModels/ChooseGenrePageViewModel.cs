@@ -49,7 +49,7 @@ namespace MusikApp.ViewModels
 
             await settingRepo.UpdateSettingsAsync(settings);
 
-            await Shell.Current.GoToAsync(nameof(SettingsPage), false);
+            await Shell.Current.GoToAsync("//StartPage");
         }
     }
 

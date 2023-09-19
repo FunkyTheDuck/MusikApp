@@ -46,5 +46,28 @@ namespace AppRepository
             return null;
         }
 
+        public async Task<bool> CreateUserAsync(User user)
+        {
+            DtoUser dtouser = new DtoUser();
+            if (user != null) 
+            {
+                dtouser.Name = user.Name;
+                dtouser.LastName = user.LastName;
+                dtouser.UserName = user.UserName;
+                dtouser.Password = user.Password;
+                dtouser.Mail = user.Mail;
+                dtouser.IsPremium = user.IsPremium;
+                dtouser.IsArtist = user.IsArtist;
+            }
+            try
+            {
+                return await db.CreateUser(dtouser);
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
     }
 }

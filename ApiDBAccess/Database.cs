@@ -18,6 +18,7 @@ namespace ApiDBAccess
         public DbSet<DtoSettings> Settings { get; set; }
         public DbSet<DtoUser> Users { get; set; }
         public DbSet<DtoWhiteList> WhiteLists { get; set; }
+        public DbSet<DtoArtistInfo> ArtistInfo { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -44,13 +45,13 @@ namespace ApiDBAccess
                 new DtoSettings { Id = 2, UserId = 2, ChangeGenre = "rock", HowNewTheMusicIs = 5, NotificationsAmount = 3 },
                 new DtoSettings { Id = 3, UserId = 3, ChangeGenre = "pop", HowNewTheMusicIs = 20, NotificationsAmount = 8 });
             modelBuilder.Entity<DtoBlackList>().HasData(
-                new DtoBlackList { Id = 1, UserID = 1, SongID = "7xapw9Oy21WpfEcib2ErSA" },
-                new DtoBlackList { Id = 2, UserID = 2, SongID = "7xapw9Oy21WpfEcib2ErSA" },
-                new DtoBlackList { Id = 3, UserID = 3, SongID = "7xapw9Oy21WpfEcib2ErSA"});
+                new DtoBlackList { Id = 1, UserID = 1, SongID = "7xapw9Oy21WpfEcib2ErSA", SongArtistId = "1uNFoZAHBGtllmzznpCI3s" },
+                new DtoBlackList { Id = 2, UserID = 2, SongID = "7xapw9Oy21WpfEcib2ErSA", SongArtistId = "1uNFoZAHBGtllmzznpCI3s" },
+                new DtoBlackList { Id = 3, UserID = 3, SongID = "7xapw9Oy21WpfEcib2ErSA", SongArtistId = "1uNFoZAHBGtllmzznpCI3s" });
             modelBuilder.Entity<DtoWhiteList>().HasData(
-                new DtoWhiteList { Id = 1, UserID = 1, SongID = "6habFhsOp2NvshLv26DqMb" },
-                new DtoWhiteList { Id = 2, UserID = 2, SongID = "6habFhsOp2NvshLv26DqMb" },
-                new DtoWhiteList { Id = 3, UserID = 3, SongID = "6habFhsOp2NvshLv26DqMb" });
+                new DtoWhiteList { Id = 1, UserID = 1, SongID = "6habFhsOp2NvshLv26DqMb", SongArtistId = "4V8Sr092TqfHkfAA5fXXqG" },
+                new DtoWhiteList { Id = 2, UserID = 2, SongID = "6habFhsOp2NvshLv26DqMb", SongArtistId = "4V8Sr092TqfHkfAA5fXXqG" },
+                new DtoWhiteList { Id = 3, UserID = 3, SongID = "6habFhsOp2NvshLv26DqMb", SongArtistId = "4V8Sr092TqfHkfAA5fXXqG" });
         }
     }
 }

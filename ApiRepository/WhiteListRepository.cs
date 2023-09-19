@@ -17,12 +17,54 @@ namespace ApiRepository
         {
             db = new Database();
         }
+        private async Task<bool> AddOneLikeToArtist(string ArtistId)
+        {
+            DtoArtistInfo? artistLikes;
+            try
+            {
+                artistLikes = await db.ArtistInfo.FirstOrDefaultAsync(x => x.SpotifyId == ArtistId);
+            }
+            catch
+            {
+                return false;
+            }
+            if(artistLikes != null)
+            {
+                artistLikes.AmountOfSongsLiked += 1;
+                db.ArtistInfo.Update(artistLikes);
+            }
+            else
+            {
+                DtoArtistInfo dtoArtistInfo = new DtoArtistInfo
+                {
+                    SpotifyId = ArtistId,
+                    AmountOfSongSkipped = 0,
+                    AmountOfSongsLiked = 1,
+                };
+                await db.ArtistInfo.AddAsync(dtoArtistInfo);
+            }
+            int checkIfSucces = 0;
+            try
+            {
+                checkIfSucces = await db.SaveChangesAsync();
+            }
+            catch
+            {
+                return false;
+            }
+            if(checkIfSucces > 0)
+            {
+                return true;
+            }
+            return false;
+        }
         public async Task<bool> LikeSongAsync(WhiteList likedSong)
         {
             DtoWhiteList dtoLikedSong = new DtoWhiteList
             {
                 UserID = likedSong.UserID,
                 SongID = likedSong.SongID,
+                SongArtistId = likedSong.SongArtistId,
             };
             try
             {
@@ -39,6 +81,11 @@ namespace ApiRepository
             catch
             {
                 return false;
+            }
+            
+            if(await AddOneLikeToArtist(dtoLikedSong.SongArtistId))
+            {
+
             }
             return true;
         }

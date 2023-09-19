@@ -86,5 +86,44 @@ namespace ApiRepository
             }
             return false;
         }
+        public async Task<bool> CreateUserSettingsAsync(Settings setting)
+        {
+            if (setting != null)
+            {
+                DtoSettings dtoSetting = new DtoSettings
+                {
+                    Id = setting.Id,
+                    UserId = setting.UserId,
+                    ChangeGenre = setting.ChangeGenre,
+                    HowNewTheMusicIs = setting.HowNewTheMusicIs,
+                    NotificationsAmount = setting.NotificationsAmount,
+                    Popularity = setting.Popularity,
+                    Energy = setting.Energy,
+                    Danceability = setting.Danceability
+                };
+                try
+                {
+                    await db.Settings.AddAsync(dtoSetting);
+                }
+                catch
+                {
+                    return false;
+                }
+                int checkIfSucces;
+                try
+                {
+                    checkIfSucces = await db.SaveChangesAsync();
+                }
+                catch
+                {
+                    return false;
+                }
+                if (checkIfSucces > 0)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }

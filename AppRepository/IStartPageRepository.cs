@@ -11,6 +11,6 @@ namespace AppRepository
         Task<string> GetArtistImageAsync(string id);
         Task<DisplayedArtist> GetArtistAsync(string id);
         Task<List<FullTrack>> GetListOfSongs(List<string> songIds);
-        Task<List<DisplayedSong>> GetListOfRecommendation(int amount);
+        Task<List<DisplayedSong>> GetListOfRecommendation(int id, int amount);
     }
 }

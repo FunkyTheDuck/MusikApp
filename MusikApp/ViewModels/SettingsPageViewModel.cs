@@ -83,7 +83,7 @@ namespace MusikApp.ViewModels
         {
             try
             {
-                Setting = await repo.GetUsersSettingsAsync(1);
+                Setting = await repo.GetUsersSettingsAsync(Convert.ToInt32(await SecureStorage.Default.GetAsync("userId")));
             }
             catch
             {
@@ -105,7 +105,7 @@ namespace MusikApp.ViewModels
         }
         private async void ChooseNewGenre(object obj)
         {
-            await Shell.Current.GoToAsync(nameof(ChooseGenrePage));
+            await Shell.Current.GoToAsync("//ChooseGenrePage");
         }
         private async void ChangeReleaseDateAsync()
         {
@@ -160,7 +160,7 @@ namespace MusikApp.ViewModels
         private async void LogOutClickedAsync()
         {
             SecureStorage.Default.Remove("userId");
-            await Shell.Current.GoToAsync(nameof(LoginPage));
+            await Shell.Current.GoToAsync("//LoginPage");
         }
     }
 }

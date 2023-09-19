@@ -250,6 +250,14 @@ namespace AppDBAccess
             }
             return response.IsSuccessStatusCode;
         }
+        public async Task<bool> CreateSettingsAsync(DtoSettings dtoSetting)
+        {
+            dtoSetting.ChangeGenre = "";
+            string json = JsonConvert.SerializeObject(dtoSetting);
+            StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+            var response = await client.PostAsync($"https://{ip}:7147/api/Settings", content);
+            return response.IsSuccessStatusCode;
+        }
         public async Task<List<string>> GetAllLikedSongsId(int userId)
         {
             HttpResponseMessage response;
@@ -287,6 +295,44 @@ namespace AppDBAccess
                 }
             }
             return new List<string>();
+        }
+        public async Task<List<int>> GetLikedAndSkipsForArtistAsync(string artistId)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                response = await client.GetAsync($"https://{ip}:7147/api/ArtistInfoController/{artistId}");
+            }
+            catch
+            {
+                return null;
+            }
+            string json = string.Empty;
+            try
+            {
+                json = await response.Content.ReadAsStringAsync();
+            }
+            catch
+            {
+                return null;
+            }
+            if(!string.IsNullOrEmpty(json))
+            {
+                List<int> likedAndSkippedAmount = new List<int>();
+                try
+                {
+                    likedAndSkippedAmount = JsonConvert.DeserializeObject<List<int>>(json);
+                }
+                catch
+                {
+                    return null;
+                }
+                if(likedAndSkippedAmount.Count == 2)
+                {
+                    return likedAndSkippedAmount;
+                }
+            }
+            return null;
         }
     }
 }

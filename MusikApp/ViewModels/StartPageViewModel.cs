@@ -42,7 +42,7 @@ namespace MusikApp.ViewModels
             List<DisplayedSong> New5Songs;
             try
             {
-                New5Songs = await repo.GetListOfRecommendation(amount);
+                New5Songs = await repo.GetListOfRecommendation(Convert.ToInt32(await SecureStorage.Default.GetAsync("userId")), amount);
             }
             catch
             {
@@ -112,8 +112,9 @@ namespace MusikApp.ViewModels
         {
             WhiteList whiteList = new WhiteList
             {
-                UserID = 1,
+                UserID = Convert.ToInt32(await SecureStorage.Default.GetAsync("userId")),
                 SongID = currentSong.Id,
+                SongArtistId = currentSong.ArtistId,
             };
             bool checkIfSucces = false;
             try
@@ -137,8 +138,9 @@ namespace MusikApp.ViewModels
         {
             BlackList blackList = new BlackList
             {
-                UserID = 1,
+                UserID = Convert.ToInt32(await SecureStorage.Default.GetAsync("userId")),
                 SongID = currentSong.Id,
+                SongArtistId= currentSong.ArtistId,
             };
             bool checkIfSucces = false;
             try
