@@ -1,7 +1,13 @@
-﻿using AppModels;
+﻿using AppDTOModels.SpotifyModels;
+using AppModels;
 using AppRepository;
+using CommunityToolkit.Maui.Core.Views;
 using CommunityToolkit.Maui.Views;
 using MusikApp.Views;
+using Newtonsoft.Json;
+using Plugin.LocalNotification;
+using Swan.Formatters;
+using System.Timers;
 using System.Windows.Input;
 
 namespace MusikApp.ViewModels
@@ -35,8 +41,9 @@ namespace MusikApp.ViewModels
             SkipSong = new Command(SkipCurrentSongAsync);
             LikeSong = new Command(LikeCurrentSongAsync);
             ArtistClicked = new Command(ArtistClickedAsync);
+            LocalNotificationCenter.Current.NotificationActionTapped += Current_NotificationActionTapped;
         }
-        
+
         private async void LoadNewSongs(int amount, bool firstCall)
         {
             List<DisplayedSong> New5Songs;
@@ -162,6 +169,15 @@ namespace MusikApp.ViewModels
         {
             DisplayedArtist clickedArtist = await repo.GetArtistAsync(currentSong.ArtistId);
             await (Application.Current.MainPage).ShowPopupAsync(new ArtistPopUp(clickedArtist));
+        }
+        private async void Current_NotificationActionTapped(Plugin.LocalNotification.EventArgs.NotificationActionEventArgs e)
+        {
+            DisplayedSong Songs;
+            string test = e.Request.ReturningData;
+            Songs = JsonConvert.DeserializeObject<DisplayedSong>(test);
+            songQueue[0] = Songs;
+            await DisplayNewSong();
+            await Shell.Current.GoToAsync("//StartPage");
         }
     }
 }

@@ -3,6 +3,7 @@ using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
 using MusikApp.ViewModels;
 using MusikApp.Views;
+using Plugin.LocalNotification;
 
 namespace MusikApp
 {
@@ -24,12 +25,13 @@ namespace MusikApp
                 .UseMauiApp<App>()
                 .UseMauiCommunityToolkitMediaElement()
                 .UseMauiCommunityToolkit()
+                .UseLocalNotification()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
-
+            
 #if ANDROID && DEBUG
             Platforms.Android.DangerousAndroidMessageHandlerEmitter.Register();
             Platforms.Android.DangerousTrustProvider.Register();

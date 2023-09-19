@@ -1,12 +1,15 @@
 ﻿using AppModels;
 using AppRepository;
 using MusikApp.Views;
+using Newtonsoft.Json;
+using Plugin.LocalNotification;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Windows.Input;
 
 namespace MusikApp.ViewModels
@@ -18,6 +21,7 @@ namespace MusikApp.ViewModels
         public ObservableCollection<Genre> currentChoosenGenre { get; set; }
         public Settings Setting { get; set; }
         private ISettingsPageRepository repo { get; set; }
+
         #region Variable 
         private bool isDoingChanges = false;
         private double changeReleaseDate { get; set; }
@@ -74,9 +78,11 @@ namespace MusikApp.ViewModels
         public SettingsPageViewModel(ISettingsPageRepository repo)
         {
             this.repo = repo;
+            repo = new SettingsPageRepository();
             AddNewGenre = new Command(ChooseNewGenre);
             LogoutButton = new Command(LogOutClickedAsync);
             GetUsersSettings();
+            notificationTiming();
         }
 
         private async void GetUsersSettings()
@@ -161,6 +167,34 @@ namespace MusikApp.ViewModels
         {
             SecureStorage.Default.Remove("userId");
             await Shell.Current.GoToAsync("//LoginPage");
+        }
+        private void notificationTiming()
+        {
+            System.Timers.Timer aTimer = new System.Timers.Timer(60 * 1000); //one hour in milliseconds
+            aTimer.Elapsed += new ElapsedEventHandler(SendNotifications);
+            aTimer.Start();
+        }
+        public async void SendNotifications(object source, ElapsedEventArgs e)
+        {
+            DisplayedSong Song;
+            Song = await repo.GetSongToNotification(Convert.ToInt32(await SecureStorage.Default.GetAsync("userId")));
+            string json = JsonConvert.SerializeObject(Song);
+            var request = new NotificationRequest
+            {
+                NotificationId = 1000,
+                Title = "Har du lyst til at høre nyt musik?",
+                Subtitle = "har du hørt?",
+                ReturningData = json,
+                Description = $"Hør {Song.SongName} fra {Song.ArtistName} lige nu",
+                BadgeNumber = 42,
+                Schedule = new NotificationRequestSchedule
+                {
+                    NotifyTime = DateTime.Now.AddSeconds(5),
+                    NotifyRepeatInterval = TimeSpan.FromMinutes(1),
+                    RepeatType = NotificationRepeat.TimeInterval,
+                }
+            };
+            LocalNotificationCenter.Current.Show(request);
         }
     }
 }
