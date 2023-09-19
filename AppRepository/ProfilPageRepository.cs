@@ -42,22 +42,35 @@ namespace AppRepository
                     }
                 }
                 List<FullTrack> likedSongs = await spotifyDB.GetListOfSongs(likedSongsId);
+                List<string> listOfArtistIds = new List<string>();
+                for (int i = 0; i < likedSongs.Count; i++)
+                {
+                    try
+                    {
+                        listOfArtistIds.Add(likedSongs[i].Artists.FirstOrDefault().Id);
+                    }
+                    catch
+                    {
+
+                    }
+                }
+                List<string> listOfArtistImageUrls = await spotifyDB.GetMultipleArtistImageAsync(listOfArtistIds);
                 List<DisplayedSong> songList = new List<DisplayedSong>();
-                foreach (FullTrack track in likedSongs)
+                for (int i = 0; i < likedSongs.Count; i++)
                 {
                     DisplayedSong song;
                     try
                     {
                         song = new DisplayedSong
                         {
-                            Id = track.Id,
-                            SongImage = track.Album.Images.FirstOrDefault().Url,
-                            SongArtistImage = await spotifyDB.GetArtistImageAsync(track.Artists.FirstOrDefault().Id),
-                            SongName = track.Name,
-                            AlbumName = track.Album.Name,
-                            ArtistName = track.Artists.FirstOrDefault().Name,
-                            IsPlayable = track.IsPlayable,
-                            PreviewUrl = track.PreviewUrl
+                            Id = likedSongs[i].Id,
+                            SongImage = likedSongs[i].Album.Images.FirstOrDefault().Url,
+                            SongArtistImage = listOfArtistImageUrls[i],
+                            SongName = likedSongs[i].Name,
+                            AlbumName = likedSongs[i].Album.Name,
+                            ArtistName = likedSongs[i].Artists.FirstOrDefault().Name,
+                            IsPlayable = likedSongs[i].IsPlayable,
+                            PreviewUrl = likedSongs[i].PreviewUrl
                         };
                         songList.Add(song);
                     }
