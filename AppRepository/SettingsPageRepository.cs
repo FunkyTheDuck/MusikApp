@@ -76,7 +76,7 @@ namespace AppRepository
         }
         public async Task<DisplayedSong> GetSongToNotification(int id)
         {
-            Track[] arrayOfSongs = await spotifyDB.GetListOfRecommendations(id, 1, "");
+            Track[] arrayOfSongs = await spotifyDB.GetListOfRecommendations(id, 1);
             if (arrayOfSongs.Length == 1)
             {
                 DisplayedSong song = new DisplayedSong()

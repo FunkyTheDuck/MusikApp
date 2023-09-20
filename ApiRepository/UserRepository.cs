@@ -68,20 +68,31 @@ namespace ApiRepository
         public async Task<User> GetUserAsync(string username, string password)
         {
             DtoUser dtoUser;
-            dtoUser = await db.Users.FirstOrDefaultAsync(x => x.UserName == username && x.Password == password);
-            User user = new User
+                dtoUser = await db.Users.FirstOrDefaultAsync(x => x.UserName == username && x.Password == password);
+            if (dtoUser != null)
             {
-                Id = dtoUser.Id,
-                ProfilPicture = dtoUser.ProfilPicture,
-                UserName = dtoUser.UserName,
-                Name = dtoUser.Name,
-                LastName = dtoUser.LastName,
-                Mail = dtoUser.Mail,
-                Password = dtoUser.Password,
-                IsArtist = dtoUser.IsArtist,
-                IsPremium = dtoUser.IsPremium,
-            };
-            return user;
+                User user = new User
+                {
+                    Id = dtoUser.Id,
+                    ProfilPicture = dtoUser.ProfilPicture,
+                    UserName = dtoUser.UserName,
+                    Name = dtoUser.Name,
+                    LastName = dtoUser.LastName,
+                    Mail = dtoUser.Mail,
+                    Password = dtoUser.Password,
+                    IsArtist = dtoUser.IsArtist,
+                    IsPremium = dtoUser.IsPremium,
+                };
+                return user;
+            }
+            else
+            {
+                return null;
+            }
+
+
+            
+
         }
         public async Task<bool> Create(User user)
         {

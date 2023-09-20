@@ -10,7 +10,9 @@
     </ContentPage.BindingContext>
     <ContentPage.Resources>
         <ResourceDictionary>
-            <rd:LoginPageStyle x:Key="TopBorder, HeaderLabel, LoginLabel, Username, container" />
+            <ResourceDictionary.MergedDictionaries>
+                <rd:LoginPageStyle />
+            </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </ContentPage.Resources>
     <VerticalStackLayout>
@@ -28,39 +30,23 @@
                Style="{StaticResource LoginLabel}"/>
             <!--for writing username-->
         <Border
-            BackgroundColor="#303030"
-            StrokeShape="RoundRectangle 12,12,12,12"
-            WidthRequest="235"
-            Padding="4,5,4,5">
+            Style="{StaticResource LoginCredentialsOuterBorder}">
             <!--20202020-->
             <Border x:Name="UserNameContainer"
-               StrokeShape="RoundRectangle 20,20,20,20"
-               HorizontalOptions="Center"
-               BackgroundColor="#505050"
-                    WidthRequest="225">
+               Style="{StaticResource LogincredentialsContainer}">
                 <Entry x:Name="UserName" Text="{Binding Username}" Placeholder="UserName" TextColor="Black"/>
             </Border>
         </Border>
             <!--for writing password-->
-        <Border BackgroundColor="#303030"
-            StrokeShape="RoundRectangle 12,12,12,12"
-            WidthRequest="235"
-            Padding="4,5,4,5"
-                Margin="0,0,0,35">
+        <Border Style="{StaticResource LoginCredentialsOuterBorder}">
             <!--20202020-->
             <Border x:Name="PasswordContainer"
-               Style="{StaticResource container}"
-                    
-                    WidthRequest="225">
+               Style="{StaticResource LogincredentialsContainer}">
                 <Entry x:Name="Password" Text="{Binding Password}" IsPassword="True" TextColor="Black"/>
             </Border>
         </Border>
-        <Border BackgroundColor="#303030"
-                StrokeShape="RoundRectangle 12,12,12,12"
-                WidthRequest="116"
-                Padding="6,7,6,7"
-                Margin="0,0,0,5">
-            <Button BackgroundColor="#303030" Text="Log in" Command="{Binding LoginCommand}"/>
+        <Border Style="{StaticResource LoginButtonContainer}">
+            <Button Style="{StaticResource ButtonColor}" Text="Log in" Command="{Binding LoginCommand}"/>
         </Border>
         <!--Sign Up for users-->
         <!--20202020-->
@@ -68,7 +54,7 @@
                Style="{StaticResource container}"
                 HeightRequest="50"
                 WidthRequest="235">
-            <Button BackgroundColor="#303030" Text="Create User" Command="{Binding CreateUserCommand}"/>
+            <Button Style="{StaticResource ButtonColor}" Text="Create User" Command="{Binding CreateUserCommand}"/>
         </Border>
         <!--sign in for spotify users-->
         <!--20202020-->

@@ -43,7 +43,6 @@ namespace MusikApp.ViewModels
                 };
                 Genres.Add(item);
             }
-
             OnPropChanged(nameof(Genres));
         }
 
