@@ -79,6 +79,10 @@ namespace AppDBAccess
         }
         public async Task<List<string>> GetMultipleArtistImageAsync(List<string> ids)
         {
+            if(ids.Count > 49)
+            {
+                return null;
+            }
             SpotifyClient spotify = new SpotifyClient(await GetToken());
             ArtistsRequest listOfIds = new ArtistsRequest(ids);
             ArtistsResponse artistResponse = await spotify.Artists.GetSeveral(listOfIds);
@@ -132,7 +136,7 @@ namespace AppDBAccess
         }
         public async Task<List<FullTrack>> GetListOfSongs(List<string> songIds)
         {
-            if (songIds.Count > 50)
+            if (songIds.Count > 49)
             {
                 return null;
             }
@@ -141,15 +145,6 @@ namespace AppDBAccess
             TracksResponse listOfSongs = await spotify.Tracks.GetSeveral(temp);
             List<FullTrack> returnList = listOfSongs.Tracks.ToList();
             return returnList;
-        }
-        //this methode will return a recommendation 
-        public async Task<FullTrack> GetRecommendations()
-        {
-            SpotifyClient spotify = new SpotifyClient(await GetToken());
-            SearchRequest request = new SearchRequest(SearchRequest.Types.Track, "DK rock");
-            SearchResponse response = await spotify.Search.Item(request);
-            FullTrack recommendedSong = response.Tracks.Items.First();
-            return recommendedSong;
         }
         public async Task<List<Track>> GetListOfRecommendations(int id, int amount)
         {
