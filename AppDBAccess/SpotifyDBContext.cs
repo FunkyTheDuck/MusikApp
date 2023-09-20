@@ -15,6 +15,7 @@ using System.Reflection.PortableExecutable;
 using Xamarin.Essentials;
 using static System.Net.WebRequestMethods;
 using System.Collections.ObjectModel;
+using System.Collections.Immutable;
 
 namespace AppDBAccess
 {
@@ -150,7 +151,7 @@ namespace AppDBAccess
             FullTrack recommendedSong = response.Tracks.Items.First();
             return recommendedSong;
         }
-        public async Task<Track[]> GetListOfRecommendations(int id, int amount)
+        public async Task<List<Track>> GetListOfRecommendations(int id, int amount)
         {
             DtoSettings settings = await db.GetUsersSettingsAsync(id);
             string uri = $"https://api.spotify.com/v1/recommendations?limit={amount}";
@@ -211,14 +212,18 @@ namespace AppDBAccess
                 }
                 if (whiteListMatch.Count > 0)
                 {
-                    Track[] tracks = new Track[amount - whiteListMatch.Count];
+                    List<Track> tracks = temp.tracks.ToList();
                     for (int j = 0; j < whiteListMatch.Count; j++)
                     {
-                        tracks[j] = temp.tracks.FirstOrDefault(match => match.id != whiteListMatch[j]);
+                        Track track = tracks.FirstOrDefault(match => match.id == whiteListMatch[j]);
+                        if(track != null)
+                        {
+                            tracks.Remove(track);
+                        }
                     }
                     return tracks;
                 }
-                return temp.tracks;
+                return temp.tracks.ToList();
             }
             return null;
         }

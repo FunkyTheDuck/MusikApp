@@ -10,7 +10,9 @@
     </ContentPage.BindingContext>
     <ContentPage.Resources>
         <ResourceDictionary>
-            <rd:LoginPageStyle x:Key="TopBorder, HeaderLabel, LoginLabel, Username, container" />
+            <ResourceDictionary.MergedDictionaries>
+                <rd:LoginPageStyle/>
+            </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </ContentPage.Resources>
     <VerticalStackLayout>
