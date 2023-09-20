@@ -135,6 +135,7 @@ namespace AppRepository
                             SongArtistImage = listOfArtistImageUrls[i],
                             AlbumName = listOfSongs[i].album.name,
                             ArtistName = listOfSongs[i].artists.FirstOrDefault().name,
+                            ArtistId = listOfSongs[i].artists.FirstOrDefault().id,
                             IsPlayable = listOfSongs[i].is_playable,
                             PreviewUrl = listOfSongs[i].preview_url
                         };
