@@ -44,6 +44,10 @@ namespace MusikApp.ViewModels
                     await SecureStorage.Default.SetAsync("userId", checkuser.Id.ToString());
                     await Shell.Current.GoToAsync("//StartPage");
                 }
+                else
+                {
+                    await (Application.Current.MainPage).DisplayAlert("Error", "couldn't login check username and password", "OK");
+                }
             }
             catch (Exception)
             {

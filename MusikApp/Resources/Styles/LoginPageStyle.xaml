@@ -18,10 +18,32 @@
         <Setter Property="Margin" Value="0,80,0,10"/>
         <Setter Property="FontSize" Value="20"/>
     </Style>
-    <Style TargetType="Border" x:Key="container">
+    <Style x:Key="container" TargetType="Border">
         <!--containers that have full styling by x:Name : SignInSoundCloudUserContainer, SignInAppleUserContainer, SignInSpotifyUserContainer, SignUpUserContainer-->
         <Setter Property="StrokeShape" Value="RoundRectangle 20,20,20,20"/>
         <Setter Property="HorizontalOptions" Value="Center"/>
+        <Setter Property="BackgroundColor" Value="#303030"/>
+    </Style>
+    <Style x:Key="LogincredentialsContainer" TargetType="Border">
+        <Setter Property="StrokeShape" Value="RoundRectangle 20,20,20,20"/>
+        <Setter Property="HorizontalOptions" Value="Center"/>
+        <Setter Property="BackgroundColor" Value="#505050"/>
+        <Setter Property="WidthRequest" Value="225"/>
+    </Style>
+    <Style x:Key="LoginCredentialsOuterBorder" TargetType="Border">
+        <Setter Property="BackgroundColor" Value="#303030"/>
+        <Setter Property="StrokeShape" Value="RoundRectangle 12,12,12,12"/>
+        <Setter Property="WidthRequest" Value="235"/>
+        <Setter Property="Padding" Value="4,5,4,5"/>
+    </Style>
+    <Style x:Key="LoginButtonContainer" TargetType="Border">
+        <Setter Property="BackgroundColor" Value="#303030"/>
+        <Setter Property="StrokeShape" Value="RoundRectangle 12,12,12,12"/>
+        <Setter Property="WidthRequest" Value="116"/>
+        <Setter Property="Padding" Value="6,7,6,7"/>
+        <Setter Property="Margin" Value="0,35,0,15"/>
+    </Style>
+    <Style x:Key="ButtonColor" TargetType="Button">
         <Setter Property="BackgroundColor" Value="#303030"/>
     </Style>
 </ResourceDictionary>
