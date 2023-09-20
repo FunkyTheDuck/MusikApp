@@ -81,9 +81,10 @@ namespace MusikApp.ViewModels
                 {
                     currentSong.SongImage = "not_found.png";
                 }
-                if (!currentSong.IsPlayable || string.IsNullOrEmpty(currentSong.PreviewUrl))
+                if (string.IsNullOrEmpty(currentSong.PreviewUrl))
                 {
-                    songQueue.RemoveAt(0);
+                    songQueue.RemoveAt(0); 
+                    await (Application.Current.MainPage).DisplayAlert("Info", "This song can't be played", "OK");
                     OnPropChanged(nameof(currentSong));
                     return;
                 }
@@ -138,7 +139,7 @@ namespace MusikApp.ViewModels
             }
             else
             {
-                await (Application.Current.MainPage).DisplayAlert("Error", "spotify:artist:4RqlUMU9O5BNUhsRaukbRZ", "OK");
+                await (Application.Current.MainPage).DisplayAlert("Error", "The song couldn't be liked", "OK");
             }
         }
         public async void SkipCurrentSongAsync(object obj)

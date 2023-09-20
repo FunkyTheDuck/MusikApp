@@ -32,9 +32,8 @@ namespace MusikApp.ViewModels
 
         public async void GetGenres()
         {
-            List<Genre> genres;
-            genres = await GenreRepo.GetGenresAsync();
-
+            List<Genre> genres = await GenreRepo.GetGenresAsync();
+            Genres = new();
             foreach (Genre item in genres)
             {
                 Genre genre = new Genre
