@@ -17,7 +17,7 @@ namespace AppRepository
         public ProfilPageRepository()
         {
             db = new DBContext();
-            spotifyDB = new SpotifyDBContext();
+            spotifyDB = new SpotifyDBContext(db);
         }
         public async Task<List<DisplayedSong>> GetAllLikedSongs(int userId, int startPos)
         {

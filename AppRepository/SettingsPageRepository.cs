@@ -16,7 +16,7 @@ namespace AppRepository
         SpotifyDBContext spotifyDB;
         public SettingsPageRepository()
         {
-            spotifyDB = new SpotifyDBContext();
+            spotifyDB = new SpotifyDBContext(db);
             db = new DBContext();
         }
         public async Task<Settings> GetUsersSettingsAsync(int userId)

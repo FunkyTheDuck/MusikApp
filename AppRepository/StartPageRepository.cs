@@ -20,7 +20,7 @@ namespace AppRepository
         public StartPageRepository()
         {
             db = new DBContext();
-            spotifyDB = new SpotifyDBContext();
+            spotifyDB = new SpotifyDBContext(db);
         }
         public async Task<FullTrack> GetSong(string songId)
         {

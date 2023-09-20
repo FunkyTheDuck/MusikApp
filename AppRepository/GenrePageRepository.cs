@@ -15,16 +15,12 @@ namespace AppRepository
 
         public GenrePageRepository()
         {
-            spotifydb = new SpotifyDBContext();
+            spotifydb = new SpotifyDBContext(new DBContext());
         }
 
         public async Task<List<Genre>> GetGenresAsync()
         {
             return await spotifydb.GetAllGenresAsync();
         }
-
-
     }
-
-
 }

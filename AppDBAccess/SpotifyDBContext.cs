@@ -25,14 +25,16 @@ namespace AppDBAccess
         string clientId;
         string clientSecret;
         DBContext db;
-        public SpotifyDBContext()
+        DtoAccessToken token;
+        DateTime expiredTime;
+        public SpotifyDBContext(DBContext db)
         {
-            db = new DBContext();
+            this.db = db;
             httpClient = new HttpClient();
             clientId = "7a45756d65a741c4bcb45c05844738e8";
             clientSecret = "b815f5b7a685493494948e7a677f3bcc";
         }
-        public async Task<string> GetToken()
+        public async Task GetToken()
         {
             using (HttpClient client = new HttpClient())
             {
@@ -49,19 +51,27 @@ namespace AppDBAccess
                 response.EnsureSuccessStatusCode();
                 string json = await response.Content.ReadAsStringAsync();
 
-                DtoAccessToken token = JsonConvert.DeserializeObject<DtoAccessToken>(json);
-                return token.access_token;
+                token = JsonConvert.DeserializeObject<DtoAccessToken>(json);
+                expiredTime = DateTime.Now.AddSeconds(token.expires_in);
             }
         }
         public async Task<FullTrack> GetNewSongAsync(string id)
         {
-            SpotifyClient spotify = new SpotifyClient(await GetToken());
+            if (expiredTime >= DateTime.Now.AddMinutes(-5) || token == null)
+            {
+                await GetToken();
+            }
+            SpotifyClient spotify = new SpotifyClient(token.access_token);
             FullTrack temp = await spotify.Tracks.Get(id);
             return temp;
         }
         public async Task<string> GetArtistImageAsync(string id)
         {
-            SpotifyClient spotify = new SpotifyClient(await GetToken());
+            if (expiredTime >= DateTime.Now.AddMinutes(-5) || token == null)
+            {
+                await GetToken();
+            }
+            SpotifyClient spotify = new SpotifyClient(token.access_token);
             FullArtist temp = await spotify.Artists.Get(id);
 
             try
@@ -83,7 +93,11 @@ namespace AppDBAccess
             {
                 return null;
             }
-            SpotifyClient spotify = new SpotifyClient(await GetToken());
+            if (expiredTime >= DateTime.Now.AddMinutes(-5) || token == null)
+            {
+                await GetToken();
+            }
+            SpotifyClient spotify = new SpotifyClient(token.access_token);
             ArtistsRequest listOfIds = new ArtistsRequest(ids);
             ArtistsResponse artistResponse = await spotify.Artists.GetSeveral(listOfIds);
             List<FullArtist> listOfArtist = artistResponse.Artists.ToList();
@@ -103,7 +117,11 @@ namespace AppDBAccess
         }
         public async Task<FullArtist> GetArtistAsync(string artistId)
         {
-            SpotifyClient spotify = new SpotifyClient(await GetToken());
+            if (expiredTime >= DateTime.Now.AddMinutes(-5) || token == null)
+            {
+                await GetToken();
+            }
+            SpotifyClient spotify = new SpotifyClient(token.access_token);
             FullArtist artist = await spotify.Artists.Get(artistId);
             return artist;
         }
@@ -136,18 +154,26 @@ namespace AppDBAccess
         }
         public async Task<List<FullTrack>> GetListOfSongs(List<string> songIds)
         {
+            if (expiredTime >= DateTime.Now.AddMinutes(-5) || token == null)
+            {
+                await GetToken();
+            }
             if (songIds.Count > 49)
             {
                 return null;
             }
+            SpotifyClient spotify = new SpotifyClient(token.access_token);
             TracksRequest temp = new TracksRequest(songIds);
-            SpotifyClient spotify = new SpotifyClient(await GetToken());
             TracksResponse listOfSongs = await spotify.Tracks.GetSeveral(temp);
             List<FullTrack> returnList = listOfSongs.Tracks.ToList();
             return returnList;
         }
         public async Task<List<Track>> GetListOfRecommendations(int id, int amount)
         {
+            if (expiredTime >= DateTime.Now.AddMinutes(-5) || token == null)
+            {
+                await GetToken();
+            }
             DtoSettings settings = await db.GetUsersSettingsAsync(id);
             string uri = $"https://api.spotify.com/v1/recommendations?limit={amount}";
             for (int i = 0; i < 5; i++)
@@ -183,7 +209,7 @@ namespace AppDBAccess
                         break;
                 }
             }
-            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", await GetToken());
+            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(token.token_type, token.access_token);
             HttpResponseMessage response = null;
             try
             {
