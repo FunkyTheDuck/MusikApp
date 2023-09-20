@@ -76,19 +76,19 @@ namespace AppRepository
         }
         public async Task<DisplayedSong> GetSongToNotification(int id)
         {
-            Track[] arrayOfSongs = await spotifyDB.GetListOfRecommendations(id, 1);
-            if (arrayOfSongs.Length == 1)
+            List<Track> listOfSongs = await spotifyDB.GetListOfRecommendations(id, 1);
+            if (listOfSongs.Count == 1)
             {
                 DisplayedSong song = new DisplayedSong()
                 {
-                    Id = arrayOfSongs[0].id,
-                    SongImage = arrayOfSongs[0].album.images.FirstOrDefault().url,
-                    SongName = arrayOfSongs[0].name,
-                    AlbumName = arrayOfSongs[0].album.name,
-                    ArtistName = arrayOfSongs[0].artists.FirstOrDefault().name,
-                    ArtistId = arrayOfSongs[0].artists.First().id,
-                    IsPlayable = arrayOfSongs[0].is_playable,
-                    PreviewUrl = arrayOfSongs[0].preview_url
+                    Id = listOfSongs[0].id,
+                    SongImage = listOfSongs[0].album.images.FirstOrDefault().url,
+                    SongName = listOfSongs[0].name,
+                    AlbumName = listOfSongs[0].album.name,
+                    ArtistName = listOfSongs[0].artists.FirstOrDefault().name,
+                    ArtistId = listOfSongs[0].artists.First().id,
+                    IsPlayable = listOfSongs[0].is_playable,
+                    PreviewUrl = listOfSongs[0].preview_url
                 };
                 return song;
             }

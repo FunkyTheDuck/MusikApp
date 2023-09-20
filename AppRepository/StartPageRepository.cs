@@ -112,26 +112,31 @@ namespace AppRepository
         }
         public async Task<List<DisplayedSong>> GetListOfRecommendation(int id, int amount)
         {
-            Track[] arrayOfSongs = await spotifyDB.GetListOfRecommendations(id, amount);
-            if (arrayOfSongs.Length > 0)
+            List<Track> listOfSongs = await spotifyDB.GetListOfRecommendations(id, amount);
+            if (listOfSongs.Count > 0)
             {
+                List<string> listOfArtistIds = new List<string>();
+                for (int i = 0; i < listOfSongs.Count; i++)
+                {
+                    listOfArtistIds.Add(listOfSongs[i].artists.FirstOrDefault().id);
+                }
+                List<string> listOfArtistImageUrls = await spotifyDB.GetMultipleArtistImageAsync(listOfArtistIds);
                 List<DisplayedSong> songList = new List<DisplayedSong>();
-                foreach (Track track in arrayOfSongs)
+                for (int i = 0; i < listOfSongs.Count; i++)
                 {
                     DisplayedSong song;
                     try
                     {
                         song = new DisplayedSong
                         {
-                            Id = track.id,
-                            SongImage = track.album.images.FirstOrDefault().url,
-                            SongArtistImage = await GetArtistImageAsync(track.artists.FirstOrDefault().id),
-                            SongName = track.name,
-                            AlbumName = track.album.name,
-                            ArtistName = track.artists.FirstOrDefault().name,
-                            ArtistId = track.artists.First().id,
-                            IsPlayable = track.is_playable,
-                            PreviewUrl = track.preview_url
+                            Id = listOfSongs[i].id,
+                            SongImage = listOfSongs[i].album.images.FirstOrDefault().url,
+                            SongName = listOfSongs[i].name,
+                            SongArtistImage = listOfArtistImageUrls[i],
+                            AlbumName = listOfSongs[i].album.name,
+                            ArtistName = listOfSongs[i].artists.FirstOrDefault().name,
+                            IsPlayable = listOfSongs[i].is_playable,
+                            PreviewUrl = listOfSongs[i].preview_url
                         };
                         songList.Add(song);
                     }
