@@ -32,6 +32,7 @@ namespace MusikApp.ViewModels
 
         public async void RegisterUserClicked()
         {
+            //bool contains = Mail.Contains("@") && Mail.Contains(".");
             if (string.IsNullOrWhiteSpace(Name) || string.IsNullOrWhiteSpace(UserName) ||
                 string.IsNullOrWhiteSpace(LastName) || string.IsNullOrWhiteSpace(Mail) ||
                 string.IsNullOrWhiteSpace(Password))
@@ -48,6 +49,11 @@ namespace MusikApp.ViewModels
             else if(!(Password.Length >= 8 && ContainsUppercaseLetter(Password) && ContainsNumber(Password)))
             {
                 await App.Current.MainPage.DisplayAlert("Error", "Password must be 8 characters long and contain at least one uppercase letter and one number.", "ok");
+                return;
+            }
+            else if (!(Mail.Contains("@") && Mail.Contains(".")))
+            {
+                await App.Current.MainPage.DisplayAlert("Error", "please write a correct mail address", "ok");
                 return;
             }
             User user = new User
