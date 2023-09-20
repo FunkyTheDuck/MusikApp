@@ -1,5 +1,6 @@
 ﻿using AppDBAccess;
 using AppDTOModels;
+using AppDTOModels.SpotifyModels;
 using AppModels;
 using System;
 using System.Collections.Generic;
@@ -12,8 +13,10 @@ namespace AppRepository
     public class SettingsPageRepository : ISettingsPageRepository
     {
         DBContext db { get; set; }
+        SpotifyDBContext spotifyDB;
         public SettingsPageRepository()
         {
+            spotifyDB = new SpotifyDBContext();
             db = new DBContext();
         }
         public async Task<Settings> GetUsersSettingsAsync(int userId)
@@ -70,6 +73,26 @@ namespace AppRepository
                 UserId = userid,
             };
             return await db.CreateSettingsAsync(dtoSettings);
+        }
+        public async Task<DisplayedSong> GetSongToNotification(int id)
+        {
+            Track[] arrayOfSongs = await spotifyDB.GetListOfRecommendations(id, 1, "");
+            if (arrayOfSongs.Length == 1)
+            {
+                DisplayedSong song = new DisplayedSong()
+                {
+                    Id = arrayOfSongs[0].id,
+                    SongImage = arrayOfSongs[0].album.images.FirstOrDefault().url,
+                    SongName = arrayOfSongs[0].name,
+                    AlbumName = arrayOfSongs[0].album.name,
+                    ArtistName = arrayOfSongs[0].artists.FirstOrDefault().name,
+                    ArtistId = arrayOfSongs[0].artists.First().id,
+                    IsPlayable = arrayOfSongs[0].is_playable,
+                    PreviewUrl = arrayOfSongs[0].preview_url
+                };
+                return song;
+            }
+            return null;
         }
     }
 }

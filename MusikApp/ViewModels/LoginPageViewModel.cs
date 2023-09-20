@@ -1,6 +1,7 @@
 ﻿using AppModels;
 using AppRepository;
 using MusikApp.Views;
+using Plugin.LocalNotification;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,7 +43,6 @@ namespace MusikApp.ViewModels
                 {
                     await SecureStorage.Default.SetAsync("userId", checkuser.Id.ToString());
                     await Shell.Current.GoToAsync("//StartPage");
-                    //await Application.Current.MainPage.Navigation.PushModalAsync(new MainPage());
                 }
             }
             catch (Exception)

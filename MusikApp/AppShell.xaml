@@ -18,12 +18,12 @@
 
     <ShellContent Shell.NavBarIsVisible="False" NavigationPage.HasNavigationBar="False" ContentTemplate="{DataTemplate view:CreateUserPage}" Route="CreateUserPage"/>
 
-    <TabBar Route="StartPage">
+    <TabBar Route="MainPage">
         <Tab Icon="search_icon.png">
             <ShellContent ContentTemplate="{DataTemplate view:FriendsPage}"/>
         </Tab>
         <Tab Icon="main_page_icon.png">
-            <ShellContent ContentTemplate="{DataTemplate view:StartPage}"/>
+            <ShellContent ContentTemplate="{DataTemplate view:StartPage}" Route="StartPage"/>
         </Tab>
         <Tab Icon="profil_icon.png">
             <ShellContent ContentTemplate="{DataTemplate view:Profil}"/>

@@ -7,5 +7,6 @@ namespace AppRepository
         Task<Settings> GetUsersSettingsAsync(int userId);
         Task<bool> UpdateSettingsAsync(Settings setting);
         Task<bool> CreateSettingsAsync(int userid);
+        Task<DisplayedSong> GetSongToNotification(int id);
     }
 }

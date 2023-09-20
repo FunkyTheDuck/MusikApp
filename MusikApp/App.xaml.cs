@@ -8,6 +8,7 @@ namespace MusikApp
         {
             InitializeComponent();
             MainPage = new AppShell();
+
         }
     }
 }
