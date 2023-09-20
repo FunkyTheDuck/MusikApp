@@ -84,6 +84,7 @@ namespace MusikApp.ViewModels
                 if (!currentSong.IsPlayable || string.IsNullOrEmpty(currentSong.PreviewUrl))
                 {
                     songQueue.RemoveAt(0);
+                    AudioDisplay.Source = currentSong.PreviewUrl;
                     OnPropChanged(nameof(currentSong));
                     return;
                 }
