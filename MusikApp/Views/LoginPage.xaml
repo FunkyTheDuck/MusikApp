@@ -3,37 +3,36 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MusikApp.Views.LoginPage"
              xmlns:ViewModels="clr-namespace:MusikApp.ViewModels"
-             Title="">
+             xmlns:rd="clr-namespace:MusikApp.Resources.Styles"
+             Title="LoginPage">
     <ContentPage.BindingContext>
         <ViewModels:LoginPageViewModel/>
     </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <rd:LoginPageStyle x:Key="TopBorder, HeaderLabel, LoginLabel, Username, container" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <VerticalStackLayout>
         <Border 
-            StrokeShape="RoundRectangle 0,0,10,10"
-            BackgroundColor="#303030"
-            HeightRequest="70"
-            >
+            Style="{StaticResource TopBorder}">
             <Label 
             Text="Welcome to Musicly"
-            TextColor="White"
-            HorizontalOptions="Center"
-                VerticalOptions="Center"
-            FontSize="25"/>
+                Style="{StaticResource HeaderLabel}"/>
         </Border>
 
             
             
             
         <Label Text="Log In" 
-               HorizontalOptions="Center"
-               Margin="0,80,0,10"
-               FontSize="20"/>
+               Style="{StaticResource LoginLabel}"/>
             <!--for writing username-->
         <Border
             BackgroundColor="#303030"
             StrokeShape="RoundRectangle 12,12,12,12"
             WidthRequest="235"
             Padding="4,5,4,5">
+            <!--20202020-->
             <Border x:Name="UserNameContainer"
                StrokeShape="RoundRectangle 20,20,20,20"
                HorizontalOptions="Center"
@@ -48,10 +47,9 @@
             WidthRequest="235"
             Padding="4,5,4,5"
                 Margin="0,0,0,35">
+            <!--20202020-->
             <Border x:Name="PasswordContainer"
-               StrokeShape="RoundRectangle 20,20,20,20"
-               HorizontalOptions="Center"
-               BackgroundColor="Gray"
+               Style="{StaticResource container}"
                     
                     WidthRequest="225">
                 <Entry x:Name="Password" Text="{Binding Password}" IsPassword="True" TextColor="Black"/>
@@ -65,19 +63,17 @@
             <Button BackgroundColor="#303030" Text="Log in" Command="{Binding LoginCommand}"/>
         </Border>
         <!--Sign Up for users-->
+        <!--20202020-->
         <Border x:Name="SignUpUserContainer"
-               StrokeShape="RoundRectangle 20,20,20,20"
-               HorizontalOptions="Center"
-               BackgroundColor="#303030"
+               Style="{StaticResource container}"
                 HeightRequest="50"
                 WidthRequest="235">
             <Button BackgroundColor="#303030" Text="Create User" Command="{Binding CreateUserCommand}"/>
         </Border>
         <!--sign in for spotify users-->
+        <!--20202020-->
         <Border x:Name="SignInSpotifyUserContainer"
-               StrokeShape="RoundRectangle 20,20,20,20"
-               HorizontalOptions="Center"
-               BackgroundColor="#303030">
+               Style="{StaticResource container}">
             <Border.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding SpotifyUserCommand}"/>
             </Border.GestureRecognizers>
@@ -86,10 +82,9 @@
             </HorizontalStackLayout>
         </Border>
         <!--sign in for Apple users-->
-            <Border x:Name="SignInAppleUserContainer"
-               StrokeShape="RoundRectangle 20,20,20,20"
-               HorizontalOptions="Center"
-               BackgroundColor="#303030">
+        <!--20202020-->
+        <Border x:Name="SignInAppleUserContainer"
+               Style="{StaticResource container}">
             <Border.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding AppleUserCommand}"/>
             </Border.GestureRecognizers>
@@ -98,10 +93,9 @@
             </HorizontalStackLayout>
         </Border>
         <!--sign in for Cloud sers-->
-        <Border x:Name="SignInSoundCloudUserContainer"
-               StrokeShape="RoundRectangle 20,20,20,20"
-               HorizontalOptions="Center"
-               BackgroundColor="Gray">
+        <!--20202020-->
+        <Border x:Name="SignInSoundCloudUserContainer" 
+               Style="{StaticResource container}">
             <Border.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding SoundCloudUserCommand}"/>
             </Border.GestureRecognizers>

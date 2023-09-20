@@ -14,6 +14,7 @@ using AppModels;
 using System.Reflection.PortableExecutable;
 using Xamarin.Essentials;
 using static System.Net.WebRequestMethods;
+using System.Collections.ObjectModel;
 
 namespace AppDBAccess
 {
@@ -78,9 +79,9 @@ namespace AppDBAccess
             FullArtist artist = await spotify.Artists.Get(artistId);
             return artist;
         }
-        public async Task<ObservableCollection<Genre>> GetAllGenresAsync()
+        public async Task<List<Genre>> GetAllGenresAsync()
         {
-            ObservableCollection<Genre> GenreList = new();
+            List<Genre> GenreList = new();
             List<string> genres = new List<string>()
 
             {

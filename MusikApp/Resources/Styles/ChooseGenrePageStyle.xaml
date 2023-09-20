@@ -25,4 +25,7 @@
         <Setter Property="FontSize" Value="14"/>
         <Setter Property="TextColor" Value="White"/>
     </Style>
+    <Style x:Key="Confirm" TargetType="Button">
+        <Setter Property="Margin" Value="90,0,55,0"/>
+    </Style>
 </ResourceDictionary>

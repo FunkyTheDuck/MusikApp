@@ -18,7 +18,7 @@ namespace AppRepository
             spotifydb = new SpotifyDBContext();
         }
 
-        public async Task<ObservableCollection<Genre>> GetGenresAsync()
+        public async Task<List<Genre>> GetGenresAsync()
         {
             return await spotifydb.GetAllGenresAsync();
         }

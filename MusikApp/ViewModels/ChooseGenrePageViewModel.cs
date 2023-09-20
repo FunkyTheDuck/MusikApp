@@ -1,10 +1,12 @@
 ﻿using AppModels;
 using AppRepository;
 using MusikApp.Views;
+using SpotifyAPI.Web;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -25,11 +27,23 @@ namespace MusikApp.ViewModels
             GenreRepo = new();
             GetGenres();
             SelectedGenreChanged = new Command(SelectGenre);
+            
         }
 
         public async void GetGenres()
         {
-            Genres = await GenreRepo.GetGenresAsync();
+            List<Genre> genres;
+            genres = await GenreRepo.GetGenresAsync();
+
+            foreach (Genre item in genres)
+            {
+                Genre genre = new Genre
+                {
+                    Name = item.Name
+                };
+                Genres.Add(item);
+            }
+
             OnPropChanged(nameof(Genres));
         }
 
@@ -39,16 +53,17 @@ namespace MusikApp.ViewModels
 
         private async void SelectGenre()
         {
+            string idValue = await SecureStorage.GetAsync("userId");
+            Settings settings;
+            if (int.TryParse(idValue, out int integerValue))
+            {
+                 settings = await settingRepo.GetUsersSettingsAsync(integerValue);
 
-            Settings settings = await settingRepo.GetUsersSettingsAsync(1);
-            string genreseparated = string.Join(",", SelectedGenre);
+                string genreseparated = string.Join(",", SelectedGenre.OfType<Genre>().Select(x=>x.Name));
 
                 settings.ChangeGenre += $"{genreseparated}";
-            
-
-
-            await settingRepo.UpdateSettingsAsync(settings);
-
+                await settingRepo.UpdateSettingsAsync(settings);
+            } 
             await Shell.Current.GoToAsync("//StartPage");
         }
     }

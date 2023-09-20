@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MusikApp.Resources.Styles.LoginPageStyle">
+    <Style x:Key="TopBorder" TargetType="Border">
+        <Setter Property="StrokeShape" Value="RoundRectangle 0,0,10,10"/>
+        <Setter Property="BackgroundColor" Value="#303030"/>
+        <Setter Property="HeightRequest" Value="70"/>
+    </Style>
+    <Style x:Key="HeaderLabel" TargetType="Label">
+        <Setter Property="TextColor" Value="White"/>
+        <Setter Property="HorizontalOptions" Value="Center"/>
+        <Setter Property="VerticalOptions" Value="Center"/>
+        <Setter Property="FontSize" Value="25"/>
+    </Style>
+    <Style x:Key="LoginLabel" TargetType="Label">
+        <Setter Property="HorizontalOptions" Value="Center"/>
+        <Setter Property="Margin" Value="0, 80,0,10"/>
+        <Setter Property="FontSize" Value="20"/>
+    </Style>
+    <Style x:Key="container" TargetType="Border"> <!--containers that have full styling by x:Name : SignInSoundCloudUserContainer, SignInAppleUserContainer, SignInSpotifyUserContainer, SignUpUserContainer-->
+        <Setter Property="StrokeShape" Value="RoundRectangle 20,20,20,20"/>
+        <Setter Property="HorizontalOptions" Value="Center"/>
+        <Setter Property="BackgroundColor" Value="#303030"/>
+    </Style>
+    <Style>
+        
+    </Style>
+</ResourceDictionary>

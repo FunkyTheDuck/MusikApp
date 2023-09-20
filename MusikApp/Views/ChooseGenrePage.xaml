@@ -22,13 +22,13 @@
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Border  BackgroundColor="Gray">
-                            <Label HorizontalTextAlignment="Center" FontSize="14" TextColor="White" Text="{Binding Name}"/>
+                            <Label Text="{Binding Name}"/>
                         </Border>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
             <HorizontalStackLayout>
-                <Button Margin="90,0,55,0" Command="{Binding SelectedGenreChanged}" Text="Confirm"></Button>
+                <Button Style="{StaticResource Confirm}" Command="{Binding SelectedGenreChanged}" Text="Confirm"></Button>
                 <Button Text="Cancel"></Button>
             </HorizontalStackLayout>
 
