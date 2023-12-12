@@ -32,7 +32,7 @@ namespace AppDBAccess
             this.db = db;
             httpClient = new HttpClient();
             clientId = "7a45756d65a741c4bcb45c05844738e8";
-            clientSecret = "b815f5b7a685493494948e7a677f3bcc";
+            clientSecret = "Wouldn't you like to know";
         }
         public async Task GetToken()
         {
